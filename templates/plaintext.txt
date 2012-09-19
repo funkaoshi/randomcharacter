@@ -1,0 +1,53 @@
+{{ c.system }} D&D {{ c.character_class.name }}
+
+HP: {{ c.hp }}   AC: {{ c.ac }}   XP: 0
+
+Attributes: 
+
+  STR: {{ c.attr.STR }}
+  INT: {{ c.attr.INT }}
+  WIS: {{ c.attr.WIS }}
+  DEX: {{ c.attr.DEX }}
+  CON: {{ c.attr.CON }}
+  CHA: {{ c.attr.CHA }}
+                
+Saves:
+
+  Poison:        {{ c.saves.poison}}
+  Magical Wands: {{ c.saves.wands}}                
+  Paralysis:     {{ c.saves.stone}}
+  Dragon Breath: {{ c.saves.breath}}
+  Magic:         {{ c.saves.magic}}
+  
+To Hit Table:
+
+  AC:   {% for i in range(9, -2, -1) %} {{ "%2d"|format(i) }} {% endfor %}
+  Roll: {% for i in range(c.thac9, c.thac9 + 11) %} {{ "%2d"|format(i) }} {% endfor %}
+
+Equipment:
+  {% for item in c.equipment %}
+   * {{ item -}}
+  {% endfor %}
+  
+Languages: Commom, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
+  
+{% if c.character_class.name == 'Thief' -%}
+Thief Skills:
+{% for skill, chance in c.character_class.skills %}
+  {{ skill }}: {{ chance -}}
+{% endfor -%}
+{% endif -%}
+
+{% if c.character_class.name == 'Cleric' -%}
+Turn Undead:
+{% for undead, roll in c.character_class.turn %}
+  {{ undead }}: {{ roll -}}
+{% endfor -%}
+{% endif -%}
+
+{% if c.spell -%}
+Spells: 
+  Level 1: {{ c.spell }}
+{% endif -%}    
+            
+

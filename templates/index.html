@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <meta name="viewport" content="width=480"/>		
+        <title>A Random {{ c.character_class.name }} for {{ c.system }} D&amp;D</title>
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Josefin+Slab:400,700|Metamorphous' type='text/css'>
+        <link rel="stylesheet" href="/static/create.css" type="text/css" media="screen" title="site style" charset="utf-8">        
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-2675737-19']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>        
+    </head>
+    <body>        
+        <div id="container">
+            <h2 class="system"> {{ c.system }} D&amp;D</h2>
+            <h1>{{ c.character_class.name }}</h1>
+
+            <table class="attr">
+                <tr>
+                    <td><strong>STR</strong>: {{ c.attr.STR }}</td>
+            		<td><strong>INT</strong>: {{ c.attr.INT }}</td>
+            		<td><strong>WIS</strong>: {{ c.attr.WIS }}</td>
+                </tr>
+                <tr>
+                    <td><strong>DEX</strong>: {{ c.attr.DEX }}</td>
+            		<td><strong>CON</strong>: {{ c.attr.CON }}</td>
+            		<td><strong>CHA</strong>: {{ c.attr.CHA }}</td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td class="save">Death Ray or Poison</td>
+            		<td>{{ c.saves.poison}}</td>
+            		<td><strong>HP</strong>: {{ c.hp }}</td>
+                </tr>
+                <tr>
+                    <td class="save">Magical Wands</td>
+            		<td>{{ c.saves.wands}}</td>
+            		<td><strong>AC</strong>: {{ c.ac }}</td>
+                </tr>
+                <tr>
+                    <td class="save">Paralysis</td>
+            		<td>{{ c.saves.stone}}</td>
+            		<td><strong>XP</strong>: 0 </td>
+                </tr>
+                <tr>
+                    <td class="save">Dragon Breath</td>
+            		<td>{{ c.saves.breath}}</td>
+            		<td></td>
+                </tr>
+                <tr>
+                    <td class="save">Magic</td>
+            		<td>{{ c.saves.magic}}</td>
+            		<td></td>
+                </tr>
+            </table>
+            
+            <table class="weapon">
+                <tr>
+                    <td><strong>AC</strong></td>
+                    {% for i in range(9, -2, -1) %}
+                    <td>{{ i }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td><strong>Roll</strong></td>
+                    {% for i in range(c.thac9, c.thac9 + 11) %}
+                    <td>{{ i }}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            
+            <div class="extra">                
+                <div class="block">
+                    <h3>Equipment</h3>
+                    <ul>
+                    {% for item in c.equipment %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>            
+                {% if c.character_class.name == 'Thief' %}
+                <div class="block">
+                    <h3>Thief Skills</h3>
+                    <table class="thief skills">
+                        <tr>
+                            <th>Skill</th><th>Roll</th>
+                        </tr>
+                        {% for skill, chance in c.character_class.skills %}
+                        <tr>
+                            <td>{{ skill }}</td><td>{{ chance }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% elif c.character_class.name == 'Cleric' %}
+                <div class="block">
+                    <h3>Turn Undead</h3>
+                    <table class="skills">
+                        <tr>
+                            <th>Undead</th><th>Roll</th>
+                        </tr>
+                        {% for undead, roll in c.character_class.turn %}
+                        <tr>
+                            <td>{{ undead }}</td><td>{{ roll }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endif %}                            
+            </div>
+            
+            {% if c.spell %}
+            <div class="block">
+            <h3>Spells</h3>
+            <ul><li><strong>Level 1</strong>: {{ c.spell }}</li></ul>
+            </div>
+            {% endif %}    
+            
+            {% if c.languages|length > 1 %}
+            <div class="block">
+            <h3>Languages</h3>
+            <ul>
+                <li>Common</li>
+                <li>Alignment</li>
+                {% for language in c.languages|sort %}
+                <li>{{ language }}</li>
+                {% endfor %}
+            </ul>
+            </div>
+            {% endif %}
+            
+            <footer>
+                <p>
+                    You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/greyhawk">Greyhawk D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>. 
+                </p>
+                <p>
+                    If you need a name, check out <a href="http://www.rinkworks.com/namegen/">The Fantasy Name Generator</a>.
+                </p>
+    			<p>
+    			    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Equipment lists generated using <a href="http://untimately.blogspot.ca/2012/07/od-equipment.html">random charts from Untimately.</a> Other random tables taken from <em>"Moldvay" Basic D&D</em>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    			</p>
+            </footer>
+		</div>
+	</body>
+</html>

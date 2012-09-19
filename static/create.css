@@ -1,0 +1,107 @@
+body {
+    background: url('/static/lightpaperfibers.png');
+    font-size: 1em;
+    padding: 0; margin:0; 
+    line-height: 150%;
+    font-family: 'Josefin Sans', sans serif;
+    zoom: 1; /* maybe fix IE stupidness */
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+/* Content */
+
+
+#container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 16px 0;
+}
+
+table {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+    border-spacing: 0
+}
+table td, table th {
+    width: 127px;
+    vertical-align: top;
+    text-align: left;
+    padding: 0;    
+}
+/* Saving throw names are a bit long */
+table td.save {
+    width: 144px;
+}
+table td.save + td {
+    width: 110px;
+}
+table.attr {
+    width: 100%;
+    border-top: 1px solid #333;
+}
+table.weapon td {
+    text-align: center;
+}
+table.skills {
+    border: 0;
+    padding: 0;
+}
+table.thief.skills td:first-child {
+    width: 160px;
+}
+
+h1, h3 {
+    font-family: 'Metamorphous', cursive;
+}
+h1 {
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 0
+}
+h2.system {
+    font-size: 0.6em;
+    color: #333;
+    margin: 0;
+}
+h2 {
+    font-size: 1em;
+    text-align: center
+}
+h3 {
+    font-size: 1em;
+    margin-bottom: 4px;
+    margin-top: 20px;
+    clear: both;
+}
+
+ul {
+    margin: 0;
+    padding-left: 1em;
+    list-style: circle;
+}
+
+
+
+.block {
+    width: 184px;
+    padding: 0 8px;
+    float: left;
+}
+
+/* Small centered footer */
+
+footer {
+    clear: both;
+    padding-top: 2em;
+    text-align: center;   
+}
+footer p:first-child {
+    border-top: 1px solid gray;
+    padding-top: 1em;
+}
+footer p {
+    font-size: 0.8em;
+    line-height: 130%;
+}
