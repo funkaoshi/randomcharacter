@@ -1,5 +1,5 @@
 body {
-    background: url('/static/lightpaperfibers.png');
+    background: #eee url('/static/lightpaperfibers.png');
     font-size: 1em;
     padding: 0; margin:0; 
     line-height: 150%;
@@ -8,48 +8,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;
-}
-
-/* Content */
-
-
-#container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 16px 0;
-}
-
-table {
-    padding: 8px;
-    border-bottom: 1px solid #333;
-    border-spacing: 0
-}
-table td, table th {
-    width: 127px;
-    vertical-align: top;
-    text-align: left;
-    padding: 0;    
-}
-/* Saving throw names are a bit long */
-table td.save {
-    width: 144px;
-}
-table td.save + td {
-    width: 110px;
-}
-table.attr {
-    width: 100%;
-    border-top: 1px solid #333;
-}
-table.weapon td {
-    text-align: center;
-}
-table.skills {
-    border: 0;
-    padding: 0;
-}
-table.thief.skills td:first-child {
-    width: 160px;
 }
 
 h1, h3 {
@@ -76,18 +34,63 @@ h3 {
     clear: both;
 }
 
+/* Content */
+
+#container {
+    width: 25em;
+    margin: 0 auto;
+    padding: 1em 0;
+}
+
+/* Attribute Tables */
+
+table {
+    padding: 0.5em;
+    border-bottom: 1px solid #333;
+    border-spacing: 0
+}
+table td, table th {
+    width: 8em;
+    vertical-align: top;
+    text-align: left;
+    padding: 0;    
+}
+table.attr {
+    border-top: 1px solid #333;
+}
+table td.save {
+    width: 10em; /* Saving throw names are a bit long */
+}
+table td.save + td {
+    width: 6em;
+}
+table.weapon td {
+    text-align: center;
+}
+
+/* Additional Content Tables and Lists */
+
+.block {
+    width: 11.5em;
+    padding: 0 0.5em;
+    margin: 0;
+    float: left;
+}
+
+table.skills {
+    border: 0;
+    padding: 0;
+}
+
+table.thief.skills td + td,
+table.thief.skills th + th {
+    width: 2em;
+}
+
 ul {
     margin: 0;
     padding-left: 1em;
     list-style: circle;
-}
-
-
-
-.block {
-    width: 184px;
-    padding: 0 8px;
-    float: left;
 }
 
 /* Small centered footer */
