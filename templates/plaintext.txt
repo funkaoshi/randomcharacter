@@ -49,5 +49,11 @@ Turn Undead:
 Spells: 
   Level 1: {{ c.spell }}
 {% endif -%}    
-            
+
+{% if c.notes -%}
+Notes:
+{% for note in c.notes %}
+  * {{ note -}}
+{% endfor -%}
+{% endif -%}
 

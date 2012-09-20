@@ -120,24 +120,34 @@
             
             {% if c.spell %}
             <div class="block">
-            <h3>Spells</h3>
-            <ul><li><strong>Level 1</strong>: {{ c.spell }}</li></ul>
+                <h3>Spells</h3>
+                <ul><li><strong>Level 1</strong>: {{ c.spell }}</li></ul>
             </div>
             {% endif %}    
             
             {% if c.languages|length > 1 %}
             <div class="block">
-            <h3>Languages</h3>
-            <ul>
-                <li>Common</li>
-                <li>Alignment</li>
-                {% for language in c.languages|sort %}
-                <li>{{ language }}</li>
-                {% endfor %}
-            </ul>
+                <h3>Languages</h3>
+                <ul>
+                    <li>Common</li>
+                    <li>Alignment</li>
+                    {% for language in c.languages|sort %}
+                    <li>{{ language }}</li>
+                    {% endfor %}
+                </ul>
             </div>
             {% endif %}
             
+            {% if c.notes %}
+            <div class="block">
+                <h3>Notes</h3>
+                <ul>
+                    {% for note in c.notes %}
+                    <li>{{ note }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             <footer>
                 <p>
                     You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/greyhawk">Greyhawk D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>. 

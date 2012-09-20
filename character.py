@@ -15,7 +15,7 @@ class Character(object):
     
     def __init__(self):
         self.attributes = [(attribute, xdy(3,6))
-                           for attribute in CharacterClass.ATTRIBUTES]                    
+                           for attribute in CharacterClass.ATTRIBUTES]
         self.character_class = self.get_character_class()
         self.equipment = self.character_class['equipment'][xdy(3,6)-3]        
         self.hp = self.get_hp()
@@ -26,6 +26,7 @@ class Character(object):
         self.saves = self.get_saves()
         self.languages = self.get_languages()
         self.spell = self.get_spell()
+        self.notes = self.get_notes()
         
         # attribute map to ease display in template
         self.attr = dict((attr, self.with_bonus(attr, value))
@@ -113,6 +114,12 @@ class Character(object):
             return random.choice(spells)
         return None
 
+    def get_notes(self):
+        """
+        Are there any additional notes about the character?
+        """
+        return []
+
     def get_bonus(self, attr, val):
         """
         Return the bonus for the given attribute. Subclassses will override. 
@@ -125,10 +132,8 @@ class Character(object):
         Return attribute value with bonus attached, for display.
         """
         bonus = self.get_bonus(attr, val)
-        if bonus > 0:
-            return "%d (+%d)" % (val, bonus)
-        elif bonus < 0:
-            return "%d (%d)" % (val, bonus)
+        if bonus:
+            return "%d (%+d)" % (val, bonus)
         return "%d" % val
 
         
@@ -164,8 +169,8 @@ class BasicCharacter(Character):
         In Basic D&D your strength improves your to hit.
         """
         thac9 = super(BasicCharacter,self).get_thac9()
-        dex_bonus = self.get_bonus(*self.attributes[CharacterClass.STR])
-        return thac9 - dex_bonus
+        str_bonus = self.get_bonus(*self.attributes[CharacterClass.STR])
+        return thac9 - str_bonus
 
     def get_bonus(self, attr, val):
         """
@@ -195,16 +200,50 @@ class GreyhawkCharacter(Character):
     way to AD&D. As far as I can tell its mechanically similar to Basic D&D 
     save for the old-style attribute modifiers.
     """
-    
+
     @property
     def system(self):
         return "Greyhawk"
+
+    def get_ac(self):
+        """
+        In Greyhawk fighters get a Dex bonus to their AC.
+        """
+        ac = super(GreyhawkCharacter, self).get_ac()
+        if self.character_class == CharacterClass.FIGHTER:
+            bonus = self.attributes[CharacterClass.DEX][1] - 14
+            ac = ac - bonus
+        return ac
+
+    def get_notes(self):
+        """
+        Store information about a characters strength bonuses.
+        """
+        # TODO: This does way more work than it should
+        strength = self.attributes[CharacterClass.STR][1]
+        if self.character_class == CharacterClass.FIGHTER and strength == 18:
+            self.exceptional = d(100)
+        hit, dmg = self.get_greyhawk_str(strength)
+        if hit:
+            self.thac9 = self.thac9 - hit
+        notes = []
+        if hasattr(self, 'exceptional'):
+            notes.append("The character has an exceptional strength of %d." % self.exceptional)
+        if dmg:
+            notes.append("The character gets a %+d to damage rolls." % dmg)
+        return notes
 
     def get_bonus(self, attr, val):
         """
         Return the Greyhawk D&D attribute bonuses.
         """
-        if attr == 'INT':
+        if attr == 'STR':
+            # Note: there multiple values here, and there is exceptional
+            # strenth for fighters: damn it. We handle this elsewhere for now.
+            # TODO: This whole method seems stupid.
+            hit, _ = self.get_greyhawk_str(val)
+            return hit
+        elif attr == 'INT':
             # Bonus to languages
             if val > 10:
                 return val - 10
@@ -212,8 +251,10 @@ class GreyhawkCharacter(Character):
             # Bonus to HP
             if val <= 6:
                 return -1
-            elif val >= 15:
+            elif val == 15:
                 return 1
+            elif val >= 16:
+                return val - 15
         elif attr == 'DEX':
             # missile damage
             if val <= 8:
@@ -233,6 +274,35 @@ class GreyhawkCharacter(Character):
             elif val >= 18:
                 return 4
         return 0
+
+    def get_greyhawk_str(self, val):
+        """
+        Greyhawk Strength has varying bonuses, and exceptional strength.
+        """
+        if val <= 4:
+            return -2, -1
+        elif val <= 5:
+            return -1, 0
+        elif 13 <= val <= 15:
+            return 1, 0
+        elif val == 16:
+            return 1, 1
+        elif val == 17:
+            return 2, 2
+        elif val == 18:
+            if not hasattr(self, 'exceptional'):
+                return 2, 3
+            if 0 <= self.exceptional <= 50:
+                return 2, 3
+            elif 51 <= self.exceptional <= 75:
+                return 3, 3
+            elif 76 <= self.exceptional <= 90:
+                return 3, 4
+            elif 91 <= self.exceptional <= 99:
+                return 3, 5
+            elif self.exceptional == 100:
+                return 4, 6
+        return 0, 0 
 
 
 class LBBCharacter(GreyhawkCharacter):
@@ -274,3 +344,37 @@ class LBBCharacter(GreyhawkCharacter):
         if self.character_class == CharacterClass.FIGHTER:
             hp = hp + 1
         return hp
+
+    def get_bonus(self, attr, val):
+        """
+        Return the Original D&D attribute bonuses.
+        """
+        if attr == 'INT':
+            # Bonus to languages
+            if val > 10:
+                return val - 10
+        elif attr == 'CON':
+            # Bonus to HP
+            if val <= 6:
+                return -1
+            elif val >= 15:
+                return 1
+        elif attr == 'DEX':
+            # missile damage
+            if val <= 8:
+                return -1
+            elif val >= 13:
+                return 1
+        elif attr == 'CHA':
+            # loyalty bonus
+            if val <= 4:
+                return -2
+            elif val <= 6:
+                return -1
+            elif 13 <= val <= 15:
+                return 1
+            elif 16 <= val <= 17:
+                return 2
+            elif val >= 18:
+                return 4
+        return 0
