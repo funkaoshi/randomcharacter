@@ -2,7 +2,7 @@ import copy
 import operator
 import random
 
-from characterclass import CharacterClass
+import characterclass
 from dice import d, xdy
 
 
@@ -15,7 +15,7 @@ class Character(object):
     
     def __init__(self):
         self.attributes = [(attribute, xdy(3,6))
-                           for attribute in CharacterClass.ATTRIBUTES]
+                           for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class()
         self.equipment = self.character_class['equipment'][xdy(3,6)-3]        
         self.hp = self.get_hp()
@@ -57,14 +57,14 @@ class Character(object):
         """
         prime_attribute, _ = sorted(self.attributes[:self.playable_classes],
                                     key=operator.itemgetter(1))[-1]
-        return CharacterClass.PRIME_REQUISITE[prime_attribute]
+        return characterclass.PRIME_REQUISITE[prime_attribute]
 
     def get_hp(self):
         """
         Determine HP based on hit dice and CON modifiers. Note: this value may
         be negative and that is handled by the caller.
         """
-        return d(self.hit_die) + self.get_bonus(*self.attributes[CharacterClass.CON])
+        return d(self.hit_die) + self.get_bonus(*self.attributes[characterclass.CON])
 
     def get_ac(self):
         """
@@ -100,10 +100,10 @@ class Character(object):
         For each bonus point for inteligence, a character knows an additional
         language, beyond Common and their alignment language.
         """
-        bonus = self.get_bonus(*self.attributes[CharacterClass.INT])
+        bonus = self.get_bonus(*self.attributes[characterclass.INT])
         if bonus < 0:
             bonus = 0
-        return random.sample(CharacterClass.LANGUAGES, bonus)
+        return random.sample(characterclass.LANGUAGES, bonus)
 
     def get_spell(self):
         """
@@ -151,7 +151,7 @@ class BasicCharacter(Character):
         In Basic D&D DEX improves your AC.
         """
         ac = super(BasicCharacter, self).get_ac()
-        ac = ac - self.get_bonus(*self.attributes[CharacterClass.DEX])
+        ac = ac - self.get_bonus(*self.attributes[characterclass.DEX])
         return ac
 
     def get_saves(self):
@@ -159,7 +159,7 @@ class BasicCharacter(Character):
         Your magic based saves are effected by your WIS.
         """
         saves = copy.copy(self.character_class['saves'])
-        wisdom_bonus = self.get_bonus(*self.attributes[CharacterClass.WIS])
+        wisdom_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
         for save in ['magic', 'stone', 'wands']:
             saves[save] = saves[save] - wisdom_bonus
         return saves
@@ -169,7 +169,7 @@ class BasicCharacter(Character):
         In Basic D&D your strength improves your to hit.
         """
         thac9 = super(BasicCharacter,self).get_thac9()
-        str_bonus = self.get_bonus(*self.attributes[CharacterClass.STR])
+        str_bonus = self.get_bonus(*self.attributes[characterclass.STR])
         return thac9 - str_bonus
 
     def get_bonus(self, attr, val):
@@ -210,8 +210,8 @@ class GreyhawkCharacter(Character):
         In Greyhawk fighters get a Dex bonus to their AC.
         """
         ac = super(GreyhawkCharacter, self).get_ac()
-        if self.character_class == CharacterClass.FIGHTER:
-            bonus = self.attributes[CharacterClass.DEX][1] - 14
+        if self.character_class == characterclass.FIGHTER:
+            bonus = self.attributes[characterclass.DEX][1] - 14
             ac = ac - bonus
         return ac
 
@@ -220,8 +220,8 @@ class GreyhawkCharacter(Character):
         Store information about a characters strength bonuses.
         """
         # TODO: This does way more work than it should
-        strength = self.attributes[CharacterClass.STR][1]
-        if self.character_class == CharacterClass.FIGHTER and strength == 18:
+        strength = self.attributes[characterclass.STR][1]
+        if self.character_class == characterclass.FIGHTER and strength == 18:
             self.exceptional = d(100)
         hit, dmg = self.get_greyhawk_str(strength)
         if hit:
@@ -341,7 +341,7 @@ class LBBCharacter(GreyhawkCharacter):
         Determine HP based on hit dice and CON modifiers.
         """
         hp = super(LBBCharacter, self).get_hp()
-        if self.character_class == CharacterClass.FIGHTER:
+        if self.character_class == characterclass.FIGHTER:
             hp = hp + 1
         return hp
 
