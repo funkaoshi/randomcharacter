@@ -38,7 +38,7 @@ class CharacterClass(object):
         ],
         'hitdice': 6,
         'saves': {
-            'poison': 11, 'stone': 12, 'wands': 14, 'breath': 16, 'magic': 15
+            'poison': 11, 'wands': 12, 'stone': 14, 'breath': 16, 'magic': 15
         },
         'turn': [
             ('Skeleton', 7), ('Zombie', 9), ('Ghoul', 11), ('Wight', 'N')
@@ -67,7 +67,7 @@ class CharacterClass(object):
         ],
         'hitdice': 8,
         'saves': {
-            'poison': 12, 'stone': 13, 'wands': 14, 'breath': 15, 'magic': 16
+            'poison': 12, 'wands': 13, 'stone': 14, 'breath': 15, 'magic': 16
         }        
     }
 
@@ -93,7 +93,7 @@ class CharacterClass(object):
         ],
         'hitdice': 4,
         'saves': {
-            'poison': 13, 'stone': 15, 'wands': 13, 'breath': 16, 'magic': 14
+            'poison': 13, 'wands': 14, 'stone': 13, 'breath': 16, 'magic': 15
         },
         'spells': [
             # Original 8 D&D Spells 
@@ -126,7 +126,7 @@ class CharacterClass(object):
         ],
         'hitdice': 4,
         'saves': {
-            'poison': 13, 'stone': 15, 'wands': 13, 'breath': 14, 'magic': 16
+            'poison': 13, 'wands': 14, 'stone': 13, 'breath': 16, 'magic': 15
         },
         'skills': [
             ('Open Locks', '15%'),

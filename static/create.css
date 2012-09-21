@@ -59,10 +59,10 @@ table.attr {
     border-top: 1px solid #333;
 }
 table td.save {
-    width: 10em; /* Saving throw names are a bit long */
+    width: 12em; /* Saving throw names are a bit long */
 }
 table td.save + td {
-    width: 6em;
+    width: 4em;
 }
 table.weapon td {
     text-align: center;
