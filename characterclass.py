@@ -17,7 +17,7 @@ STR, INT, WIS, DEX, CON, CHA = range(6)
 """
 LANGUAGES = [
     'Bugbear', 'Doppleganger', 'Dragon', 'Dwarvish', 'Elvish', 'Gargoyle', 
-    'Gnoll', 'Gnome', 'Goblin', 'Hafling', 'Harpy', 'Hobgoblin', 'Kobold',
+    'Gnoll', 'Gnome', 'Goblin', 'Halfling', 'Harpy', 'Hobgoblin', 'Kobold',
     'Lizard Man','Medusa', 'Minotaur', 'Ogre', 'Orc', 'Pixie', 'Human Dialect'
 ]
 

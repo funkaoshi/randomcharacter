@@ -305,7 +305,7 @@ class GreyhawkCharacter(Character):
         return 0, 0 
 
 
-class LBBCharacter(GreyhawkCharacter):
+class LBBCharacter(Character):
     """
     Models an Original D&D character. (1974 Little Brown Books.)
     """
@@ -338,7 +338,8 @@ class LBBCharacter(GreyhawkCharacter):
 
     def get_hp(self):
         """
-        Determine HP based on hit dice and CON modifiers.
+        Determine HP based on hit dice and CON modifiers. Figters have an 
+        additional hit point at first level.
         """
         hp = super(LBBCharacter, self).get_hp()
         if self.character_class == characterclass.FIGHTER:
