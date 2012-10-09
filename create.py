@@ -11,7 +11,7 @@ app.config.from_object(__name__)
 
 SYSTEMS = {
     'lbb': character.LBBCharacter,
-    'greyhawk': character.GreyhawkCharacter,
+    'holmes': character.HolmesCharacter,
     'basic': character.BasicCharacter,
 }
     

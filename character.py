@@ -193,57 +193,21 @@ class BasicCharacter(Character):
         return bonus        
 
 
-class GreyhawkCharacter(Character):
+class HolmesCharacter(Character):
     """
-    Generate a Little Brown Books + Supplement I: Greyhawk character. Greyhawk 
-    introduced the Thief class, changed the hit dice per class, and led the 
-    way to AD&D. As far as I can tell its mechanically similar to Basic D&D 
-    save for the old-style attribute modifiers.
+    Models a Holmes Basic Edition D&D Character. Holmes is much closer to 
+    original D&D than Moldvay/Cook.
     """
-
+    
     @property
     def system(self):
-        return "Greyhawk"
-
-    def get_ac(self):
-        """
-        In Greyhawk fighters get a Dex bonus to their AC.
-        """
-        ac = super(GreyhawkCharacter, self).get_ac()
-        if self.character_class == characterclass.FIGHTER:
-            bonus = self.attributes[characterclass.DEX][1] - 14
-            ac = ac - bonus
-        return ac
-
-    def get_notes(self):
-        """
-        Store information about a characters strength bonuses.
-        """
-        # TODO: This does way more work than it should
-        strength = self.attributes[characterclass.STR][1]
-        if self.character_class == characterclass.FIGHTER and strength == 18:
-            self.exceptional = d(100)
-        hit, dmg = self.get_greyhawk_str(strength)
-        if hit:
-            self.thac9 = self.thac9 - hit
-        notes = []
-        if hasattr(self, 'exceptional'):
-            notes.append("The character has an exceptional strength of %d." % self.exceptional)
-        if dmg:
-            notes.append("The character gets a %+d to damage rolls." % dmg)
-        return notes
-
+        return "Holmes"
+    
     def get_bonus(self, attr, val):
         """
-        Return the Greyhawk D&D attribute bonuses.
+        Return the Holmes' D&D attribute bonuses.
         """
-        if attr == 'STR':
-            # Note: there multiple values here, and there is exceptional
-            # strenth for fighters: damn it. We handle this elsewhere for now.
-            # TODO: This whole method seems stupid.
-            hit, _ = self.get_greyhawk_str(val)
-            return hit
-        elif attr == 'INT':
+        if attr == 'INT':
             # Bonus to languages
             if val > 10:
                 return val - 10
@@ -253,7 +217,7 @@ class GreyhawkCharacter(Character):
                 return -1
             elif val == 15:
                 return 1
-            elif val >= 16:
+            elif val > 15:
                 return val - 15
         elif attr == 'DEX':
             # missile damage
@@ -261,48 +225,7 @@ class GreyhawkCharacter(Character):
                 return -1
             elif val >= 13:
                 return 1
-        elif attr == 'CHA':
-            # loyalty bonus
-            if val <= 4:
-                return -2
-            elif val <= 6:
-                return -1
-            elif 13 <= val <= 15:
-                return 1
-            elif 16 <= val <= 17:
-                return 2
-            elif val >= 18:
-                return 4
         return 0
-
-    def get_greyhawk_str(self, val):
-        """
-        Greyhawk Strength has varying bonuses, and exceptional strength.
-        """
-        if val <= 4:
-            return -2, -1
-        elif val <= 5:
-            return -1, 0
-        elif 13 <= val <= 15:
-            return 1, 0
-        elif val == 16:
-            return 1, 1
-        elif val == 17:
-            return 2, 2
-        elif val == 18:
-            if not hasattr(self, 'exceptional'):
-                return 2, 3
-            if 0 <= self.exceptional <= 50:
-                return 2, 3
-            elif 51 <= self.exceptional <= 75:
-                return 3, 3
-            elif 76 <= self.exceptional <= 90:
-                return 3, 4
-            elif 91 <= self.exceptional <= 99:
-                return 3, 5
-            elif self.exceptional == 100:
-                return 4, 6
-        return 0, 0 
 
 
 class LBBCharacter(Character):
