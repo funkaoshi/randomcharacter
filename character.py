@@ -19,7 +19,7 @@ class Character(object):
         self.character_class = self.get_character_class()
         self.equipment = self.character_class['equipment'][xdy(3,6)-3]        
         self.hp = self.get_hp()
-        if self.hp < 0:
+        if self.hp <= 0:
             self.hp = 1
         self.ac = self.get_ac()
         self.thac9 = self.get_thac9()
