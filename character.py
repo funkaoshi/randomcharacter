@@ -51,6 +51,20 @@ class Character(object):
         """
         return self.character_class['hitdice']
 
+    @property
+    def max_ac(self):
+        """
+        The max AC to display in to-hit table.
+        """
+        return -1
+
+    @property
+    def max_to_hit(self):
+        """
+        The max value to display in to-hit table.
+        """
+        return 9 - self.max_ac + 1
+
     def get_character_class(self):
         """
         We determine character class based on your prime attribute.
@@ -309,6 +323,20 @@ class PahvelornCharacter(LBBCharacter):
     More info here: http://untimately.blogspot.ca/p/pahvelorn.html.
     """
 
+    def __init__(self):
+        super(LBBCharacter, self).__init__()
+        # Pahvelorn uses the re-roll your HP per session rule, so it doesn't
+        # make sense to display a HP amount. We will display HD instead.
+        self.hp = None
+        self.hd = "1" if self.character_class != characterclass.FIGHTER else "1+1"
+
+    @property
+    def max_ac(self):
+        """
+        In Pahvelorn Plate and Shield provides the absolute maximum armor bonus.
+        """
+        return 2
+
     @property
     def system(self):
         return "Pahvelorn / Original"
@@ -332,7 +360,7 @@ class PahvelornCharacter(LBBCharacter):
     def get_spell(self):
         """
         Players start with a basic spell book, and one random spell book. We
-        tack on grimoires to the equipment list, instead of calling out a 
+        tack on grimoires to the equipment list, instead of calling out a
         single spell.
         """
         if self.character_class.has_key('spells'):

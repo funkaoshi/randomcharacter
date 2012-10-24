@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-	    <meta name="viewport" content="width=480"/>
+        <meta name="viewport" content="width=480"/>
         <title>A Random {{ c.character_class.name }} for {{ c.system }} D&amp;D</title>
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Metamorphous' type='text/css'>
         <link rel="stylesheet" href="/static/create.css" type="text/css" media="screen" title="site style" charset="utf-8">
@@ -34,59 +34,59 @@
             <table class="attr">
                 <tr>
                     <td><strong>STR</strong>: {{ c.attr.STR }}</td>
-            		<td><strong>INT</strong>: {{ c.attr.INT }}</td>
-            		<td><strong>WIS</strong>: {{ c.attr.WIS }}</td>
+                    <td><strong>INT</strong>: {{ c.attr.INT }}</td>
+                    <td><strong>WIS</strong>: {{ c.attr.WIS }}</td>
                 </tr>
                 <tr>
                     <td><strong>DEX</strong>: {{ c.attr.DEX }}</td>
-            		<td><strong>CON</strong>: {{ c.attr.CON }}</td>
-            		<td><strong>CHA</strong>: {{ c.attr.CHA }}</td>
+                    <td><strong>CON</strong>: {{ c.attr.CON }}</td>
+                    <td><strong>CHA</strong>: {{ c.attr.CHA }}</td>
                 </tr>
             </table>
 
             <table>
                 <tr>
                     <td class="save">Death Ray or Poison</td>
-            		<td>{{ c.saves.poison}}</td>
-            		<td><strong>HP</strong>: {{ c.hp }}</td>
+                    <td>{{ c.saves.poison}}</td>
+                    <td>{% if self.hp %}<strong>HP</strong>: {{ c.hp }}{% else %}<strong>HD</strong>: {{ c.hd }}{% endif %}</td>
                 </tr>
                 <tr>
                     <td class="save">Magical Wands</td>
-            		<td>{{ c.saves.wands}}</td>
-            		<td><strong>AC</strong>: {{ c.ac }}</td>
+                    <td>{{ c.saves.wands}}</td>
+                    <td><strong>AC</strong>: {{ c.ac }}</td>
                 </tr>
                 <tr>
                     <td class="save">Paralysis or Turn to Stone</td>
-            		<td>{{ c.saves.stone}}</td>
-            		<td><strong>XP</strong>: 0 </td>
+                    <td>{{ c.saves.stone}}</td>
+                    <td><strong>XP</strong>: 0 </td>
                 </tr>
                 <tr>
                     <td class="save">Dragon Breath</td>
-            		<td>{{ c.saves.breath}}</td>
-            		<td></td>
+                    <td>{{ c.saves.breath}}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="save">Rods, Staves, or Spells</td>
-            		<td>{{ c.saves.magic}}</td>
-            		<td></td>
+                    <td>{{ c.saves.magic}}</td>
+                    <td></td>
                 </tr>
             </table>
 
             <table class="weapon">
                 <tr>
                     <td><strong>AC</strong></td>
-                    {% for i in range(9, -2, -1) %}
+                    {% for i in range(9, c.max_ac -1, -1) %}
                     <td>{{ i }}</td>
                     {% endfor %}
                 </tr>
                 <tr>
                     <td><strong>Roll</strong></td>
-                    {% for i in range(c.thac9, c.thac9 + 11) %}
+                    {% for i in range(c.thac9, c.thac9 + c.max_to_hit) %}
                     <td>{{ i }}</td>
                     {% endfor %}
                 </tr>
             </table>
-            
+
             <div id="extras">
               <div class="block">
                   <h3>Equipment</h3>
@@ -167,7 +167,7 @@
               </div>
               {% endif %}
             </div>
-            
+
             <footer>
                 <p>
                     You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/holmes">Holmes D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>.
@@ -175,10 +175,10 @@
                 <p>
                     If you need a name, check out <a href="http://www.rinkworks.com/namegen/">The Fantasy Name Generator</a>.
                 </p>
-    			<p>
-    			    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Equipment lists generated using <a href="http://untimately.blogspot.ca/2012/07/od-equipment.html">random charts from Untimately.</a> Other random tables taken from <em>"Moldvay" Basic D&D</em>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
-    			</p>
+                <p>
+                    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Equipment lists generated using <a href="http://untimately.blogspot.ca/2012/07/od-equipment.html">random charts from Untimately.</a> Other random tables taken from <em>"Moldvay" Basic D&D</em>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+                </p>
             </footer>
-		</div>
-	</body>
+        </div>
+    </body>
 </html>
