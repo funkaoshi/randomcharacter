@@ -8,18 +8,18 @@ from dice import d, xdy
 
 class Character(object):
     """
-    D&D characters are structurely quite similar. Common aspects of character
+    D&D characters are structurally quite similar. Common aspects of character
     creation are managed here. Subclasses for the different systems handle
     differences between the editions.
     """
-    
+
     def __init__(self):
         self.attributes = [(attribute, xdy(3,6))
                            for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class()
-        self.equipment = self.character_class['equipment'][xdy(3,6)-3]        
+        self.equipment = self.character_class['equipment'][xdy(3,6)-3]
         self.hp = self.get_hp()
-        if self.hp <= 0:
+        if self.hp < 1:
             self.hp = 1
         self.ac = self.get_ac()
         self.thac9 = self.get_thac9()
@@ -27,29 +27,29 @@ class Character(object):
         self.languages = self.get_languages()
         self.spell = self.get_spell()
         self.notes = self.get_notes()
-        
+
         # attribute map to ease display in template
         self.attr = dict((attr, self.with_bonus(attr, value))
                           for attr, value in self.attributes)
-                          
+
     @property
     def system(self):
         raise NotImplementedError()
-        
+
     @property
     def playable_classes(self):
         return 4
-        
+
     @property
     def num_first_level_spells(self):
         return 12
-        
+
     @property
     def hit_die(self):
         """
         Get the character's hit die.
         """
-        return self.character_class['hitdice']        
+        return self.character_class['hitdice']
 
     def get_character_class(self):
         """
@@ -97,7 +97,7 @@ class Character(object):
 
     def get_languages(self):
         """
-        For each bonus point for inteligence, a character knows an additional
+        For each bonus point for intelligence, a character knows an additional
         language, beyond Common and their alignment language.
         """
         bonus = self.get_bonus(*self.attributes[characterclass.INT])
@@ -122,7 +122,7 @@ class Character(object):
 
     def get_bonus(self, attr, val):
         """
-        Return the bonus for the given attribute. Subclassses will override. 
+        Return the bonus for the given attribute. Subclassses will override.
         Bonuses on attributes differ from edition to edition.
         """
         raise NotImplementedError()
@@ -136,7 +136,7 @@ class Character(object):
             return "%d (%+d)" % (val, bonus)
         return "%d" % val
 
-        
+
 class BasicCharacter(Character):
     """
     Models a Moldvay/Mentzer basic D&D character.
@@ -190,19 +190,19 @@ class BasicCharacter(Character):
             bonus = 2
         else:
             bonus = 3
-        return bonus        
+        return bonus
 
 
 class HolmesCharacter(Character):
     """
-    Models a Holmes Basic Edition D&D Character. Holmes is much closer to 
+    Models a Holmes Basic Edition D&D Character. Holmes is much closer to
     original D&D than Moldvay/Cook.
     """
-    
+
     @property
     def system(self):
         return "Holmes"
-    
+
     def get_bonus(self, attr, val):
         """
         Return the Holmes' D&D attribute bonuses.
@@ -235,22 +235,22 @@ class LBBCharacter(Character):
 
     @property
     def system(self):
-        return "Little Brown Books"
-        
+        return "Original (Little Brown Books)"
+
     @property
     def playable_classes(self):
         """
         The thief isn't a playable class in the original D&D books.
         """
         return 3
-        
+
     @property
     def num_first_level_spells(self):
         """
         4 spells in Basic D&D don't exist in Original D&D, so we trim them
         when making spell selection.
         """
-        return 8       
+        return 8
 
     @property
     def hit_die(self):
@@ -261,7 +261,7 @@ class LBBCharacter(Character):
 
     def get_hp(self):
         """
-        Determine HP based on hit dice and CON modifiers. Figters have an 
+        Determine HP based on hit dice and CON modifiers. Fighters have an
         additional hit point at first level.
         """
         hp = super(LBBCharacter, self).get_hp()
@@ -302,3 +302,43 @@ class LBBCharacter(Character):
             elif val >= 18:
                 return 4
         return 0
+
+class PahvelornCharacter(LBBCharacter):
+    """
+    Models characters from the OD&D game Pahvelorn. (Essentially 1974 D&D.)
+    More info here: http://untimately.blogspot.ca/p/pahvelorn.html.
+    """
+
+    @property
+    def system(self):
+        return "Pahvelorn / Original"
+
+    @property
+    def playable_classes(self):
+        """
+        Pahvelorn includes the Greyhawk Thief as a playable character,
+        but this is the only addition from Greyhawk in Pahvelorn. The Thief's
+        hit dice is 6, just like all the other characters.
+        """
+        return 4
+
+    @property
+    def retainer(self):
+        """
+        Players start with a random retainer.
+        """
+        return random.choice(characterclass.RETAINERS)
+
+    def get_spell(self):
+        """
+        Players start with a basic spell book, and one random spell book. We
+        tack on grimoires to the equipment list, instead of calling out a 
+        single spell.
+        """
+        if self.character_class.has_key('spells'):
+            self.grimoires = [
+                characterclass.STARTING_GRIMOIRE,
+                random.choice(characterclass.GRIMOIRES),
+            ]
+        return None
+

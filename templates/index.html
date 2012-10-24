@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-	    <meta name="viewport" content="width=480"/>		
+	    <meta name="viewport" content="width=480"/>
         <title>A Random {{ c.character_class.name }} for {{ c.system }} D&amp;D</title>
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Metamorphous' type='text/css'>
-        <link rel="stylesheet" href="/static/create.css" type="text/css" media="screen" title="site style" charset="utf-8">        
+        <link rel="stylesheet" href="/static/create.css" type="text/css" media="screen" title="site style" charset="utf-8">
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="/static/jquery.masonry.min.js"></script>
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-2675737-19']);
@@ -15,9 +17,16 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
-        </script>        
+
+          $(function () {
+            $('#extras').masonry({
+              itemSelector : '.block',
+            });
+          });
+        </script>
+        <link rel="apple-touch-icon-precomposed" href="/static/touch-icon-ipad-144.png" />
     </head>
-    <body>        
+    <body>
         <div id="container">
             <h2 class="system"> {{ c.system }} D&amp;D</h2>
             <h1>{{ c.character_class.name }}</h1>
@@ -62,7 +71,7 @@
             		<td></td>
                 </tr>
             </table>
-            
+
             <table class="weapon">
                 <tr>
                     <td><strong>AC</strong></td>
@@ -78,79 +87,90 @@
                 </tr>
             </table>
             
-            <div class="extra">                
-                <div class="block">
-                    <h3>Equipment</h3>
-                    <ul>
-                    {% for item in c.equipment %}
-                        <li>{{ item }}</li>
-                    {% endfor %}
-                    </ul>
-                </div>            
-                {% if c.character_class.name == 'Thief' %}
-                <div class="block">
-                    <h3>Thief Skills</h3>
-                    <table class="thief skills">
-                        <tr>
-                            <th>Skill</th><th>Roll</th>
-                        </tr>
-                        {% for skill, chance in c.character_class.skills %}
-                        <tr>
-                            <td>{{ skill }}</td><td>{{ chance }}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-                {% elif c.character_class.name == 'Cleric' %}
-                <div class="block">
-                    <h3>Turn Undead</h3>
-                    <table class="skills">
-                        <tr>
-                            <th>Undead</th><th>Roll</th>
-                        </tr>
-                        {% for undead, roll in c.character_class.turn %}
-                        <tr>
-                            <td>{{ undead }}</td><td>{{ roll }}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-                {% endif %}                            
+            <div id="extras">
+              <div class="block">
+                  <h3>Equipment</h3>
+                  <ul>
+                  {% for item in c.equipment %}
+                      <li>{{ item }}</li>
+                  {% endfor %}
+                  {% if c.grimoires %}
+                      {% for book, spells in c.grimoires %}
+                      <li>{{ book }}
+                          <ul>
+                              {% for spell in spells %}
+                              <li>{{ spell }}</li>
+                              {% endfor %}
+                          </ul>
+                      </li>
+                      {% endfor %}
+                  {% endif %}
+                  </ul>
+              </div>
+
+              {% if c.retainer %}
+              <div class="block">
+                  <h3>Retainer</h3>
+                  <ul>
+                      <li>{{ c.retainer }}</li>
+                  </ul>
+              </div>
+              {% endif %}
+
+              {% if c.character_class.name == 'Thief' %}
+              <div class="block">
+                  <h3>Thief Skills</h3>
+                  <table class="thief skills">
+                      <tr>
+                          <th>Skill</th><th>Roll</th>
+                      </tr>
+                      {% for skill, chance in c.character_class.skills %}
+                      <tr>
+                          <td>{{ skill }}</td><td>{{ chance }}</td>
+                      </tr>
+                      {% endfor %}
+                  </table>
+              </div>
+              {% elif c.character_class.name == 'Cleric' %}
+              <div class="block">
+                  <h3>Turn Undead</h3>
+                  <table class="skills">
+                      <tr>
+                          <th>Undead</th><th>Roll</th>
+                      </tr>
+                      {% for undead, roll in c.character_class.turn %}
+                      <tr>
+                          <td>{{ undead }}</td><td>{{ roll }}</td>
+                      </tr>
+                      {% endfor %}
+                  </table>
+              </div>
+              {% endif %}
+
+              {% if c.spell %}
+              <div class="block">
+                  <h3>Spells</h3>
+                  <ul><li><strong>Level 1</strong>: {{ c.spell }}</li></ul>
+              </div>
+              {% endif %}
+
+              {% if c.languages|length > 1 %}
+              <div class="block">
+                  <h3>Languages</h3>
+                  <ul>
+                      <li>Common</li>
+                      <li>Alignment</li>
+                      {% for language in c.languages|sort %}
+                      <li>{{ language }}</li>
+                      {% endfor %}
+                  </ul>
+              </div>
+              {% endif %}
             </div>
             
-            {% if c.spell %}
-            <div class="block">
-                <h3>Spells</h3>
-                <ul><li><strong>Level 1</strong>: {{ c.spell }}</li></ul>
-            </div>
-            {% endif %}    
-            
-            {% if c.languages|length > 1 %}
-            <div class="block">
-                <h3>Languages</h3>
-                <ul>
-                    <li>Common</li>
-                    <li>Alignment</li>
-                    {% for language in c.languages|sort %}
-                    <li>{{ language }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            
-            {% if c.notes %}
-            <div class="block">
-                <h3>Notes</h3>
-                <ul>
-                    {% for note in c.notes %}
-                    <li>{{ note }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
             <footer>
                 <p>
-                    You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/holmes">Holmes D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>. 
+                    You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/holmes">Holmes D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>.
                 </p>
                 <p>
                     If you need a name, check out <a href="http://www.rinkworks.com/namegen/">The Fantasy Name Generator</a>.

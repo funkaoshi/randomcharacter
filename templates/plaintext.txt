@@ -24,12 +24,12 @@ To Hit Table:
   AC:   {% for i in range(9, -2, -1) %} {{ "%2d"|format(i) }} {% endfor %}
   Roll: {% for i in range(c.thac9, c.thac9 + 11) %} {{ "%2d"|format(i) }} {% endfor %}
 
+Languages: Commom, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
+
 Equipment:
   {% for item in c.equipment %}
    * {{ item -}}
   {% endfor %}
-  
-Languages: Commom, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
   
 {% if c.character_class.name == 'Thief' -%}
 Thief Skills:
@@ -49,11 +49,19 @@ Turn Undead:
 Spells: 
   Level 1: {{ c.spell }}
 {% endif -%}    
-
-{% if c.notes -%}
-Notes:
-{% for note in c.notes %}
-  * {{ note -}}
-{% endfor -%}
+            
+{% if c.grimoires -%}
+Grimoires:
+{% for book, spells in c.grimoires %}
+ * {{ book }}
+{% for spell in spells %}
+    * {{ spell -}}
+{% endfor %}
+{% endfor %}
 {% endif -%}
 
+{% if c.retainer -%}
+Retainer: 
+
+  {{ c.retainer }}
+{% endif -%}

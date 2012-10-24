@@ -11,19 +11,19 @@ ATTRIBUTES = ['STR', 'INT', 'WIS', 'DEX', 'CON', 'CHA']
 Indexes into ATTRIBUTES
 """
 STR, INT, WIS, DEX, CON, CHA = range(6)
-    
+
 """
 20 example languages from Moldvay.
 """
 LANGUAGES = [
-    'Bugbear', 'Doppleganger', 'Dragon', 'Dwarvish', 'Elvish', 'Gargoyle', 
+    'Bugbear', 'Doppleganger', 'Dragon', 'Dwarvish', 'Elvish', 'Gargoyle',
     'Gnoll', 'Gnome', 'Goblin', 'Halfling', 'Harpy', 'Hobgoblin', 'Kobold',
     'Lizard Man','Medusa', 'Minotaur', 'Ogre', 'Orc', 'Pixie', 'Human Dialect'
 ]
 
 """
 The 7 character classes from Basic D&D. TODO: Add Dwarves, Elves, and Halflings
-""" 
+"""
 CLERIC = {
     'name': 'Cleric',
     'equipment': [
@@ -76,7 +76,7 @@ FIGHTER = {
     'hitdice': 8,
     'saves': {
         'poison': 12, 'wands': 13, 'stone': 14, 'breath': 15, 'magic': 16
-    }        
+    }
 }
 
 MAGICUSER = {
@@ -104,12 +104,12 @@ MAGICUSER = {
         'poison': 13, 'wands': 14, 'stone': 13, 'breath': 16, 'magic': 15
     },
     'spells': [
-        # Original 8 D&D Spells 
-        'Detect Magic', 'Hold Portal', 'Read Magic', 'Read Languages', 
+        # Original 8 D&D Spells
+        'Detect Magic', 'Hold Portal', 'Read Magic', 'Read Languages',
         'Protection from Evil', 'Light', 'Charm Person', 'Sleep',
         # Basic D&D added 4 new Spells
         'Floating Disc', 'Magic Missile', 'Shield', 'Ventriloquism'
-    ]            
+    ]
 }
 
 THIEF = {
@@ -147,6 +147,105 @@ THIEF = {
         ('Hear Noise', '1-2')
     ]
 }
+
+RETAINERS = [
+    'Bodyguard (leather, dagger, d4: 1 sword, 2 mace, 3 battle axe, 4 spear)',
+    'Torchbearer (dagger, 6 torches)',
+    'Porter (dagger, backpack, 3 small sacks, 1 large sack)',
+    'Squire (dagger)',
+    'Mercenary (leather, sword, dagger, light crossbow, case with 30 quarrels)',
+    'Shieldbearer (leather, shield, dagger)',
+    'Servant (dagger)',
+    'Dog (spiked collar, leash)',
+]
+
+STARTING_GRIMOIRE = ('Arcana Metaphysica, anonymous', [
+        'Read Magic (1)',
+        'Dispel Magic (3)',
+        'Remove Curse (4)',
+        'Anti-Magic Shell (6)',
+    ]
+)
+
+GRIMOIRES = [
+    ('The Hidden Knowledge, attributed to Cochyla the Younger', [
+		'Detect Magic (1)',
+		'Detect Evil (1)',
+		'Locate Object (2)',
+		'ESP (2)',
+		'Clairvoyance (3)',
+		'Clairaudience (3)',
+		'Wizard Eye (4)',
+    ]),
+    ('Realms Seen and Unseen, attributed to the Fifth Council', [
+		'Light (1)',
+		'Detect Invisibility (2)',
+		'Invisibility (2)',
+		'Continual Light (2)',
+		'Invisibility, 10\' Radius (3)',
+		'Infravision (3)',
+    ]),
+    ('The Organ of the Inner Moon, attributed to Sezius Elfblood', [
+		'Charm Person (1)',
+		'Sleep (1)',
+		'Hold Person (3)',
+		'Confusion (4)',
+		'Charm Monster (4)',
+		'Feeblemind (5)',
+		'Geas (6)',
+    ]),
+    ('Mastering Gates, attributed to Marlow Shadow-Walker', [
+		'Hold Portal (1)',
+		'Wizard Lock (2)',
+		'Knock (2)',
+		'Pass-Wall (5)',
+    ]),
+    ('Codex of the Cloud-Masters, anonymous', [
+		'Levitate (2)',
+		'Fly (3)',
+		'Protection from Normal Missiles (3)',
+		'Telekinesis (5)',
+    ]),
+    ('Illusio, anonymous', [
+		'Phantasmal Forces (2)',
+		'Hallucinatory Terrain (4)',
+		'Massmorph (4)',
+		'Projected Image (6)',
+    ]),
+    ('On Essence, attributed to Caleia', [
+		'Polymorph Self (4)',
+		'Polymorph Others (4)',
+		'Transmute Rock-Mud (5)',
+		'Growth of Animals (5)',
+		'Stone-Flesh (6)',
+    ]),
+    ('Arbatel of Flame', [
+		'Fire Ball (3)',
+		'Lightning Bolt (3)',
+		'Disintegrate (6)',
+    ]),
+    ('Songs of Three Winters, attributed to Taymar the Wise', [
+		'Slow Spell (3)',
+		'Haste Spell (3)',
+    ]),
+    ('Arcana Necromantica, anonymous', [
+		'Animate Dead (5)',
+		'Magic Jar (5)',
+		'Reincarnation (6)',
+		'Death Spell (6)',
+    ]),
+    ('Conjurations & Banishments (fragments), anonymous', [
+		'Protection from Evil (1)',
+		'Protection from Evil, 10\' Radius (3)',
+		'Conjure Elemental (5)',
+		'Contact Higher Plane (5)',
+		'Invisible Stalker (6)',
+    ]),
+    ('The Roads Between the Stars (fragments), anonymous', [
+		'Dimension Door (4)',
+		'Teleport (5)',
+    ]),
+]
 
 # Map from a given attribute to most appropriate character class
 PRIME_REQUISITE = {

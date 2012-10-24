@@ -1,7 +1,7 @@
 body {
     background: #eee url('/static/lightpaperfibers.png');
     font-size: 1em;
-    padding: 0; margin:0; 
+    padding: 0; margin:0;
     line-height: 150%;
     font-family: 'Josefin Sans', sans serif;
     zoom: 1; /* maybe fix IE stupidness */
@@ -53,7 +53,7 @@ table td, table th {
     width: 8em;
     vertical-align: top;
     text-align: left;
-    padding: 0;    
+    padding: 0;
 }
 table.attr {
     border-top: 1px solid #333;
@@ -98,7 +98,7 @@ ul {
 footer {
     clear: both;
     padding-top: 2em;
-    text-align: center;   
+    text-align: center;
 }
 footer p:first-child {
     border-top: 1px solid gray;
