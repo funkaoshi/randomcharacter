@@ -5,6 +5,15 @@ import random
 import characterclass
 from dice import d, xdy
 
+def _is_halfling(INT, CON, DEX, STR):
+    return STR > 11 and DEX >= 9 and CON >= 9, characterclass.HALFLING
+
+def _is_elf(INT, CON, DEX, STR):
+    return INT > 11 and STR >= 9, characterclass.ELF
+
+def _is_dwarf(INT, CON, DEX, STR):
+    return CON > 11 and STR >= 9, characterclass.DWARF
+
 
 class Character(object):
     """
@@ -13,10 +22,12 @@ class Character(object):
     differences between the editions.
     """
 
-    def __init__(self):
+    def __init__(self, testing=False):
         self.attributes = [(attribute, xdy(3,6))
                            for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class()
+        if testing:
+            return
         self.equipment = self.character_class['equipment'][xdy(3,6)-3]
         self.hp = self.get_hp()
         if self.hp < 1:
@@ -37,8 +48,8 @@ class Character(object):
         raise NotImplementedError()
 
     @property
-    def playable_classes(self):
-        return 4
+    def thieves(self):
+        return True
 
     @property
     def demihumans(self):
@@ -73,23 +84,27 @@ class Character(object):
         """
         We determine character class based on your prime attribute.
         """
-        if self.demihumans:
+        if self.demihumans and d(100) < 50:
             # sorted attributes (excluding charisma)
             attributes = sorted(self.attributes[:5], reverse=True,
                                 key=operator.itemgetter(1))
-            TOP_TWO = set(a[0] for a in attributes[:2])
-            INT = self.attributes[characterclass.INT][1]
-            CON = self.attributes[characterclass.CON][1]
-            DEX = self.attributes[characterclass.DEX][1]
-            STR = self.attributes[characterclass.STR][1]
-            if set(['STR', 'DEX']) == TOP_TWO and STR > 13 and DEX > 9 and CON > 9:
-                return characterclass.HALFLING
-            elif set(['STR', 'CON']) == TOP_TWO and STR > 13 and CON > 9:
-                return characterclass.DWARF
-            elif set(['STR', 'INT']) == TOP_TWO and INT > 13 and STR > 9 :
-                return characterclass.ELF
+            if not (self.thieves and 'DEX' == attributes[0][0]):
+                INT = self.attributes[characterclass.INT][1]
+                CON = self.attributes[characterclass.CON][1]
+                DEX = self.attributes[characterclass.DEX][1]
+                STR = self.attributes[characterclass.STR][1]
+                # We randomly test because there is overlap in what could
+                # succeed and we want each to be equally likely in the long
+                # run.
+                tests = [_is_dwarf, _is_halfling, _is_elf]
+                random.shuffle(tests)
+                for t in tests:
+                    result, c = t(INT, CON, DEX, STR)
+                    if result:
+                        return c
         # You're playing a human!
-        prime_attribute, _ = sorted(self.attributes[:self.playable_classes],
+        index = 4 if self.thieves else 3
+        prime_attribute, _ = sorted(self.attributes[:index],
                                     reverse=True, key=operator.itemgetter(1))[0]
         return characterclass.PRIME_REQUISITE[prime_attribute]
 
@@ -272,11 +287,11 @@ class LBBCharacter(Character):
         return "Original (Little Brown Books)"
 
     @property
-    def playable_classes(self):
+    def thieves(self):
         """
         The thief isn't a playable class in the original D&D books.
         """
-        return 3
+        return False
 
     @property
     def num_first_level_spells(self):
@@ -364,13 +379,13 @@ class PahvelornCharacter(LBBCharacter):
         return "Pahvelorn / Original"
 
     @property
-    def playable_classes(self):
+    def thieves(self):
         """
         Pahvelorn includes the Greyhawk Thief as a playable character,
         but this is the only addition from Greyhawk in Pahvelorn. The Thief's
         hit dice is 6, just like all the other characters.
         """
-        return 4
+        return True
 
     @property
     def demihumans(self):
