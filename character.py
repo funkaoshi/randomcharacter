@@ -22,10 +22,10 @@ class Character(object):
     differences between the editions.
     """
 
-    def __init__(self, testing=False):
+    def __init__(self, classname=None, testing=False):
         self.attributes = [(attribute, xdy(3,6))
                            for attribute in characterclass.ATTRIBUTES]
-        self.character_class = self.get_character_class()
+        self.character_class = self.get_character_class(classname)
         if testing:
             return
         self.equipment = self.character_class['equipment'][xdy(3,6)-3]
@@ -80,10 +80,12 @@ class Character(object):
         """
         return 9 - self.max_ac + 1
 
-    def get_character_class(self):
+    def get_character_class(self, classname=None):
         """
         We determine character class based on your prime attribute.
         """
+        if classname:
+            return characterclass.CLASS_BY_NAME[classname]
         if self.demihumans and d(100) < 50:
             # sorted attributes (excluding charisma)
             attributes = sorted(self.attributes[:5], reverse=True,
