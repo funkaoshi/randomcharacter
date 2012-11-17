@@ -148,6 +148,34 @@ THIEF = {
     ]
 }
 
+DWARF = {
+    'name': 'Dwarf',
+    'hitdice': 8,
+    'saves': {
+        'poison': 10, 'wands': 11, 'stone': 12, 'breath': 13, 'magic': 14
+    },
+    'equipment': FIGHTER['equipment']
+}
+
+ELF = {
+    'name': 'Elf',
+    'hitdice': 6,
+    'saves': {
+        'poison': 12, 'wands': 13, 'stone': 13, 'breath': 15, 'magic': 15
+    },
+    'equipment': MAGICUSER['equipment'],
+    'spells': MAGICUSER['spells']
+}
+
+HALFLING = {
+    'name': 'Halfling',
+    'hitdice': 6,
+    'saves': {
+        'poison': 10, 'wands': 11, 'stone': 12, 'breath': 13, 'magic': 14
+    },
+    'equipment': FIGHTER['equipment']
+}
+
 RETAINERS = [
     'Bodyguard (leather, dagger, d4: 1 sword, 2 mace, 3 battle axe, 4 spear)',
     'Torchbearer (dagger, 6 torches)',

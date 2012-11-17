@@ -41,6 +41,10 @@ class Character(object):
         return 4
 
     @property
+    def demihumans(self):
+        return True
+
+    @property
     def num_first_level_spells(self):
         return 12
 
@@ -69,8 +73,24 @@ class Character(object):
         """
         We determine character class based on your prime attribute.
         """
+        if self.demihumans:
+            # sorted attributes (excluding charisma)
+            attributes = sorted(self.attributes[:5], reverse=True,
+                                key=operator.itemgetter(1))
+            TOP_TWO = set(a[0] for a in attributes[:2])
+            INT = self.attributes[characterclass.INT]
+            CON = self.attributes[characterclass.CON]
+            DEX = self.attributes[characterclass.DEX]
+            STR = self.attributes[characterclass.STR]
+            if set(['STR', 'DEX']) == TOP_TWO and STR > 13 and DEX > 9 and CON > 9:
+                return characterclass.HALFLING
+            elif set(['STR', 'CON']) == TOP_TWO and STR > 13 and CON > 9:
+                return characterclass.DWARF
+            elif set(['STR', 'INT']) == TOP_TWO and INT > 13 and STR > 9 :
+                return characterclass.ELF
+        # You're playing a human!
         prime_attribute, _ = sorted(self.attributes[:self.playable_classes],
-                                    key=operator.itemgetter(1))[-1]
+                                    reverse=True, key=operator.itemgetter(1))[0]
         return characterclass.PRIME_REQUISITE[prime_attribute]
 
     def get_hp(self):
@@ -351,6 +371,13 @@ class PahvelornCharacter(LBBCharacter):
         hit dice is 6, just like all the other characters.
         """
         return 4
+
+    @property
+    def demihumans(self):
+        """
+        Player's can't play demihumans in Pahvelorn.
+        """
+        return False
 
     @property
     def retainer(self):
