@@ -188,7 +188,7 @@ class BasicCharacter(Character):
 
     def get_bonus(self, attr, val):
         """
-        Return the Moldav D&D attribute bonuses.
+        Return the Moldvay D&D attribute bonuses.
         """
         if val <= 3:
             bonus = -3
@@ -273,6 +273,14 @@ class LBBCharacter(Character):
         """
         return 6
 
+    @property
+    def max_ac(self):
+        """
+        In Original D&D Plate and Shield provides the absolute maximum
+        armour bonus.
+        """
+        return 2
+
     def get_hp(self):
         """
         Determine HP based on hit dice and CON modifiers. Fighters have an
@@ -317,6 +325,7 @@ class LBBCharacter(Character):
                 return 4
         return 0
 
+
 class PahvelornCharacter(LBBCharacter):
     """
     Models characters from the OD&D game Pahvelorn. (Essentially 1974 D&D.)
@@ -329,13 +338,6 @@ class PahvelornCharacter(LBBCharacter):
         # make sense to display a HP amount. We will display HD instead.
         self.hp = None
         self.hd = "1" if self.character_class != characterclass.FIGHTER else "1+1"
-
-    @property
-    def max_ac(self):
-        """
-        In Pahvelorn Plate and Shield provides the absolute maximum armor bonus.
-        """
-        return 2
 
     @property
     def system(self):
