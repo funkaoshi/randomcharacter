@@ -78,10 +78,10 @@ class Character(object):
             attributes = sorted(self.attributes[:5], reverse=True,
                                 key=operator.itemgetter(1))
             TOP_TWO = set(a[0] for a in attributes[:2])
-            INT = self.attributes[characterclass.INT]
-            CON = self.attributes[characterclass.CON]
-            DEX = self.attributes[characterclass.DEX]
-            STR = self.attributes[characterclass.STR]
+            INT = self.attributes[characterclass.INT][1]
+            CON = self.attributes[characterclass.CON][1]
+            DEX = self.attributes[characterclass.DEX][1]
+            STR = self.attributes[characterclass.STR][1]
             if set(['STR', 'DEX']) == TOP_TWO and STR > 13 and DEX > 9 and CON > 9:
                 return characterclass.HALFLING
             elif set(['STR', 'CON']) == TOP_TWO and STR > 13 and CON > 9:
