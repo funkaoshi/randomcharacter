@@ -2,6 +2,7 @@ from flask import request, Response, redirect, render_template, url_for, Flask
 
 import character
 import characterclass
+import dice
 
 # configuration
 SECRET_KEY = 'Y\xf6\xf2j\xcf\xc5\xac\xde{\xaf\x1a\xc8\x8dZ0\x9e\x14\xb6\x90\xd7\x02\x03\xf0\x1a'
@@ -16,6 +17,11 @@ SYSTEMS = {
     'basic': character.BasicCharacter,
     'pahvelorn': character.PahvelornCharacter,
 }
+
+@app.route('/3d6/')
+def three_dee_six():
+    roll = [dice.xdy(3,6) for _ in range(6)]
+    return render_template("3d6.html", roll=roll)
 
 @app.route('/')
 def index():

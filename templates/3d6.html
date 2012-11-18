@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block page_class %}threedeesix{% endblock %}
+
+{% block title %}3d6 in Order{% endblock %}
+
+{% block content %}
+<h2 class="system"><a href="http://funkaoshi.com">A Funkaoshi Production</a> Present's</h2>
+<h1>3D6 in Order!</h1>
+
+<table class="attr">
+    <tr>
+        <td><strong>STR</strong>: {{ roll[0] }}</td>
+        <td><strong>INT</strong>: {{ roll[1] }}</td>
+        <td><strong>WIS</strong>: {{ roll[2] }}</td>
+    </tr>
+    <tr>
+        <td><strong>DEX</strong>: {{ roll[3] }}</td>
+        <td><strong>CON</strong>: {{ roll[4] }}</td>
+        <td><strong>CHA</strong>: {{ roll[5] }}</td>
+    </tr>
+</table>
+
+<p>
+	You pick up 3 dice and you roll those dice 6 times and
+	you write those numbers down in order&mdash;like a boss.
+</p>
+<p>
+	Enjoy.
+</p>
+
+<footer>
+    <p>
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
