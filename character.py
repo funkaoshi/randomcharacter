@@ -90,7 +90,7 @@ class Character(object):
             # sorted attributes (excluding charisma)
             attributes = sorted(self.attributes[:5], reverse=True,
                                 key=operator.itemgetter(1))
-            if not (self.thieves and 'DEX' == attributes[0][0]):
+            if not (self.thieves and 'DEX' == attributes[0][0] and d(100) < 80):
                 INT = self.attributes[characterclass.INT][1]
                 CON = self.attributes[characterclass.CON][1]
                 DEX = self.attributes[characterclass.DEX][1]
