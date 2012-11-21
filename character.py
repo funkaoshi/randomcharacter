@@ -369,8 +369,8 @@ class PahvelornCharacter(LBBCharacter):
     More info here: http://untimately.blogspot.ca/p/pahvelorn.html.
     """
 
-    def __init__(self):
-        super(LBBCharacter, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(LBBCharacter, self).__init__(*args, **kwargs)
         # Pahvelorn uses the re-roll your HP per session rule, so it doesn't
         # make sense to display a HP amount. We will display HD instead.
         self.hp = None
