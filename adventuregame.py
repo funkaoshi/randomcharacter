@@ -4,7 +4,7 @@ from dice import d, xdy
 class Character(object):
         
     def __init__(self):
-        attributes = [d(6), d(8), d(10), d(12)]
+        attributes = [6, 8, 10, 12]
         random.shuffle(attributes)
         self.str = attributes[0]
         self.sta = attributes[1]
@@ -18,12 +18,20 @@ class Character(object):
             self.hp = self.hp + xdy(2,6) + 16
         self.vitality = random.choice([1, 2, 2, 3, 3, 4])
         self.theme = random.choice(THEME)
+        self.subtheme = random.choice(self.theme['subtheme'])
+        self.theme = self.theme['name']
         self.fighting_style = random.choice(FIGHTING_STYLE)
         self.background = random.choice(BACKGROUND)
 
 DEFENDER, LEADER, SKIRMISHER = 'Defender', 'Leader', 'Skirmisher'
 
-THEME = ['Arcane', 'Divine', 'Elemental', 'Physical', 'Primal']
+THEME = [
+    {'name': 'Arcane', 'subtheme': ['Ofuda', 'Force', 'Summoning']},
+    {'name': 'Divine', 'subtheme': ['Holy', 'Unholy', 'Water', 'Wind']},
+    {'name': 'Elemental', 'subtheme': ['Earth', 'Fire', 'Water', 'Wind']},
+    {'name': 'Physical', 'subtheme': ['Balanced', 'Brutal', 'Precise']},
+    {'name': 'Primal', 'subtheme': ['Plant', 'Poison', 'Shifter']}
+]
 
 FIGHTING_STYLE = [
     'Dual Weapons (Melee)',

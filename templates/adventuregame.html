@@ -6,14 +6,14 @@
 
 {% block content %}
 <h2 class="system">The Adventure Game</h2>
-<h1>{{ c.calling }}</h1>
+<h1>{{ c.theme }} {{ c.calling }}</h1>
 
 <table class="attr">
     <tr>
-        <td><strong>STR</strong>: {{ c.str }}</td>
-        <td><strong>STA</strong>: {{ c.sta }}</td>
-        <td><strong>AGI</strong>: {{ c.agi }}</td>
-        <td><strong>INT</strong>: {{ c.int }}</td>
+        <td><strong>STR</strong>: d{{ c.str }}</td>
+        <td><strong>STA</strong>: d{{ c.sta }}</td>
+        <td><strong>AGI</strong>: d{{ c.agi }}</td>
+        <td><strong>INT</strong>: d{{ c.int }}</td>
     </tr>
 </table>
 <table>
@@ -27,7 +27,7 @@
 
 <table>
     <tr>
-        <td><strong>THEME</strong>: {{ c.theme }}</td>
+        <td><strong>THEME</strong>: {{ c.theme }} ({{ c.subtheme }})</td>
     </tr>
     <tr>
         <td><strong>FIGHTING STYLE</strong>: {{ c.fighting_style }}</td>
@@ -38,7 +38,7 @@
 
 <footer>
     <p>
-        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. <a href="http://the-adventure-game.wikidot.com/introduction">The Adventure Game</a> is an RPG by Johnathan Black. Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. <a href="http://the-adventure-game.wikidot.com/introduction">The Adventure Game</a> is an RPG by Jonathan Black. Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
     </p>
 </footer>
 {% endblock %}
