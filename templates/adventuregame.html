@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block page_class %}adventuregame{% endblock %}
+
+{% block title %}A Random Adventure Game {{ c.calling }}{% endblock %}
+
+{% block content %}
+<h2 class="system">The Adventure Game</h2>
+<h1>{{ c.calling }}</h1>
+
+<table class="attr">
+    <tr>
+        <td><strong>STR</strong>: {{ c.str }}</td>
+        <td><strong>STA</strong>: {{ c.sta }}</td>
+        <td><strong>AGI</strong>: {{ c.agi }}</td>
+        <td><strong>INT</strong>: {{ c.int }}</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td><strong>HP</strong>: {{ c.hp }}</td>
+        <td><strong>VITALITY</strong>: {{ c.vitality }}</td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td><strong>THEME</strong>: {{ c.theme }}</td>
+    </tr>
+    <tr>
+        <td><strong>FIGHTING STYLE</strong>: {{ c.fighting_style }}</td>
+    </tr>    
+</table>
+
+<p>{{ c.background }}</p>
+
+<footer>
+    <p>
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. <a href="http://the-adventure-game.wikidot.com/introduction">The Adventure Game</a> is an RPG by Johnathan Black. Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}

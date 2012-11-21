@@ -70,6 +70,10 @@ table.weapon td {
 
 /* Additional Content Tables and Lists */
 
+p {
+    padding: 0 0.5em;
+}
+
 .block {
     width: 11.5em;
     padding: 0 0.5em;
@@ -93,6 +97,10 @@ ul {
     list-style: circle;
 }
 
+li p {
+    margin: 0;
+}
+
 /* Small centered footer */
 
 footer {
@@ -113,4 +121,10 @@ footer p {
 
 div.threedeesix h2.system {
 	margin-top: 75px;
+}
+
+/* The Adventure Game */
+
+table {
+    width: 100%;
 }

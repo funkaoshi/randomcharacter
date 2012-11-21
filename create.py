@@ -1,5 +1,6 @@
 from flask import request, Response, redirect, render_template, url_for, Flask
 
+import adventuregame
 import character
 import characterclass
 import dice
@@ -22,6 +23,10 @@ SYSTEMS = {
 def three_dee_six():
     roll = [dice.xdy(3,6) for _ in range(6)]
     return render_template("3d6.html", roll=roll)
+    
+@app.route('/adventuregame/')
+def make_adventure_game_char():
+    return render_template("adventuregame.html", c=adventuregame.Character())
 
 @app.route('/')
 def index():
@@ -40,6 +45,9 @@ def generate(system, fmt):
     elif fmt == "html":
         template = "index.html"
         mimetype = "text/html"
+    elif fmt == "yaml":
+        template = "yaml.txt"
+        mimetype ="text/plain"
     # TODO: As JSON
     # elif fmt == "json":
     #   template = "index.html"
