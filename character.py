@@ -402,6 +402,19 @@ class PahvelornCharacter(LBBCharacter):
         Players start with a random retainer.
         """
         return random.choice(characterclass.RETAINERS)
+        
+    def get_thac9(self):
+        """
+        In Pahvelorn characters all begin at different combat ranks,
+        as per this post: 
+          http://untimately.blogspot.ca/2012/11/adjusted-attack-ranks.html
+        """
+        return {
+            'Fighter': 7,
+            'Cleric': 9,
+            'Thief': 9,
+            'Magic-User': 11,
+        }[self.character_class['name']]
 
     def get_spell(self):
         """
@@ -415,4 +428,3 @@ class PahvelornCharacter(LBBCharacter):
                 random.choice(characterclass.GRIMOIRES),
             ]
         return None
-
