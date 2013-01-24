@@ -37,6 +37,7 @@ class Character(object):
         self.saves = self.get_saves()
         self.languages = self.get_languages()
         self.spell = self.get_spell()
+        self.appearance = self.get_appearance()
         self.notes = self.get_notes()
 
         # attribute map to ease display in template
@@ -164,6 +165,10 @@ class Character(object):
             spells = self.character_class['spells'][:self.num_first_level_spells]
             return random.choice(spells)
         return None
+        
+    def get_appearance(self):
+        return ', '.join(random.choice(feature)
+                         for _, feature in characterclass.APPEARENCE.iteritems())
 
     def get_notes(self):
         """

@@ -275,6 +275,16 @@ GRIMOIRES = [
     ]),
 ]
 
+APPEARENCE = {
+    'SEX': ['Male', 'Female'],
+    'AGE': ['Child', 'Youth', 'Adult', 'Mature', 'Old', 'Decrepit'],
+    'DRESS': ['Messy Clothing', 'Scant Clothing', 'Immaculate Clothing', 
+              'Formal Attire', 'Threadbare Clothing', 'Elaborate Attire',
+              'Drab Clothing', 'in Uniform'],
+    'FEATURES': ['Missing Limb', 'Obese', 'Scrawny', 'Muscular', 'Bald',
+                 'Hairy', 'Tall', 'Short', 'Ugly']
+}
+
 # Map from a given attribute to most appropriate character class
 PRIME_REQUISITE = {
     'STR': FIGHTER,

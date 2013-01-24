@@ -3,6 +3,7 @@
 {% block content %}
 <h2 class="system"> {{ c.system }} D&amp;D</h2>
 <h1>{{ c.character_class.name }}</h1>
+<h2 class="appearence">{{ c.appearance }}</h2>
 
 <table class="attr">
     <tr>
@@ -140,6 +141,10 @@
   </div>
   {% endif %}
 </div>
+
+<!-- 
+{% include "plaintext.txt" %}
+-->
 
 <footer>
     <p>

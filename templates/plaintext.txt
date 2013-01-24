@@ -26,30 +26,34 @@ To Hit Table:
 
 Languages: Commom, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
 
+Optional Appearance:  {{ c.appearance }}
+
 Equipment:
   {% for item in c.equipment %}
    * {{ item -}}
   {% endfor %}
   
+{% if c.retainer -%}
+Retainer: 
+
+  {{ c.retainer }}
+{% endif %}
 {% if c.character_class.name == 'Thief' -%}
 Thief Skills:
 {% for skill, chance in c.character_class.skills %}
   {{ skill }}: {{ chance -}}
 {% endfor -%}
-{% endif -%}
-
+{% endif %}
 {% if c.character_class.name == 'Cleric' -%}
 Turn Undead:
 {% for undead, roll in c.character_class.turn %}
   {{ undead }}: {{ roll -}}
 {% endfor -%}
-{% endif -%}
-
+{% endif %}
 {% if c.spell -%}
 Spells: 
   Level 1: {{ c.spell }}
-{% endif -%}    
-            
+{% endif %}       
 {% if c.grimoires -%}
 Grimoires:
 {% for book, spells in c.grimoires %}
@@ -58,10 +62,4 @@ Grimoires:
     * {{ spell -}}
 {% endfor %}
 {% endfor %}
-{% endif -%}
-
-{% if c.retainer -%}
-Retainer: 
-
-  {{ c.retainer }}
-{% endif -%}
+{% endif %}
