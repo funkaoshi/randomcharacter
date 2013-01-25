@@ -52,6 +52,7 @@ class Character(object):
         attributes = vars(self)
         attributes["class"] = attributes["character_class"]["name"]
         del attributes["character_class"]
+        attributes["system"] = self.system
         return attributes
 
     @property
