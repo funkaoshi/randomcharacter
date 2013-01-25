@@ -44,6 +44,16 @@ class Character(object):
         self.attr = dict((attr, self.with_bonus(attr, value))
                           for attr, value in self.attributes)
 
+    def to_dict(self):
+        """
+        We use vars to convert the object to a dictionary, and then replace
+        the character_class attribute with it's name.
+        """
+        attributes = vars(self)
+        attributes["class"] = attributes["character_class"]["name"]
+        del attributes["character_class"]
+        return attributes
+
     @property
     def system(self):
         raise NotImplementedError()

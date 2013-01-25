@@ -4,6 +4,7 @@ import adventuregame
 import character
 import characterclass
 import dice
+import json
 
 # configuration
 SECRET_KEY = 'Y\xf6\xf2j\xcf\xc5\xac\xde{\xaf\x1a\xc8\x8dZ0\x9e\x14\xb6\x90\xd7\x02\x03\xf0\x1a'
@@ -48,10 +49,8 @@ def generate(system, fmt):
     elif fmt == "yaml":
         template = "yaml.txt"
         mimetype ="text/plain"
-    # TODO: As JSON
-    # elif fmt == "json":
-    #   template = "index.html"
-    #   mimetype = "application/json"
+    elif fmt == "json":
+        mimetype = "application/json"
     else:
         # default to HTML for unknown display formats
         return redirect(url_for('generate', system=system, fmt="html"))
@@ -63,8 +62,12 @@ def generate(system, fmt):
     
     c = get_class(request.args.get('class'))
     context = system(classname=c)
-    content = render_template(template, c=context)
+    if fmt == "json":
+        content = json.dumps(context.to_dict())
+    else:
+        content = render_template(template, c=context)
     response = Response(content, status=200, mimetype=mimetype)
+
     return response
 
 
