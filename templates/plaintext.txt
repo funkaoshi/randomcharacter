@@ -2,7 +2,7 @@
 
 {% if c.hp %}HP: {{ c.hp }}{% else %}HD: {{ c.hd }}{% endif %}   AC: {{ c.ac }}   XP: 0
 
-Attributes: 
+Attributes:
 
   STR: {{ c.attr.STR }}
   INT: {{ c.attr.INT }}
@@ -10,21 +10,21 @@ Attributes:
   DEX: {{ c.attr.DEX }}
   CON: {{ c.attr.CON }}
   CHA: {{ c.attr.CHA }}
-                
+
 Saves:
 
   Poison:        {{ c.saves.poison}}
-  Magical Wands: {{ c.saves.wands}}                
+  Magical Wands: {{ c.saves.wands}}
   Paralysis:     {{ c.saves.stone}}
   Dragon Breath: {{ c.saves.breath}}
   Magic:         {{ c.saves.magic}}
-  
+
 To Hit Table:
 
   AC:   {% for i in range(9, c.max_ac - 1, -1) %} {{ "%2d"|format(i) }} {% endfor %}
   Roll: {% for i in range(c.thac9, c.thac9 + c.max_to_hit) %} {{ "%2d"|format(i) }} {% endfor %}
 
-Languages: Commom, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
+Languages: Common, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
 
 Optional Appearance:  {{ c.appearance }}
 
@@ -32,9 +32,9 @@ Equipment:
   {% for item in c.equipment %}
    * {{ item -}}
   {% endfor %}
-  
+
 {% if c.retainer -%}
-Retainer: 
+Retainer:
 
   {{ c.retainer }}
 {% endif %}
@@ -51,9 +51,9 @@ Turn Undead:
 {% endfor -%}
 {% endif %}
 {% if c.spell -%}
-Spells: 
+Spells:
   Level 1: {{ c.spell }}
-{% endif %}       
+{% endif %}
 {% if c.grimoires -%}
 Grimoires:
 {% for book, spells in c.grimoires %}
