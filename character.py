@@ -28,7 +28,7 @@ class Character(object):
         self.character_class = self.get_character_class(classname)
         if testing:
             return
-        self.equipment = self.character_class['equipment'][xdy(3,6)-3]
+        self.equipment = self.get_equipment()
         self.hp = self.get_hp()
         if self.hp < 1:
             self.hp = 1
@@ -43,6 +43,24 @@ class Character(object):
         # attribute map to ease display in template
         self.attr = dict((attr, self.with_bonus(attr, value))
                           for attr, value in self.attributes)
+    @property
+    def STR(self): return self.attributes[characterclass.STR][1]
+
+    @property
+    def INT(self): return self.attributes[characterclass.INT][1]
+
+    @property
+    def DEX(self): return self.attributes[characterclass.DEX][1]
+
+    @property
+    def CON(self): return self.attributes[characterclass.CON][1]
+
+    @property
+    def WIS(self): return self.attributes[characterclass.WIS][1]
+
+    @property
+    def CHA(self): return self.attributes[characterclass.CHA][1]
+
 
     def to_dict(self):
         """
@@ -103,17 +121,13 @@ class Character(object):
             attributes = sorted(self.attributes[:5], reverse=True,
                                 key=operator.itemgetter(1))
             if not (self.thieves and 'DEX' == attributes[0][0] and d(100) < 80):
-                INT = self.attributes[characterclass.INT][1]
-                CON = self.attributes[characterclass.CON][1]
-                DEX = self.attributes[characterclass.DEX][1]
-                STR = self.attributes[characterclass.STR][1]
                 # We randomly test because there is overlap in what could
                 # succeed and we want each to be equally likely in the long
                 # run.
                 tests = [_is_dwarf, _is_halfling, _is_elf]
                 random.shuffle(tests)
                 for t in tests:
-                    result, c = t(INT, CON, DEX, STR)
+                    result, c = t(self.INT, self.CON, self.DEX, self.STR)
                     if result:
                         return c
         # You're playing a human!
@@ -121,6 +135,9 @@ class Character(object):
         prime_attribute, _ = sorted(self.attributes[:index],
                                     reverse=True, key=operator.itemgetter(1))[0]
         return characterclass.PRIME_REQUISITE[prime_attribute]
+
+    def get_equipment(self):
+        return self.character_class['equipment'][xdy(3,6)-3]
 
     def get_hp(self):
         """
@@ -176,7 +193,7 @@ class Character(object):
             spells = self.character_class['spells'][:self.num_first_level_spells]
             return random.choice(spells)
         return None
-        
+
     def get_appearance(self):
         return ', '.join(random.choice(feature)
                          for _, feature in characterclass.APPEARENCE.iteritems())
@@ -418,11 +435,11 @@ class PahvelornCharacter(LBBCharacter):
         Players start with a random retainer.
         """
         return random.choice(characterclass.RETAINERS)
-        
+
     def get_thac9(self):
         """
         In Pahvelorn characters all begin at different combat ranks,
-        as per this post: 
+        as per this post:
           http://untimately.blogspot.ca/2012/11/adjusted-attack-ranks.html
         """
         return {
@@ -444,3 +461,44 @@ class PahvelornCharacter(LBBCharacter):
                 random.choice(characterclass.GRIMOIRES),
             ]
         return None
+
+
+class CarcosaCharacter(LBBCharacter):
+    """
+    Models a OD&D Character from Carcosa.
+    """
+
+    @property
+    def system(self):
+        return "Carcosa / Original"
+
+    def get_character_class(self, classname):
+        figher_score = max(self.CON, self.STR, self.DEX)
+        if self.INT > figher_score or figher_score < 9:
+            return characterclass.SORCERER
+        return characterclass.FIGHTER
+
+    def get_appearance(self):
+        colour = random.choice([
+            "Black", "Blue", "Bone", "Brown", "Dolm", "Green", "Jale",
+            "Orange", "Purple", "Red", "Ulfire", "White", "Yellow"])
+        sex = random.choice(['Man', 'Woman'])
+        return "%s %s" % (colour, sex)
+
+    def get_ac(self):
+        """
+        All armour for starting characters is no better or worse than leather.
+        """
+        return 5
+
+    def get_equipment(self):
+        """
+        We generate a more Gonzo list of starting equipment.
+        """
+        self.equipment = [random.choice(characterclass.GONZO_ARMOUR),
+                          random.choice(characterclass.GONZO_WEAPONS)]
+        self.equipment += random.sample(characterclass.GONZO_GEAR, xdy(3,3))
+        return self.equipment
+
+    def get_languages(self): return []
+

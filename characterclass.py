@@ -79,6 +79,15 @@ FIGHTER = {
     }
 }
 
+SORCERER = {
+    'name': "Sorcerer",
+    'equipment': FIGHTER['equipment'],
+    'hitdice': 8,
+    'saves': {
+        'poison': 12, 'wands': 13, 'stone': 13, 'breath': 15, 'magic': 14
+    }
+}
+
 MAGICUSER = {
     'name': "Magic-User",
     'equipment': [
@@ -86,7 +95,7 @@ MAGICUSER = {
         ["2 Daggers", "6 Torches", "Backpack", "Waterskin", "1 Week Iron Rations", "2 Flasks oil", "50' Rope", "7 gp"],
         ["Dagger", "Backpack", "Waterskin", "Lantern", "4 Flasks oil", "1 Week Iron Rations", "10' Pole", "7 gp"],
         ["Dagger", "6 Torches", "Backpack", "Waterskin", "1 Week Iron Rations", "50' Rope", "Vial of Holy Water", "9 gp"],
-        ["Dagger", "6 Torches", "Backpack", "Waterskin", "1 Week Iron Rations", "10' Pole 5 Flasks of oil", "Silver Mirror", "Belladona", "9 gp"],
+        ["Dagger", "6 Torches", "Backpack", "Waterskin", "1 Week Iron Rations", "10' Pole", "5 Flasks of oil", "Silver Mirror", "Belladona", "9 gp"],
         ["Dagger", "6 Torches", "Backpack", "Waterskin", "1 Week Iron Rations", "50' Rope", "2 Vials Holy Water", "4 gp"],
         ["3 Daggers", "Backpack", "Waterskin", "Lantern", "4 Flasks oil", "1 Week Iron Rations", "10' Pole", "Vial of Holy Water", "16 gp"],
         ["Dagger", "6 Torches", "Backpack", "Waterskin", "1 Week Iron Rations", "50' Rope", "2 Vials Holy Water", "24 gp"],
@@ -278,12 +287,25 @@ GRIMOIRES = [
 APPEARENCE = {
     'SEX': ['Male', 'Female'],
     'AGE': ['Child', 'Youth', 'Adult', 'Mature', 'Old', 'Decrepit'],
-    'DRESS': ['Messy Clothing', 'Scant Clothing', 'Immaculate Clothing', 
+    'DRESS': ['Messy Clothing', 'Scant Clothing', 'Immaculate Clothing',
               'Formal Attire', 'Threadbare Clothing', 'Elaborate Attire',
               'Drab Clothing', 'in Uniform'],
     'FEATURES': ['Missing Limb', 'Obese', 'Scrawny', 'Muscular', 'Bald',
                  'Hairy', 'Tall', 'Short', 'Ugly']
 }
+
+GONZO_WEAPONS = ['Battle-Axe', 'Trident', 'Obsidian Sword', 'War-Hammer',
+                 'Spear', 'Whip', 'Scythe', 'Staff']
+GONZO_ARMOUR = ['Boiled Dinosaur Leather Armor', 'Mail of Ceramic Discs',
+                'Copper Scale Armor', 'Bone Scale Mail', 'Horn Scale Mail',
+                'Tooth Scale Mail', 'Carved Wooden Armor', 'Dinosaur Scale Arour',
+                'Giant Insect Chitin Plates', 'Bright Orange Breast Plate',
+                'Bright Purple Breast Plate']
+GONZO_GEAR = ["Water Skin", "50' of Rope", "5 Torches", "2 Daggers",
+              "2 Wooden Stakes", "Backpack", "Incomprehnsible Book of Snakemen Rituals",
+              "Broken Space Alien Laser Pistol", "Dehydrated Tentacles", "Painted Bones",
+              "Grappling Hook", "Fur Top", "Horned Helmet", "Fermented Bug Juice",
+              "5 Dead Snakes", "Space Alien Key Card"]
 
 # Map from a given attribute to most appropriate character class
 PRIME_REQUISITE = {

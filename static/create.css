@@ -110,7 +110,6 @@ li p {
 footer {
     clear: both;
     padding-top: 2em;
-    text-align: center;
 }
 footer p:first-child {
     border-top: 1px solid gray;

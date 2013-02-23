@@ -18,13 +18,14 @@ SYSTEMS = {
     'holmes': character.HolmesCharacter,
     'basic': character.BasicCharacter,
     'pahvelorn': character.PahvelornCharacter,
+    'carcosa': character.CarcosaCharacter,
 }
 
 @app.route('/3d6/')
 def three_dee_six():
     roll = [dice.xdy(3,6) for _ in range(6)]
     return render_template("3d6.html", roll=roll)
-    
+
 @app.route('/adventuregame/')
 def make_adventure_game_char():
     return render_template("adventuregame.html", c=adventuregame.Character())
@@ -59,7 +60,7 @@ def generate(system, fmt):
     if not system:
         # default to basic for unknown systems
         return redirect(url_for('generate', system='basic', fmt=fmt))
-    
+
     c = get_class(request.args.get('class'))
     context = system(classname=c)
     if fmt == "json":
@@ -82,7 +83,7 @@ def get_class(classname):
 
 #
 # base64.b64encode(pickle.dumps(context))
-# 
+#
 # @app.route('/character/<b64>/')
 # def restore(b64):
 #     enc_context = base64.b64decode(b64)

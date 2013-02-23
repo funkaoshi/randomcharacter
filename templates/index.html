@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2 class="system"> {{ c.system }} D&amp;D</h2>
-<h1>{{ c.character_class.name }}</h1>
+<h1>{{ c.race }} {{ c.character_class.name }}</h1>
 <h2 class="appearence">{{ c.appearance }}</h2>
 
 <table class="attr">
@@ -142,19 +142,23 @@
   {% endif %}
 </div>
 
-<!-- 
+<!--
 {% include "plaintext.txt" %}
 -->
 
 <footer>
     <p>
-        You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/holmes">Holmes D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>.
+        You can also generate <strong><a href="/lbb">1974 D&D characters</a></strong> and <strong><a href="/holmes">Holmes D&D characters</a></strong>. Add "text" to the end of a URL to get a <a href="/text">plaintext character sheet</a>. You can also generate OD&D characters suitable for the campaign worlds of <strong><a href='/pahvelorn'>Pahvelorn</a></strong> and <strong><a href='/carcosa/'>Carcosa</a></strong>.
     </p>
     <p>
         If you need a name, check out <a href="http://www.rinkworks.com/namegen/">The Fantasy Name Generator</a>.
     </p>
     <p>
-        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Equipment lists generated using <a href="http://untimately.blogspot.ca/2012/07/od-equipment.html">random charts from Untimately.</a> Other random tables taken from <em>"Moldvay" Basic D&D</em>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Equipment lists generated using <a href="http://untimately.blogspot.ca/2012/07/od-equipment.html">random charts from Untimately.</a> Other random tables taken from <em>"Moldvay" Basic D&D</em>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. Some armour for the <a href="/carcosa">Carcosa</a> character generator comes from <a href="http://dungeonofsigns.blogspot.ca/2013/02/strange-armor-alternatives.html">Random Armour Tables from Dungeon of Signs</a>.
+    </p>
+
+    <p>
+        If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
     </p>
 </footer>
 {% endblock %}
