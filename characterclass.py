@@ -294,18 +294,25 @@ APPEARENCE = {
                  'Hairy', 'Tall', 'Short', 'Ugly']
 }
 
-GONZO_WEAPONS = ['Battle-Axe', 'Trident', 'Obsidian Sword', 'War-Hammer',
-                 'Spear', 'Whip', 'Scythe', 'Staff']
-GONZO_ARMOUR = ['Boiled Dinosaur Leather Armor', 'Mail of Ceramic Discs',
-                'Copper Scale Armor', 'Bone Scale Mail', 'Horn Scale Mail',
-                'Tooth Scale Mail', 'Carved Wooden Armor', 'Dinosaur Scale Arour',
-                'Giant Insect Chitin Plates', 'Bright Orange Breast Plate',
-                'Bright Purple Breast Plate']
-GONZO_GEAR = ["Water Skin", "50' of Rope", "5 Torches", "2 Daggers",
-              "2 Wooden Stakes", "Backpack", "Incomprehnsible Book of Snakemen Rituals",
-              "Broken Space Alien Laser Pistol", "Dehydrated Tentacles", "Painted Bones",
-              "Grappling Hook", "Fur Top", "Horned Helmet", "Fermented Bug Juice",
-              "5 Dead Snakes", "Space Alien Key Card"]
+class GONZO:
+    METERIAL = ["Obsidian", "Insect Carapace", "Insect Mandible",
+                "Wood", "Space Alien Ceramic", "Giant Tooth", 
+                "Bone", "Bronze", "Iron"]
+    WEAPONS = ['Battle-Axe', 'Trident', 'Sword', 'War-Hammer', 'Spear',
+               'Scythe', 'Staff']
+    ARMOUR = ['Boiled Dinosaur Leather Armor', 'Mail of Ceramic Discs',
+              'Copper Scale Armor', 'Bone Scale Mail', 'Horn Scale Mail',
+              'Tooth Scale Mail', 'Carved Wooden Armor', 'Dinosaur Scale Arour',
+              'Giant Insect Chitin Plates', 'Bright Orange Breast Plate',
+              'Bright Purple Breast Plate', 'Bamboo Mail', 'Rattan Armour',
+              'Giant Centipede Carapace', 'Beetle Horn Mail']
+    GEAR = ["Water Skin", "50' of Rope", "5 Torches", "2 Daggers",
+            "2 Wooden Stakes", "Backpack", "Whip", "Fur Top", "Horned Helmet",
+            "Grappling Hook"]
+    STRANGE = ["Incomprehnsible Book of Snakemen Rituals",
+               "Broken Space Alien Laser Pistol", "Dehydrated Tentacles", 
+               "Painted Bones", "Fermented Bug Juice", "5 Dead Snakes",
+               "Space Alien Key Card"]
 
 # Map from a given attribute to most appropriate character class
 PRIME_REQUISITE = {

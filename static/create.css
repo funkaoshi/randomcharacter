@@ -131,3 +131,26 @@ div.threedeesix h2.system {
 table {
     width: 100%;
 }
+
+/* Random NPCs */
+
+#container.npcs {
+    width: 784px;
+}
+
+#container.npcs table th.class,
+#container.npcs table td.class {
+    width: 100px;
+}
+
+#container.npcs table th.attr,
+#container.npcs table td.attr {
+    width: 60px;
+    text-align: center;
+}
+
+#container.npcs table th.appearence,
+#container.npcs table td.appearence {
+    width: 424px;
+}
+

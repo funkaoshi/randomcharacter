@@ -26,6 +26,7 @@ class Character(object):
         self.attributes = [(attribute, xdy(3,6))
                            for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class(classname)
+        self.appearance = self.get_appearance()
         if testing:
             return
         self.equipment = self.get_equipment()
@@ -37,12 +38,12 @@ class Character(object):
         self.saves = self.get_saves()
         self.languages = self.get_languages()
         self.spell = self.get_spell()
-        self.appearance = self.get_appearance()
         self.notes = self.get_notes()
 
         # attribute map to ease display in template
         self.attr = dict((attr, self.with_bonus(attr, value))
                           for attr, value in self.attributes)
+
     @property
     def STR(self): return self.attributes[characterclass.STR][1]
 
@@ -60,7 +61,6 @@ class Character(object):
 
     @property
     def CHA(self): return self.attributes[characterclass.CHA][1]
-
 
     def to_dict(self):
         """
@@ -495,9 +495,12 @@ class CarcosaCharacter(LBBCharacter):
         """
         We generate a more Gonzo list of starting equipment.
         """
-        self.equipment = [random.choice(characterclass.GONZO_ARMOUR),
-                          random.choice(characterclass.GONZO_WEAPONS)]
-        self.equipment += random.sample(characterclass.GONZO_GEAR, xdy(3,3))
+        weapon = "%s %s" % (random.choice(characterclass.GONZO.METERIAL),
+                            random.choice(characterclass.GONZO.WEAPONS))
+        self.equipment = [random.choice(characterclass.GONZO.ARMOUR), weapon]
+        self.equipment += random.sample(characterclass.GONZO.GEAR, 2)
+        self.equipment += random.sample(characterclass.GONZO.STRANGE, 1)
+        self.equipment += ["%s GP" % xdy(3,6)]
         return self.equipment
 
     def get_languages(self): return []

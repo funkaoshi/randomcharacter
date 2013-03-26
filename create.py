@@ -30,6 +30,14 @@ def three_dee_six():
 def make_adventure_game_char():
     return render_template("adventuregame.html", c=adventuregame.Character())
 
+@app.route('/npcs/', defaults={'number': 10})
+@app.route('/npcs/<int:number>/')
+def generate_npcs(number):
+    if number > 1000:
+        number = 1000
+    characters = [character.BasicCharacter(testing=True) for _ in xrange(number)]
+    return render_template("npcs.html", characters=characters)
+
 @app.route('/')
 def index():
     return redirect('/basic/')
