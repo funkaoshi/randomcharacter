@@ -51,7 +51,7 @@ h3 {
 table {
     padding: 0.5em;
     border-bottom: 1px solid #333;
-    border-spacing: 0
+    border-spacing: 0;
 }
 table td, table th {
     width: 8em;
@@ -126,31 +126,40 @@ div.threedeesix h2.system {
 	margin-top: 75px;
 }
 
-/* The Adventure Game */
+/* Adventure Game */ 
 
-table {
-    width: 100%;
-}
+table { width: 100%; }
 
 /* Random NPCs */
 
 #container.npcs {
-    width: 784px;
+    width: 640px;
 }
 
-#container.npcs table th.class,
-#container.npcs table td.class {
-    width: 100px;
+#container.npcs table.attr {
+  border: 0;
 }
 
-#container.npcs table th.attr,
-#container.npcs table td.attr {
-    width: 60px;
+#container.npcs table.attr th,
+#container.npcs table.attr td {
+  border-bottom: 1px solid gray;
+  padding: 5px 0;
+}
+
+#container.npcs table.attr th.class,
+#container.npcs table.attr td.class {
+    width: 80px;
+}
+
+#container.npcs table.attr th.attr,
+#container.npcs table.attr td.attr {
+    width: 40px;
     text-align: center;
 }
 
-#container.npcs table th.appearence,
-#container.npcs table td.appearence {
-    width: 424px;
+#container.npcs table.attr th.appearence,
+#container.npcs table.attr td.appearence {
+    width: 300px;
+    padding-left:20px;
 }
 

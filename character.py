@@ -27,6 +27,7 @@ class Character(object):
                            for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class(classname)
         self.appearance = self.get_appearance()
+        self.personality = self.get_personality()
         if testing:
             return
         self.equipment = self.get_equipment()
@@ -196,7 +197,10 @@ class Character(object):
 
     def get_appearance(self):
         return ', '.join(random.choice(feature)
-                         for _, feature in characterclass.APPEARENCE.iteritems())
+                         for feature in characterclass.APPEARENCE)
+
+    def get_personality(self):
+        return ', '.join(random.sample(characterclass.PERSONALITY, 2))
 
     def get_notes(self):
         """
