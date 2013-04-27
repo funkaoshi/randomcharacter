@@ -509,3 +509,58 @@ class CarcosaCharacter(LBBCharacter):
 
     def get_languages(self): return []
 
+
+class DelvingDeeperCharacter(LBBCharacter):
+    """
+    Models a Delving Deeper (OD&D clone) character.
+    """
+
+    @property
+    def system(self):
+        return "Delving Deeper"
+
+    def get_hp(self):
+        """
+        Determine HP based on hit dice and CON modifiers. Fighters have an
+        additional 2 hit points at first level.
+        """
+        hp = super(LBBCharacter, self).get_hp()
+        if self.character_class == characterclass.FIGHTER:
+            hp = hp + 1
+        return hp
+
+    def get_bonus(self, attr, val):
+        if attr == 'STR':
+            # bonus to damage
+            if val >= 15:
+                return 1
+        elif attr == 'INT':
+            # Bonus to languages
+            if val > 10:
+                return val - 10
+        elif attr == 'CON':
+            # Bonus to HP
+            if val <= 6:
+                return -1
+            elif val >= 15:
+                return 1
+        elif attr == 'DEX':
+            # missile damage
+            if val <= 6:
+                return -1
+            elif val >= 15:
+                return 1
+        elif attr == 'CHA':
+            # loyalty bonus
+            if val <= 3:
+                return -2
+            elif val <= 5:
+                return -1
+            elif 13 <= val <= 15:
+                return 1
+            elif 16 <= val <= 17:
+                return 2
+            elif val >= 18:
+                return 4
+        return 0
+
