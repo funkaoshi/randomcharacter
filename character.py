@@ -530,6 +530,10 @@ class DelvingDeeperCharacter(LBBCharacter):
         return hp
 
     def get_bonus(self, attr, val):
+        """
+        Bonuses are similar to LLB, but even less pronounced. Also there is
+        bonus damage for high strength.
+        """
         if attr == 'STR':
             # bonus to damage
             if val >= 15:
