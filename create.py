@@ -19,7 +19,8 @@ SYSTEMS = {
     'basic': character.BasicCharacter,
     'pahvelorn': character.PahvelornCharacter,
     'carcosa': character.CarcosaCharacter,
-    'dd': character.DelvingDeeperCharacter
+    'dd': character.DelvingDeeperCharacter,
+    'lotfp': character.LotFPCharacter
 }
 
 @app.route('/3d6/')

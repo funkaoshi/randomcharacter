@@ -21,8 +21,17 @@ LANGUAGES = [
     'Lizard Man','Medusa', 'Minotaur', 'Ogre', 'Orc', 'Pixie', 'Human Dialect'
 ]
 
+
+SAVES = {
+    'poison': 'Death Ray or Poison',
+    'wands': 'Magical Wands',
+    'stone': 'Paralysis or Turn to Stone',
+    'breath': 'Dragon Breath',
+    'magic': 'Rods, Staves, or Spells'
+}
+
 """
-The 7 character classes from Basic D&D. TODO: Add Dwarves, Elves, and Halflings
+The 7 character classes from Basic D&D.
 """
 CLERIC = {
     'name': 'Cleric',
@@ -118,7 +127,7 @@ MAGICUSER = {
         'Protection from Evil', 'Light', 'Charm Person', 'Sleep',
         # Basic D&D added 4 new Spells
         'Floating Disc', 'Magic Missile', 'Shield', 'Ventriloquism'
-    ]
+    ],
 }
 
 THIEF = {
@@ -154,7 +163,7 @@ THIEF = {
         ('Hide in Shadows', '10%'),
         ('Pick Pockets', '20%'),
         ('Hear Noise', '1-2')
-    ]
+    ],
 }
 
 DWARF = {
@@ -284,6 +293,55 @@ GRIMOIRES = [
     ]),
 ]
 
+LOTFP = {
+    'skills': [
+        ('Architecture', 1),
+        ('Bushcraft', 1),
+        ('Climb', 1),
+        ('Languages', 1),
+        ('Open Doors', 1),
+        ('Search', 1),
+        ('Sleight of Hand', 1),
+        ('Sneak Attack', 0),
+        ('Stealth', 1),
+        ('Tinker', 1),
+    ],
+    'specialist_builds': [
+        ['Stealth', 'Stealth', 'Sneak Attack', 'Sneak Attack'],
+        ['Search', 'Search', 'Tinker', 'Tinker'],
+        ['Climb', 'Climb', 'Open Doors', 'Search'],
+        ['Stealth', 'Climb', 'Search', 'Sneak Attack'],
+        ['Sneak Attack', 'Sneak Attack', 'Sneak Attack', 'Stealth'],
+        ['Search', 'Search', 'Search', 'Search'],
+        ['Tinker', 'Tinker', 'Tinker', 'Tinker'],
+        ['Architecture', 'Languages', 'Open Doors', 'Tinker'],
+    ],
+    'spells': [
+        # Read Magic and ...
+        'Bookspeak', 'Charm Person', 'Comprehend Languages', 'Detect Magic',
+        'Enlarge', 'Faerie Fire', 'Feather Fall', 'Floating Disc',
+        'Hold Portal', 'Identify', 'Light', 'Magic Aura', 'Magic Missle',
+        'Mending', 'Message', 'Shield', 'Sleep', 'Spider Climb',
+        'Unseen Servant'
+    ],
+    'min_hp': {
+        'Cleric': 4,
+        'Fighter': 8,
+        'Magic-User': 3,
+        'Thief': 4,
+        'Dwarf': 6,
+        'Elf': 4,
+        'Halfling': 4
+    },
+    'saves': {
+        'poison': 'Poison',
+        'wands': 'Magical Devices',
+        'stone': 'Paralyzation',
+        'breath': 'Breath Weapon',
+        'magic': 'Magic'
+    }
+}
+
 APPEARENCE = [
     ['Male', 'Female'],
     ['Child', 'Youth', 'Adult', 'Mature', 'Old', 'Decrepit'],
@@ -386,6 +444,7 @@ class GONZO:
                "Broken Space Alien Laser Pistol", "Dehydrated Tentacles",
                "Painted Bones", "Fermented Bug Juice", "5 Dead Snakes",
                "Space Alien Key Card"]
+
 
 # Map from a given attribute to most appropriate character class
 PRIME_REQUISITE = {

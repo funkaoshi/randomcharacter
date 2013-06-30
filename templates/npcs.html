@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block page_class %}npcs{% endblock %}
+
+{% block title %}Random NPCs{% endblock %}
+
+{% block content %}
+<h2 class="system"><a href="http://funkaoshi.com">A Funkaoshi Production</a> Presents</h2>
+<h1>{{characters|length}} Random NPCs</h1>
+<h2 class="appearence">&nbsp;</h2>
+
+<table class='attr'>
+	<thead>
+	    <tr>
+	        <th class="class">Class</th>
+	        <th class="attr">STR</th>
+	        <th class="attr">INT</th>
+	        <th class="attr">WIS</th>
+	        <th class="attr">DEX</th>
+	        <th class="attr">CON</th>
+	        <th class="attr">CHA</th>
+			<th class="appearence">Appearance and Personality</th>
+	    </tr>
+	</thead>
+    {% for c in characters %}
+    <tr>
+        <td class="class">{{ c.class_name }}</td>
+        <td class="attr">{{ c.attributes.0.1 }}</td>
+        <td class="attr">{{ c.attributes.1.1 }}</td>
+        <td class="attr">{{ c.attributes.2.1 }}</td>
+        <td class="attr">{{ c.attributes.3.1 }}</td>
+        <td class="attr">{{ c.attributes.4.1 }}</td>
+        <td class="attr">{{ c.attributes.5.1 }}</td>
+        <td class="appearence">{{ c.appearance }}, {{ c.personality }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<footer>
+    <p>
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. Random Personalities from this <a href="http://angband.oook.cz/steamband/CharacterTraits.pdf">random table</a>.If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
+

@@ -26,6 +26,7 @@ class Character(object):
         self.attributes = [(attribute, xdy(3,6))
                            for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class(classname)
+        self.class_name = self.character_class['name']
         self.appearance = self.get_appearance()
         self.personality = self.get_personality()
         if testing:
@@ -36,10 +37,12 @@ class Character(object):
             self.hp = 1
         self.ac = self.get_ac()
         self.thac9 = self.get_thac9()
+        self.to_hit = self.get_to_hit_table()
         self.saves = self.get_saves()
         self.languages = self.get_languages()
         self.spell = self.get_spell()
         self.notes = self.get_notes()
+        self.skills = self.get_skills()
 
         # attribute map to ease display in template
         self.attr = dict((attr, self.with_bonus(attr, value))
@@ -69,8 +72,9 @@ class Character(object):
         the character_class attribute with it's name.
         """
         attributes = vars(self)
-        attributes["class"] = attributes["character_class"]["name"]
+        attributes["class"] = attributes["class_name"]
         del attributes["character_class"]
+        del attributes["class_name"]
         attributes["system"] = self.system
         return attributes
 
@@ -102,7 +106,7 @@ class Character(object):
         """
         The max AC to display in to-hit table.
         """
-        return -1
+        return 0
 
     @property
     def max_to_hit(self):
@@ -110,6 +114,15 @@ class Character(object):
         The max value to display in to-hit table.
         """
         return 9 - self.max_ac + 1
+
+    @property
+    def save_name_table(self):
+        return characterclass.SAVES
+
+    @property
+    def saves_with_names(self):
+        return dict((s, (self.save_name_table[s], v))
+                    for s, v in self.saves.iteritems())
 
     def get_character_class(self, classname=None):
         """
@@ -169,12 +182,21 @@ class Character(object):
         """
         return 10
 
+    def get_to_hit_table(self):
+        """
+        Generate the to-hit table.
+        """
+        acs = range(9, self.max_ac - 1, -1)
+        rolls = range(self.thac9, self.thac9 + self.max_to_hit)
+        return [(ac, roll) for ac, roll in zip(acs, rolls)]
+
     def get_saves(self):
         """
         The character's saving throw tables. We proxy to the CharacterClass
         tables.
         """
         return self.character_class['saves']
+
 
     def get_languages(self):
         """
@@ -192,7 +214,7 @@ class Character(object):
         """
         if self.character_class.has_key('spells'):
             spells = self.character_class['spells'][:self.num_first_level_spells]
-            return random.choice(spells)
+            return [random.choice(spells)]
         return None
 
     def get_appearance(self):
@@ -208,12 +230,33 @@ class Character(object):
         """
         return []
 
+    def get_skills(self):
+        """
+        Return any character skills, like thief abilities.
+        """
+        return None
+
     def get_bonus(self, attr, val):
         """
-        Return the bonus for the given attribute. Subclassses will override.
-        Bonuses on attributes differ from edition to edition.
+        Return the bonus for the given attribute (the Moldvay D&D attribute
+        bonuses.) Most subclassses will override. Bonuses on attributes differ
+        from edition to edition.
         """
-        raise NotImplementedError()
+        if val <= 3:
+            bonus = -3
+        elif 4 <= val <= 5:
+            bonus = -2
+        elif 6 <= val <= 8:
+            bonus = -1
+        elif 9 <= val <= 12:
+            bonus = 0
+        elif 13 <= val <= 15:
+            bonus = 1
+        elif 16 <= val <= 17:
+            bonus = 2
+        else:
+            bonus = 3
+        return bonus
 
     def with_bonus(self, attr, val):
         """
@@ -232,7 +275,7 @@ class BasicCharacter(Character):
 
     @property
     def system(self):
-        return "Basic"
+        return "Basic D&D"
 
     def get_ac(self):
         """
@@ -241,6 +284,14 @@ class BasicCharacter(Character):
         ac = super(BasicCharacter, self).get_ac()
         ac = ac - self.get_bonus(*self.attributes[characterclass.DEX])
         return ac
+
+    def get_thac9(self):
+        """
+        In Basic D&D your strength improves your to hit.
+        """
+        thac9 = super(BasicCharacter,self).get_thac9()
+        str_bonus = self.get_bonus(*self.attributes[characterclass.STR])
+        return thac9 - str_bonus
 
     def get_saves(self):
         """
@@ -252,33 +303,113 @@ class BasicCharacter(Character):
             saves[save] = saves[save] - wisdom_bonus
         return saves
 
-    def get_thac9(self):
-        """
-        In Basic D&D your strength improves your to hit.
-        """
-        thac9 = super(BasicCharacter,self).get_thac9()
-        str_bonus = self.get_bonus(*self.attributes[characterclass.STR])
-        return thac9 - str_bonus
 
-    def get_bonus(self, attr, val):
+class LotFPCharacter(Character):
+
+    @property
+    def system(self):
+        return "Beta LotFP"
+
+    @property
+    def save_name_table(self):
+        return characterclass.LOTFP['saves']
+
+    def get_hp(self):
         """
-        Return the Moldvay D&D attribute bonuses.
+        LotFP characters have a minimum number of HP.
         """
-        if val <= 3:
-            bonus = -3
-        elif 4 <= val <= 5:
-            bonus = -2
-        elif 6 <= val <= 8:
-            bonus = -1
-        elif 9 <= val <= 12:
-            bonus = 0
-        elif 13 <= val <= 15:
-            bonus = 1
-        elif 16 <= val <= 17:
-            bonus = 2
-        else:
-            bonus = 3
+        hp = super(LotFPCharacter, self).get_hp()
+        hp = max(hp, characterclass.LOTFP['min_hp'][self.character_class['name']])
+        return hp
+
+    def get_ac(self):
+        """
+        The character's armor class based on their starting equipment.
+        """
+        if "Leather Armor" in self.equipment:
+            ac = 14
+        elif "Chain Armor" in self.equipment:
+            ac = 16
+        elif "Plate Armor" in self.equipment:
+            ac = 18
+        else: # no armor
+            ac = 12
+        if "Shield" in self.equipment:
+            ac = ac + 1
+        ac = ac + self.get_bonus(*self.attributes[characterclass.DEX])
+        return ac
+
+    @property
+    def attack_bonus(self):
+        return 2 if self.character_class == characterclass.FIGHTER else 1
+
+    @property
+    def melee_attack_bonus(self):
+        """
+        LotFP uses ascending AC, so we just display the attack bonus.
+        """
+        bonus = self.get_bonus(*self.attributes[characterclass.STR])
+        bonus += self.attack_bonus
+        if bonus > 0:
+            bonus = "+%d" % bonus
         return bonus
+
+    @property
+    def ranged_attack_bonus(self):
+        """
+        LotFP uses ascending AC, so we just display the attack bonus.
+        """
+        bonus = self.get_bonus(*self.attributes[characterclass.DEX])
+        bonus += self.attack_bonus
+        if bonus > 0:
+            bonus = "+%d" % bonus
+        return bonus
+
+    def get_to_hit_table(self):
+        return None
+
+    def get_saves(self):
+        """
+        Your magic based saves are effected by your INT, other saves by your
+        WIS.
+        """
+        saves = copy.copy(self.character_class['saves'])
+        wis_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
+        int_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
+        saves['magic'] = saves['magic'] - int_bonus
+        for save in ['wands', 'poison', 'stone', 'breath']:
+            saves[save] = saves[save] - wis_bonus
+        return saves
+
+    def get_spell(self):
+        """
+        Magic-Users and Elves begin with a single first level spell and 3 random
+        spells in their spell book.
+        """
+        if self.character_class.has_key('spells'):
+            return ['Read Magic'] + random.sample(characterclass.LOTFP['spells'], 3)
+        elif self.character_class == characterclass.CLERIC:
+            return ['One clerical spell a day']
+        return None
+
+    def get_skills(self):
+        skills = dict((s, x) for s, x in characterclass.LOTFP['skills'])
+        if self.character_class == characterclass.THIEF:
+            self.class_name = 'Specialist'
+            for s in random.choice(characterclass.LOTFP['specialist_builds']):
+                skills[s] = skills[s] + 1
+        elif self.character_class == characterclass.DWARF:
+            skills['Architeure'] = 3
+        elif self.character_class == characterclass.ELF:
+            skills['Search'] = 2
+        elif self.character_class == characterclass.HALFLING:
+            skills['Bushcraft'] = 3
+            skills['Stealth'] = 5
+        str_bonus = self.get_bonus(*self.attributes[characterclass.STR])
+        skills['Open Doors'] = max(skills['Open Doors'] + str_bonus, 0)
+        self.sneak_attack = skills.pop('Sneak Attack')
+        skills = [(s, v) for s, v in skills.iteritems()]
+        return skills
 
 
 class HolmesCharacter(Character):
@@ -289,7 +420,7 @@ class HolmesCharacter(Character):
 
     @property
     def system(self):
-        return "Holmes"
+        return "Holmes D&D"
 
     def get_bonus(self, attr, val):
         """
@@ -323,7 +454,7 @@ class LBBCharacter(Character):
 
     @property
     def system(self):
-        return "Original (Little Brown Books)"
+        return "Original (Little Brown Books) D&D"
 
     @property
     def thieves(self):
@@ -415,7 +546,7 @@ class PahvelornCharacter(LBBCharacter):
 
     @property
     def system(self):
-        return "Pahvelorn / Original"
+        return "Pahvelorn / Original D&D"
 
     @property
     def thieves(self):
@@ -474,7 +605,7 @@ class CarcosaCharacter(LBBCharacter):
 
     @property
     def system(self):
-        return "Carcosa / Original"
+        return "Carcosa / Original D&D"
 
     def get_character_class(self, classname):
         figher_score = max(self.CON, self.STR, self.DEX)
@@ -567,4 +698,5 @@ class DelvingDeeperCharacter(LBBCharacter):
             elif val >= 18:
                 return 4
         return 0
+
 

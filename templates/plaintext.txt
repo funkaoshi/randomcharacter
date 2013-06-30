@@ -1,4 +1,4 @@
-{{ c.system }} D&D {{ c.character_class.name }}
+{{ c.system }} {{ c.class_name }}
 
 {% if c.hp %}HP: {{ c.hp }}{% else %}HD: {{ c.hd }}{% endif %}   AC: {{ c.ac }}   XP: 0
 
@@ -13,17 +13,22 @@ Attributes:
 
 Saves:
 
-  Poison:        {{ c.saves.poison}}
-  Magical Wands: {{ c.saves.wands}}
-  Paralysis:     {{ c.saves.stone}}
-  Dragon Breath: {{ c.saves.breath}}
-  Magic:         {{ c.saves.magic}}
-
+  {{ c.saves_with_names.poison.0 }}: {{ c.saves_with_names.poison.1 }}
+  {{ c.saves_with_names.wands.0 }}: {{ c.saves_with_names.wands.1 }}
+  {{ c.saves_with_names.stone.0 }}: {{ c.saves_with_names.stone.1 }}
+  {{ c.saves_with_names.breath.0 }}:{{ c.saves_with_names.breath.1 }}
+  {{ c.saves_with_names.magic.0 }}: {{ c.saves_with_names.magic.1 }}
+{% if c.to_hit %}
 To Hit Table:
 
-  AC:   {% for i in range(9, c.max_ac - 1, -1) %} {{ "%2d"|format(i) }} {% endfor %}
-  Roll: {% for i in range(c.thac9, c.thac9 + c.max_to_hit) %} {{ "%2d"|format(i) }} {% endfor %}
+  AC:   {% for ac, roll in c.to_hit %}{{ "%2d"|format(ac) }} {% endfor %}
+  Roll: {% for ac, roll in c.to_hit %} {{ "%2d"|format(roll) }} {% endfor %}
+{% else %}
+To Hit Bonuses:
 
+  Melee: {{ c.melee_attack_bonus }}
+  Ranged: {{ c.ranged_attack_bonus }}
+{% endif %}
 Languages: Common, Alignment{% for language in c.languages|sort %}, {{ language }}{% endfor %}
 
 Optional Appearance:  {{ c.appearance }}
@@ -38,13 +43,13 @@ Retainer:
 
   {{ c.retainer }}
 {% endif %}
-{% if c.character_class.name == 'Thief' -%}
+{% if c.class_name == 'Thief' -%}
 Thief Skills:
 {% for skill, chance in c.character_class.skills %}
   {{ skill }}: {{ chance -}}
 {% endfor -%}
 {% endif %}
-{% if c.character_class.name == 'Cleric' -%}
+{% if c.class_name == 'Cleric' -%}
 Turn Undead:
 {% for undead, roll in c.character_class.turn %}
   {{ undead }}: {{ roll -}}
