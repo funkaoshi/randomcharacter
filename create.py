@@ -3,6 +3,7 @@ from flask import request, Response, redirect, render_template, url_for, Flask
 import adventuregame
 import character
 import characterclass
+import dangertime
 import dice
 import json
 
@@ -31,6 +32,10 @@ def three_dee_six():
 @app.route('/adventuregame/')
 def make_adventure_game_char():
     return render_template("adventuregame.html", c=adventuregame.Character())
+
+@app.route('/dangertime/')
+def make_danger_time_char():
+    return render_template("dangertime.html", c=dangertime.Character())
 
 @app.route('/npcs/', defaults={'number': 10})
 @app.route('/npcs/<int:number>/')

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block page_class %}Dangerous Time{% endblock %}
+
+{% block title %}A Random Danger Time {{ c.background }}{% endblock %}
+
+{% block content %}
+<h2 class="system">It's Danger Time!</h2>
+<h1>Adventurer!</h1>
+<h2 class="appearence">{{ c.appearance }}</h2>
+
+
+<table class="attr">
+    <tr>
+        <td><strong>STR</strong>: {{ c.STR }}</td>
+        <td><strong>INT</strong>: {{ c.INT }}</td>
+        <td><strong>WIS</strong>: {{ c.WIS }}</td>
+    </tr>
+    <tr>
+        <td><strong>DEX</strong>: {{ c.DEX }}</td>
+        <td><strong>CON</strong>: {{ c.CON }}</td>
+        <td><strong>CHA</strong>: {{ c.CHA }}</td>
+    </tr>
+</table>
+
+<p>You were an <strong>{{ c.background}}</strong>, now you are an adventurer. You have <strong>{{ c.hd }} HD</strong>. Don't waste it.</p>
+
+<p class="equipment">
+    <strong>Equipment:</strong> {{ c.equipment }}
+</p>
+
+<footer>
+    <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. For more information about Dangerous Time, see <a href="http://gamepieces.blogspot.ca/2013/10/dangerous-time-house-rules.html">Evan's blog</a>.If you want to play <a href="/basic/">D&D</a> instead we can do that too. Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
+

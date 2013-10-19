@@ -15,7 +15,48 @@ def _is_dwarf(INT, CON, DEX, STR):
     return CON > 11 and STR >= 9, characterclass.DWARF
 
 
-class Character(object):
+class BasicAttributesMixin(object):
+
+    def get_bonus(self, attr, val):
+        """
+        Return the bonus for the given attribute (the Moldvay D&D attribute
+        bonuses.) Most subclassses will override. Bonuses on attributes differ
+        from edition to edition.
+        """
+        if val <= 3:
+            bonus = -3
+        elif 4 <= val <= 5:
+            bonus = -2
+        elif 6 <= val <= 8:
+            bonus = -1
+        elif 9 <= val <= 12:
+            bonus = 0
+        elif 13 <= val <= 15:
+            bonus = 1
+        elif 16 <= val <= 17:
+            bonus = 2
+        else:
+            bonus = 3
+        return bonus
+
+    def with_bonus(self, attr, val):
+        """
+        Return attribute value with bonus attached, for display.
+        """
+        bonus = self.get_bonus(attr, val)
+        if bonus:
+            return "%d (%+d)" % (val, bonus)
+        return "%d" % val
+
+
+class AppearenceMixin(object):
+    @property
+    def appearance(self):
+        return ', '.join(random.choice(feature)
+                         for feature in characterclass.APPEARENCE)
+
+
+class Character(BasicAttributesMixin, AppearenceMixin):
     """
     D&D characters are structurally quite similar. Common aspects of character
     creation are managed here. Subclasses for the different systems handle
@@ -27,7 +68,6 @@ class Character(object):
                            for attribute in characterclass.ATTRIBUTES]
         self.character_class = self.get_character_class(classname)
         self.class_name = self.character_class['name']
-        self.appearance = self.get_appearance()
         self.personality = self.get_personality()
         if testing:
             return
@@ -197,7 +237,6 @@ class Character(object):
         """
         return self.character_class['saves']
 
-
     def get_languages(self):
         """
         For each bonus point for intelligence, a character knows an additional
@@ -217,9 +256,6 @@ class Character(object):
             return [random.choice(spells)]
         return None
 
-    def get_appearance(self):
-        return ', '.join(random.choice(feature)
-                         for feature in characterclass.APPEARENCE)
 
     def get_personality(self):
         return ', '.join(random.sample(characterclass.PERSONALITY, 2))
@@ -235,37 +271,6 @@ class Character(object):
         Return any character skills, like thief abilities.
         """
         return None
-
-    def get_bonus(self, attr, val):
-        """
-        Return the bonus for the given attribute (the Moldvay D&D attribute
-        bonuses.) Most subclassses will override. Bonuses on attributes differ
-        from edition to edition.
-        """
-        if val <= 3:
-            bonus = -3
-        elif 4 <= val <= 5:
-            bonus = -2
-        elif 6 <= val <= 8:
-            bonus = -1
-        elif 9 <= val <= 12:
-            bonus = 0
-        elif 13 <= val <= 15:
-            bonus = 1
-        elif 16 <= val <= 17:
-            bonus = 2
-        else:
-            bonus = 3
-        return bonus
-
-    def with_bonus(self, attr, val):
-        """
-        Return attribute value with bonus attached, for display.
-        """
-        bonus = self.get_bonus(attr, val)
-        if bonus:
-            return "%d (%+d)" % (val, bonus)
-        return "%d" % val
 
 
 class BasicCharacter(Character):
@@ -302,6 +307,21 @@ class BasicCharacter(Character):
         for save in ['magic', 'stone', 'wands']:
             saves[save] = saves[save] - wisdom_bonus
         return saves
+
+
+class DangerTimeCharacter(Character):
+    """
+    Model's Evan's 2d6 based D&D game, dubbed "Danger Time" by us.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(DangerTimeCharacter, self).__init__(*args, **kwargs)
+        # Danger time uses HD, which you spend to try and reduce damage.
+        self.hp = None
+        self.hd = "1"
+
+
+
 
 
 class LotFPCharacter(Character):
@@ -607,18 +627,19 @@ class CarcosaCharacter(LBBCharacter):
     def system(self):
         return "Carcosa / Original D&D"
 
-    def get_character_class(self, classname):
-        figher_score = max(self.CON, self.STR, self.DEX)
-        if self.INT > figher_score or figher_score < 9:
-            return characterclass.SORCERER
-        return characterclass.FIGHTER
-
-    def get_appearance(self):
+    @property
+    def appearance(self):
         colour = random.choice([
             "Black", "Blue", "Bone", "Brown", "Dolm", "Green", "Jale",
             "Orange", "Purple", "Red", "Ulfire", "White", "Yellow"])
         sex = random.choice(['Man', 'Woman'])
         return "%s %s" % (colour, sex)
+
+    def get_character_class(self, classname):
+        figher_score = max(self.CON, self.STR, self.DEX)
+        if self.INT > figher_score or figher_score < 9:
+            return characterclass.SORCERER
+        return characterclass.FIGHTER
 
     def get_ac(self):
         """
