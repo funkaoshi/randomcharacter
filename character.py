@@ -321,9 +321,6 @@ class DangerTimeCharacter(Character):
         self.hd = "1"
 
 
-
-
-
 class LotFPCharacter(Character):
 
     @property
