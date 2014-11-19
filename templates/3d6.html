@@ -6,7 +6,7 @@
 
 {% block content %}
 <h2 class="system"><a href="http://funkaoshi.com">A Funkaoshi Production</a> Present's</h2>
-<h1>3D6 in Order!</h1>
+<h1>{% block heading %}3D6 in Order!{% endblock %}</h1>
 <h2 class="appearence">Let's roll some dice!</h2>
 
 <table class="attr">
@@ -23,11 +23,13 @@
 </table>
 
 <p>
+{% block blurb %}
 	You pick up 3 dice and you roll those dice 6 times and
 	you write those numbers down in order&mdash;like a boss.
+{% endblock %}
 </p>
 <p>
-	If you want a whole character <a href='/basic/'>we can do that too</a>. 
+	If you want a whole character <a href='/basic/'>we can do that too</a>.
 </p>
 
 <footer>

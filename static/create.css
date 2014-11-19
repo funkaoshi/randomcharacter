@@ -126,7 +126,7 @@ div.threedeesix h2.system {
 	margin-top: 75px;
 }
 
-/* Adventure Game */ 
+/* Adventure Game */
 
 table { width: 100%; }
 
@@ -163,3 +163,18 @@ table { width: 100%; }
     padding-left:20px;
 }
 
+/* 5e */
+
+#skills {
+    padding: 5px;
+}
+
+#skills td.score {
+    width: 20%;
+    text-align: center;
+}
+
+ul#personality {
+    list-style-type: none;
+    padding: 5px 10px;
+}

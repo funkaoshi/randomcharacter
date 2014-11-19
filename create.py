@@ -5,6 +5,7 @@ import character
 import characterclass
 import dangertime
 import dice
+import fifth
 import json
 
 # configuration
@@ -19,15 +20,32 @@ SYSTEMS = {
     'holmes': character.HolmesCharacter,
     'basic': character.BasicCharacter,
     'pahvelorn': character.PahvelornCharacter,
+    'apollyon': character.ApollyonCharacter,
     'carcosa': character.CarcosaCharacter,
+    'moc': character.MastersOfCarcosaCharacter,
     'dd': character.DelvingDeeperCharacter,
     'lotfp': character.LotFPCharacter
 }
+
+
+@app.template_filter()
+def with_sign(number):
+    return "+{0}".format(number) if number > 0 else str(number)
+
+
+@app.route('/5e/')
+def fifth_edition():
+    return render_template("5e.html", c=fifth.Character())
 
 @app.route('/3d6/')
 def three_dee_six():
     roll = [dice.xdy(3,6) for _ in range(6)]
     return render_template("3d6.html", roll=roll)
+
+@app.route('/4d6/')
+def four_dee_six():
+    roll = [sum(sorted(dice.d(6) for _ in xrange(4))[1:]) for _ in range(6)]
+    return render_template("4d6.html", roll=roll)
 
 @app.route('/adventuregame/')
 def make_adventure_game_char():

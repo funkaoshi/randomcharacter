@@ -56,6 +56,58 @@ class AppearenceMixin(object):
                          for feature in characterclass.APPEARENCE)
 
 
+class AscendingAcMixin(object):
+    """
+    LotFP uses ascending AC, so we just display the attack bonuses rather than
+    a to-hit table. Could be used for other systems that want to use Ascending
+    AC.
+    """
+
+    base_armour_class = 10
+
+    def get_to_hit_table(self):
+        return None
+
+    @property
+    def attack_bonus(self):
+        return 2 if self.character_class == characterclass.FIGHTER else 1
+
+    @property
+    def melee_attack_bonus(self):
+        bonus = self.get_bonus(*self.attributes[characterclass.STR])
+        bonus += self.attack_bonus
+        if bonus > 0:
+            bonus = "+%d" % bonus
+        return bonus
+
+    @property
+    def ranged_attack_bonus(self):
+        """
+        LotFP uses ascending AC, so we just display the attack bonus.
+        """
+        bonus = self.get_bonus(*self.attributes[characterclass.DEX])
+        bonus += self.attack_bonus
+        if bonus > 0:
+            bonus = "+%d" % bonus
+        return bonus
+
+    def get_ac(self):
+        """
+        The character's armor class based on their starting equipment.
+        """
+        ac = self.base_armour_class
+        if "Leather Armor" in self.equipment:
+            ac += 2
+        elif "Chain Armor" in self.equipment:
+            ac += 4
+        elif "Plate Armor" in self.equipment:
+            ac += 6
+        if "Shield" in self.equipment:
+            ac += 1
+        ac += self.get_bonus(*self.attributes[characterclass.DEX])
+        return ac
+
+
 class Character(BasicAttributesMixin, AppearenceMixin):
     """
     D&D characters are structurally quite similar. Common aspects of character
@@ -256,7 +308,6 @@ class Character(BasicAttributesMixin, AppearenceMixin):
             return [random.choice(spells)]
         return None
 
-
     def get_personality(self):
         return ', '.join(random.sample(characterclass.PERSONALITY, 2))
 
@@ -309,19 +360,9 @@ class BasicCharacter(Character):
         return saves
 
 
-class DangerTimeCharacter(Character):
-    """
-    Model's Evan's 2d6 based D&D game, dubbed "Danger Time" by us.
-    """
+class LotFPCharacter(AscendingAcMixin, Character):
 
-    def __init__(self, *args, **kwargs):
-        super(DangerTimeCharacter, self).__init__(*args, **kwargs)
-        # Danger time uses HD, which you spend to try and reduce damage.
-        self.hp = None
-        self.hd = "1"
-
-
-class LotFPCharacter(Character):
+    base_armour_class = 12
 
     @property
     def system(self):
@@ -338,52 +379,6 @@ class LotFPCharacter(Character):
         hp = super(LotFPCharacter, self).get_hp()
         hp = max(hp, characterclass.LOTFP['min_hp'][self.character_class['name']])
         return hp
-
-    def get_ac(self):
-        """
-        The character's armor class based on their starting equipment.
-        """
-        if "Leather Armor" in self.equipment:
-            ac = 14
-        elif "Chain Armor" in self.equipment:
-            ac = 16
-        elif "Plate Armor" in self.equipment:
-            ac = 18
-        else: # no armor
-            ac = 12
-        if "Shield" in self.equipment:
-            ac = ac + 1
-        ac = ac + self.get_bonus(*self.attributes[characterclass.DEX])
-        return ac
-
-    @property
-    def attack_bonus(self):
-        return 2 if self.character_class == characterclass.FIGHTER else 1
-
-    @property
-    def melee_attack_bonus(self):
-        """
-        LotFP uses ascending AC, so we just display the attack bonus.
-        """
-        bonus = self.get_bonus(*self.attributes[characterclass.STR])
-        bonus += self.attack_bonus
-        if bonus > 0:
-            bonus = "+%d" % bonus
-        return bonus
-
-    @property
-    def ranged_attack_bonus(self):
-        """
-        LotFP uses ascending AC, so we just display the attack bonus.
-        """
-        bonus = self.get_bonus(*self.attributes[characterclass.DEX])
-        bonus += self.attack_bonus
-        if bonus > 0:
-            bonus = "+%d" % bonus
-        return bonus
-
-    def get_to_hit_table(self):
-        return None
 
     def get_saves(self):
         """
@@ -548,6 +543,31 @@ class LBBCharacter(Character):
         return 0
 
 
+class ApollyonCharacter(AscendingAcMixin, LBBCharacter):
+
+    @property
+    def system(self):
+        return "Apollyon / Original D&D"
+
+    def get_bonus(self, attr, val):
+        """
+        On the Apollyon bonuses are simplified.
+        """
+        if val >= 15:
+            return 1
+        if val <= 6:
+            return -1
+        return 0
+
+    @property
+    def thieves(self):
+        return True
+
+    @property
+    def attack_bonus(self):
+        return 2 if self.character_class == characterclass.FIGHTER else 0
+
+
 class PahvelornCharacter(LBBCharacter):
     """
     Models characters from the OD&D game Pahvelorn. (Essentially 1974 D&D.)
@@ -555,7 +575,7 @@ class PahvelornCharacter(LBBCharacter):
     """
 
     def __init__(self, *args, **kwargs):
-        super(LBBCharacter, self).__init__(*args, **kwargs)
+        super(PahvelornCharacter, self).__init__(*args, **kwargs)
         # Pahvelorn uses the re-roll your HP per session rule, so it doesn't
         # make sense to display a HP amount. We will display HD instead.
         self.hp = None
@@ -615,15 +635,7 @@ class PahvelornCharacter(LBBCharacter):
         return None
 
 
-class CarcosaCharacter(LBBCharacter):
-    """
-    Models a OD&D Character from Carcosa.
-    """
-
-    @property
-    def system(self):
-        return "Carcosa / Original D&D"
-
+class CarcosaBase(object):
     @property
     def appearance(self):
         colour = random.choice([
@@ -638,12 +650,6 @@ class CarcosaCharacter(LBBCharacter):
             return characterclass.SORCERER
         return characterclass.FIGHTER
 
-    def get_ac(self):
-        """
-        All armour for starting characters is no better or worse than leather.
-        """
-        return 5
-
     def get_equipment(self):
         """
         We generate a more Gonzo list of starting equipment.
@@ -657,6 +663,34 @@ class CarcosaCharacter(LBBCharacter):
         return self.equipment
 
     def get_languages(self): return []
+
+
+class CarcosaCharacter(CarcosaBase, LBBCharacter):
+    @property
+    def system(self):
+        return "Carcosa / Original D&D"
+
+
+class MastersOfCarcosaCharacter(CarcosaBase, AscendingAcMixin, LBBCharacter):
+
+    base_armour_class = 12
+
+    def __init__(self, *args, **kwargs):
+        super(MastersOfCarcosaCharacter, self).__init__(*args, **kwargs)
+        # I use the re-roll your HP per session rule, so it doesn't
+        # make sense to display a HP amount. We will display HD instead.
+        self.hp = None
+        self.hd = "1+1"
+
+    @property
+    def system(self):
+        return "Masters of Carcosa"
+
+    def get_bonus(self, attr, val):
+        return 0
+
+    def get_ac(self):
+        return 15
 
 
 class DelvingDeeperCharacter(LBBCharacter):

@@ -440,10 +440,37 @@ class GONZO:
     GEAR = ["Water Skin", "50' of Rope", "5 Torches", "2 Daggers",
             "2 Wooden Stakes", "Backpack", "Whip", "Fur Top", "Horned Helmet",
             "Grappling Hook"]
-    STRANGE = ["Incomprehensible Book of Snake-Men Rituals",
-               "Broken Space Alien Laser Pistol", "Dehydrated Tentacles",
-               "Painted Bones", "Fermented Bug Juice", "5 Dead Snakes",
-               "Space Alien Key Card"]
+    STRANGE = [
+        "Incomprehensible Book of Snake-Men Rituals",
+        "Broken Space Alien Laser Pistol",
+        "Dehydrated Tentacles",
+        "Painted Bones",
+        "Fermented Bug Juice",
+        "5 Dead Snakes",
+        "Space Alien Key Card",
+        "Powder that turns 10 cubic feet of liquid to gel",
+        "A power cell to ... something",
+        "A map printed on skin",
+        "A glowing Jale necklace",
+        "A small potted plant that talks to your dreams",
+        "A compass that points to the nearest alien",
+        "A box that makes an occasional ticking sound that speeds up around certain craters",
+        "A three-gallon jug that's neutrally buoyant in air",
+        "Goggles that make dolm, jale and ulfire look gray",
+        "A three inches tall dinosaur",
+        "A book of lead sheets embossed with pictures of all the spiders in the world and then some",
+        "A tiny bit of quivering red pudding in a vial",
+        "A 30' rope made from the dried intestines of you tribe's enemies",
+        "A zinc canteen in the shape of a turtle",
+        "A package of pink salt crystals",
+        "A large dried squid",
+        "A cask of red liqour",
+        "A large meat and lentil pastry",
+        "Black smoked goggles",
+        "10' of rusted iron chain, with manacles (50% you have the key)",
+        "A clay flask of crushed beetle paste sunscreen",
+        "1D8 shrunken heads",
+    ]
 
 
 # Map from a given attribute to most appropriate character class
