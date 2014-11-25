@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="system"> {{ c.system }}</h2>
+<h1>{{ c.race }} {{ c.class_name }}</h1>
+<h2 class="appearence">{{ c.background }}</h2>
+
+<table class="attr">
+    <tr>
+        <td>STR: <small>{{ c.scores.STR }}</small> (<strong>{{ c.bonuses.STR|with_sign }}</strong>)</td>
+        <td>DEX: <small>{{ c.scores.DEX }}</small> (<strong>{{ c.bonuses.DEX|with_sign }}</strong>)</td>
+        <td>CON: <small>{{ c.scores.CON }}</small> (<strong>{{ c.bonuses.CON|with_sign }}</strong>)</td>
+    </tr>
+    <tr> 
+        <td>INT:  <small>{{ c.scores.INT }}</small> (<strong>{{ c.bonuses.INT|with_sign }}</strong>)</td>
+        <td>WIS:  <small>{{ c.scores.WIS }}</small> (<strong>{{ c.bonuses.WIS|with_sign }}</strong>)</td>
+        <td>CHA:  <small>{{ c.scores.CHA }}</small> (<strong>{{ c.bonuses.CHA|with_sign }}</strong>)</td>
+    </tr>
+</table>
+
+<!--
+<table class="weapon">
+    <tr>
+        <td>Melee Attack Bonus: {{ c.melee_attack_bonus }}</td>
+        <td>Ranged Attack Bonus: {{ c.ranged_attack_bonus }}</td>
+    <tr>
+</table>
+-->
+
+<div class="weapon" id="skills">
+<table>
+    {% for skill, score in c.skills %}
+    {% if loop.index % 2 == 1 %}
+    <tr>
+    {% endif %}
+        <td class="skill">{{ skill }}</td><td class="score">{{ score }}</td>
+    {% if loop.index % 2 == 0 %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+</div>
+
+
+<ul id="personality">
+    {% if c.defining_event %}<li><b>Defining Event</b>: {{ c.defining_event }}</li>{% endif %}
+    <li><b>Personality Trait</b>: {{ c.personality_trait }}.</li>
+    <li><b>Ideal</b>: {{ c.ideal }}</li>
+    <li><b>Bond</b>: {{ c.bond }}</li>
+    <li><b>Flaw</b>: {{ c.flaw }}</li>
+</ul>
+
+
+<!--
+<div id="extras">
+  <div class="block">
+      <h3>Equipment</h3>
+      <ul>
+      {% for item in c.equipment %}
+          <li>{{ item }}</li>
+      {% endfor %}
+      </ul>
+  </div>
+  
+  <div class="block">
+      <h3>Languages</h3>
+      <ul>
+          {% for language in c.languages|sort %}
+          <li>{{ language }}</li>
+          {% endfor %}
+      </ul>
+  </div>
+  
+  {% if c.features %}
+  <div class="block">
+      <h3>Features</h3>
+      <ul>
+          {% for f in c.features|sort %}
+          <li>{{ f }}</li>
+          {% endfor %}
+      </ul>
+  </div>            
+  {% endif %} 
+
+  {% if c.spell %}
+  <div class="block">
+      <h3>Spells</h3>
+      <ul>
+          <li><strong>Level 1</strong>:
+              <ul>
+                  {% for spell in c.spell %}
+                  <li>{{ spell }}</li>
+                  {% endfor %}
+              </ul>
+          </li>
+      </ul>
+  </div>
+  {% endif %}
+</div>
+-->
+
+<footer>
+    <p>
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. All the rules are from the <a href="http://www.wizards.com/dnd/Article.aspx?x=dnd/basicrules" title="Dungeons &amp; Dragons Roleplaying Game Official Home Page - Article (Basic Rules for Dungeons &amp; Dragons)">Wizards of the Coast Basic D&D PDF</a>, which is fantastic. Eric Boyd helped with getting the backgrounds out of the PDF.
+    </p>
+
+    <p>
+        If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
