@@ -2,15 +2,18 @@
 Attributes and general information about the D&D Character Classes.
 """
 
+
 """
 The traditional 6 attributes, in order.
 """
 ATTRIBUTES = ['STR', 'INT', 'WIS', 'DEX', 'CON', 'CHA']
 
+
 """
 Indexes into ATTRIBUTES
 """
 STR, INT, WIS, DEX, CON, CHA = range(6)
+
 
 """
 20 example languages from Moldvay.
@@ -22,6 +25,9 @@ LANGUAGES = [
 ]
 
 
+"""
+The 5 traditional D&D saving throws.
+"""
 SAVES = {
     'poison': 'Death Ray or Poison',
     'wands': 'Magical Wands',
@@ -30,9 +36,12 @@ SAVES = {
     'magic': 'Rods, Staves, or Spells'
 }
 
+
 """
-The 7 character classes from Basic D&D.
+The 7 character classes from Basic D&D. Equipment lists from Brendan's post
+on the topic.
 """
+
 CLERIC = {
     'name': 'Cleric',
     'equipment': [
@@ -88,6 +97,7 @@ FIGHTER = {
     }
 }
 
+# For Carcosa we have the Sorcerer variant of a fighter.
 SORCERER = {
     'name': "Sorcerer",
     'equipment': FIGHTER['equipment'],
@@ -194,6 +204,10 @@ HALFLING = {
     'equipment': FIGHTER['equipment']
 }
 
+
+"""
+In Pahvelorn characters start with a random retainer.
+"""
 RETAINERS = [
     'Bodyguard (leather, dagger, d4: 1 sword, 2 mace, 3 battle axe, 4 spear)',
     'Torchbearer (dagger, 6 torches)',
@@ -205,6 +219,10 @@ RETAINERS = [
     'Dog (spiked collar, leash)',
 ]
 
+
+"""
+In Pahvelorn characters begin with one spell book, and must hunt for others.
+"""
 STARTING_GRIMOIRE = ('Arcana Metaphysica, anonymous', [
         'Read Magic (1)',
         'Dispel Magic (3)',
@@ -293,6 +311,10 @@ GRIMOIRES = [
     ]),
 ]
 
+
+"""
+Additional information for Lamentations of the Flame Princess characters.
+"""
 LOTFP = {
     'skills': [
         ('Architecture', 1),
@@ -342,6 +364,7 @@ LOTFP = {
     }
 }
 
+
 APPEARENCE = [
     ['Male', 'Female'],
     ['Child', 'Youth', 'Adult', 'Mature', 'Old', 'Decrepit'],
@@ -351,6 +374,7 @@ APPEARENCE = [
     ['Missing Limb', 'Obese', 'Scrawny', 'Muscular', 'Bald', 'Hairy', 'Tall',
      'Short', 'Ugly']
 ]
+
 
 PERSONALITY = [
     'Accusative', 'Active', 'Adventurous', 'Affable', 'Aggressive',
@@ -425,7 +449,12 @@ PERSONALITY = [
     'Zealous'
 ]
 
+
 class GONZO:
+    """
+    Information we use when making Carcosa characters.
+    """
+
     METERIAL = ["Obsidian", "Insect Carapace", "Insect Mandible",
                 "Wood", "Space Alien Ceramic", "Giant Tooth",
                 "Bone", "Bronze", "Iron"]
@@ -480,6 +509,7 @@ PRIME_REQUISITE = {
     'WIS': CLERIC,
     'DEX': THIEF
 }
+
 
 CLASSES = [FIGHTER, MAGICUSER, CLERIC, THIEF, DWARF, ELF, HALFLING]
 VALID_CLASS_NAMES = [c['name'].lower().replace('-', '') for c in CLASSES]

@@ -106,6 +106,22 @@ class AscendingAcMixin(object):
         return ac
 
 
+class ReRollHDPerSessionMixin(object):
+    """
+    In some OD&D games HP is re-rolled per session, so it doesn't make much sense
+    to display the computed HP value. Instead we simply display the HD of the
+    character, either 1 or 1+1 for Fighters.
+    """
+    def get_hp(self):
+        # we set HP to None, which lets the template know we will display HD
+        # instead.
+        return None
+
+    @property
+    def hd(self):
+        return "1" if self.character_class != characterclass.FIGHTER else "1+1"
+
+
 class Character(BasicAttributesMixin, AppearenceMixin):
     """
     D&D characters are structurally quite similar. Common aspects of character
@@ -537,22 +553,6 @@ class LBBCharacter(Character):
             elif val >= 18:
                 return 4
         return 0
-
-
-class ReRollHDPerSessionMixin(object):
-    """
-    In some OD&D games HP is re-rolled per session, so it doesn't make much sense
-    to display the computed HP value. Instead we simply display the HD of the
-    character, either 1 or 1+1 for Fighters.
-    """
-    def get_hp(self):
-        # we set HP to None, which lets the template know we will display HD
-        # instead.
-        return None
-
-    @property
-    def hd(self):
-        return "1" if self.character_class != characterclass.FIGHTER else "1+1"
 
 
 class ApollyonCharacter(AscendingAcMixin, ReRollHDPerSessionMixin, LBBCharacter):
