@@ -58,12 +58,10 @@ class AppearenceMixin(object):
 
 class AscendingAcMixin(object):
     """
-    LotFP uses ascending AC, so we just display the attack bonuses rather than
-    a to-hit table. Could be used for other systems that want to use Ascending
-    AC.
+    Display the attack bonuses rather than a to-hit table. AC is ascending.
     """
 
-    base_armour_class = 10
+    base_armour_class = 12
 
     def get_to_hit_table(self):
         return None
@@ -125,7 +123,7 @@ class Character(BasicAttributesMixin, AppearenceMixin):
             return
         self.equipment = self.get_equipment()
         self.hp = self.get_hp()
-        if self.hp < 1:
+        if self.hp is not None and self.hp < 1:
             self.hp = 1
         self.ac = self.get_ac()
         self.thac9 = self.get_thac9()
@@ -362,8 +360,6 @@ class BasicCharacter(Character):
 
 class LotFPCharacter(AscendingAcMixin, Character):
 
-    base_armour_class = 12
-
     @property
     def system(self):
         return "Beta LotFP"
@@ -543,7 +539,27 @@ class LBBCharacter(Character):
         return 0
 
 
-class ApollyonCharacter(AscendingAcMixin, LBBCharacter):
+class ReRollHDPerSessionMixin(object):
+    """
+    In some OD&D games HP is re-rolled per session, so it doesn't make much sense
+    to display the computed HP value. Instead we simply display the HD of the
+    character, either 1 or 1+1 for Fighters.
+    """
+    def get_hp(self):
+        # we set HP to None, which lets the template know we will display HD
+        # instead.
+        return None
+
+    @property
+    def hd(self):
+        return "1" if self.character_class != characterclass.FIGHTER else "1+1"
+
+
+class ApollyonCharacter(AscendingAcMixin, ReRollHDPerSessionMixin, LBBCharacter):
+    """
+    Models characters from Gus L's OD&D game Apollyon. More information on
+    his blog: http://dungeonofsigns.blogspot.ca/search/label/HMS%20Apollyon
+    """
 
     @property
     def system(self):
@@ -568,18 +584,11 @@ class ApollyonCharacter(AscendingAcMixin, LBBCharacter):
         return 2 if self.character_class == characterclass.FIGHTER else 0
 
 
-class PahvelornCharacter(LBBCharacter):
+class PahvelornCharacter(ReRollHDPerSessionMixin, LBBCharacter):
     """
     Models characters from the OD&D game Pahvelorn. (Essentially 1974 D&D.)
     More info here: http://untimately.blogspot.ca/p/pahvelorn.html.
     """
-
-    def __init__(self, *args, **kwargs):
-        super(PahvelornCharacter, self).__init__(*args, **kwargs)
-        # Pahvelorn uses the re-roll your HP per session rule, so it doesn't
-        # make sense to display a HP amount. We will display HD instead.
-        self.hp = None
-        self.hd = "1" if self.character_class != characterclass.FIGHTER else "1+1"
 
     @property
     def system(self):
@@ -671,16 +680,7 @@ class CarcosaCharacter(CarcosaBase, LBBCharacter):
         return "Carcosa / Original D&D"
 
 
-class MastersOfCarcosaCharacter(CarcosaBase, AscendingAcMixin, LBBCharacter):
-
-    base_armour_class = 12
-
-    def __init__(self, *args, **kwargs):
-        super(MastersOfCarcosaCharacter, self).__init__(*args, **kwargs)
-        # I use the re-roll your HP per session rule, so it doesn't
-        # make sense to display a HP amount. We will display HD instead.
-        self.hp = None
-        self.hd = "1+1"
+class MastersOfCarcosaCharacter(CarcosaBase, AscendingAcMixin, ReRollHDPerSessionMixin, LBBCharacter):
 
     @property
     def system(self):
