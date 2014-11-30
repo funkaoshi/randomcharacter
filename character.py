@@ -48,25 +48,6 @@ class Character(BasicAttributesMixin, AppearenceMixin):
         self.notes = self.get_notes()
         self.skills = self.get_skills()
 
-
-    @property
-    def STR(self): return self.attributes[characterclass.STR][1]
-
-    @property
-    def INT(self): return self.attributes[characterclass.INT][1]
-
-    @property
-    def DEX(self): return self.attributes[characterclass.DEX][1]
-
-    @property
-    def CON(self): return self.attributes[characterclass.CON][1]
-
-    @property
-    def WIS(self): return self.attributes[characterclass.WIS][1]
-
-    @property
-    def CHA(self): return self.attributes[characterclass.CHA][1]
-
     def to_dict(self):
         """
         We use vars to convert the object to a dictionary, and then replace
