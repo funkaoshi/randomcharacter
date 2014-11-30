@@ -24,6 +24,11 @@ D&D, Holmes, etc.
 - Adventure Game
 - Fifth Edition D&D (Incomplete)
 
+## Getting it Running
+
+1. Install Flask (`pip install flask`). 
+2. Run `python create.py`
+
 ## How It Works
 
 This is a Flask web application. `create.py` is the flask app, which does all
