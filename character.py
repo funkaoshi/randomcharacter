@@ -122,6 +122,25 @@ class ReRollHDPerSessionMixin(object):
         return "1" if self.character_class != characterclass.FIGHTER else "1+1"
 
 
+class PsionicWildTalentMixin(object):
+    """
+    If you want to allow psionic wild talents as outlined in a blog post I
+    wrote on the topic some time ago:
+    """
+    def __init__(self, *args, **kwargs):
+        super(PsionicWildTalentMixin, self).__init__(*args, **kwargs)
+
+        # roll for chance of psionic power
+        self.wild_talent = self.get_wild_talent()
+
+    def get_wild_talent(self):
+        talent_roll = self.WIS - d(20)
+        if talent_roll < 0:
+            return "+%d to saves vs. psionic attacks" % (abs(talent_roll) / 2)
+        else:
+            return characterclass.WILD_TALENTS[talent_roll]
+
+
 class Character(BasicAttributesMixin, AppearenceMixin):
     """
     D&D characters are structurally quite similar. Common aspects of character
@@ -680,13 +699,17 @@ class CarcosaCharacter(CarcosaBase, LBBCharacter):
         return "Carcosa / Original D&D"
 
 
-class MastersOfCarcosaCharacter(CarcosaBase, AscendingAcMixin, ReRollHDPerSessionMixin, LBBCharacter):
+class MastersOfCarcosaCharacter(CarcosaBase,
+                                AscendingAcMixin,
+                                ReRollHDPerSessionMixin,
+                                PsionicWildTalentMixin,
+                                LBBCharacter):
+    """
+    Characters for my Carcosa game.
+    """
 
     def __init__(self, *args, **kwargs):
         super(MastersOfCarcosaCharacter, self).__init__(*args, **kwargs)
-
-        # roll for chance of psionic power
-        self.wild_talent = self.get_wild_talent()
 
     @property
     def system(self):
@@ -697,13 +720,6 @@ class MastersOfCarcosaCharacter(CarcosaBase, AscendingAcMixin, ReRollHDPerSessio
 
     def get_ac(self):
         return 15
-
-    def get_wild_talent(self):
-        talent_roll = self.WIS - d(20)
-        if talent_roll < 0:
-            return "+%d to saves vs. psionic attacks" % (abs(talent_roll) / 2)
-        else:
-            return characterclass.WILD_TALENTS[talent_roll]
 
 
 class DelvingDeeperCharacter(LBBCharacter):
