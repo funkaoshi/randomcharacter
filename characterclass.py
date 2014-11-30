@@ -501,6 +501,26 @@ class GONZO:
         "1D8 shrunken heads",
     ]
 
+WILD_TALENTS = [
+    "Know Direction - The character knows which way is North.",
+    "Far Hearing - For one turn the character hears all sounds within 50' as if they were being whispered directly into their ear. The character may choose what sounds to focus on.",
+    "Far Seeing - For one turn the character may view a scene up to 50' away as if they were right there. They may see through walls and other obstacles, but not through lead.",
+    "Thought Projection - The character may communicate a brief message mentally with a creature up to 50' away. The target understands the character, even if they share no common language.",
+    "Object Projection - The character may teleport a small object in their possession up to 50' away.",
+    "Telekinetic Grasp - For one turn the character may manipulate small objects from up to 50' away.",
+    "Spark - The character may ignite any flammable object within 50' of them. (The 'heat' this power generates is no greater than that of a candle.)",
+    "Levitate - For 1 turn, the character can float above the ground (up to 10').",
+    "Minor ESP: For 1 turn the character may read the mind of another creature. (The character understand the creature even if they share no common language.)",
+    "Cell Adjustment - The character regains up to 1d3 lost hit points. (This increases to 1d6 at level 3, 1d8 at level 6, 1d10 at level 9 and 1d12 at level 12.) The character may make a Save vs. Poison to cure themselves of any non-magical disease.",
+    "'Invisiblity': For 1 turn the character can completely hide his presence from up to one sentient creature per level. The target may make a Save vs. Magic to resist the character's power.",
+    "Id Insituation: All sentient characters, friend or foe, within 25' of the character feel an uncontrollable urge to eat, murder or fornicate.",
+    "Psychic Distress: All sentient characters, friend or foe, within 25' of the character are immobilized for 1 turn.",
+    "Minor Mind Control: For 1 turn, the character may manipulate the target into doing whatever the character wants. The target will have no memory of any events that transpire while under this mind control. The target my make a Save vs. Magic to resist the mind control.",
+    "Minor Precognition: The character may re-roll any saving throw.",
+    "Psionic Defence - Once per day per level, the character may make a Save vs. Magic to avoid the effects of any psionic power that targets them. (This is in addition to any saving throws the power may allow for.)",
+    "Psionic Immunity: The character can not be the target of any psionic power.",
+    "The Haitian: no character within 10' of the character, friend or foe, may use their psionic powers. The character also gains Psionic Immunity.",
+]
 
 # Map from a given attribute to most appropriate character class
 PRIME_REQUISITE = {
