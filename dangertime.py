@@ -6,16 +6,15 @@ http://gamepieces.blogspot.ca/2013/09/character-generators-for-weird-dark-ages.h
 import itertools
 import random
 
-import character
-import characterclass
+import mixins
 import dice
 
 
-class Character(character.BasicAttributesMixin, character.AppearenceMixin):
+class Character(mixins.BasicAttributesMixin, mixins.AppearenceMixin):
 
-    def __init__(self):
-        for attr in characterclass.ATTRIBUTES:
-            setattr(self, attr, self.with_bonus(attr, dice.xdy(3, 6)))
+    def __init__(self, *args, **kwargs):
+        super(Character, self).__init__(*args, **kwargs)
+
         self.hd = 1
         self.background, self.equipment = self.get_background()
 
