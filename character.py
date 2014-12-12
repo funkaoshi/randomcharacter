@@ -25,7 +25,7 @@ class Character(BasicAttributesMixin, AppearenceMixin):
     """
 
     def __init__(self, *args, **kwargs):
-        classname = kwargs.pop('classname')
+        classname = kwargs.pop('classname', None)
         testing = kwargs.pop('testing', False)
 
         super(Character, self).__init__(*args, **kwargs)
@@ -565,6 +565,8 @@ class MastersOfCarcosaCharacter(CarcosaBase,
     Characters for my Carcosa game.
     """
 
+    base_armour_class = 10
+
     def __init__(self, *args, **kwargs):
         super(MastersOfCarcosaCharacter, self).__init__(*args, **kwargs)
 
@@ -572,11 +574,19 @@ class MastersOfCarcosaCharacter(CarcosaBase,
     def system(self):
         return "Masters of Carcosa"
 
+    @property
+    def attack_bonus(self):
+        """
+        Attack bonuses are as OD&D, so 0 at first level if using ascending AC.
+        (You need a 10 to hit descending AC 9, or a 10 to hit ascending AC 10.)
+        """
+        return 0
+
     def get_bonus(self, attr, val):
         return 0
 
     def get_ac(self):
-        return 15
+        return 14
 
 
 class DelvingDeeperCharacter(LBBCharacter):

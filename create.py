@@ -8,6 +8,8 @@ import dice
 import fifth
 import json
 
+DEBUG = True
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 

@@ -149,9 +149,16 @@ class PsionicWildTalentMixin(object):
         self.wild_talent = self.get_wild_talent()
 
     def get_wild_talent(self):
+        # TODO: what frequency do I actually want here?
+        if d(6) != 1:
+            return
         talent_roll = self.WIS - d(20)
         if talent_roll < 0:
-            return "+%d to saves vs. psionic attacks" % (abs(talent_roll) / 2)
+            save_bonus = abs(talent_roll) / 2
+            if save_bonus:
+                return "+%d to saves vs. psionic attacks" % save_bonus
+            else:
+                return None
         else:
             return characterclass.WILD_TALENTS[talent_roll]
 
