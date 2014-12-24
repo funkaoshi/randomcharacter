@@ -565,14 +565,16 @@ class MastersOfCarcosaCharacter(CarcosaBase,
     Characters for my Carcosa game.
     """
 
-    base_armour_class = 10
-
     def __init__(self, *args, **kwargs):
         super(MastersOfCarcosaCharacter, self).__init__(*args, **kwargs)
 
     @property
     def system(self):
         return "Masters of Carcosa"
+
+    @property
+    def base_armour_class(self):
+        return 10
 
     @property
     def attack_bonus(self):

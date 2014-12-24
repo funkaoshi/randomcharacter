@@ -74,12 +74,15 @@ class AppearenceMixin(object):
 class AscendingAcMixin(object):
     """
     Display the attack bonuses rather than a to-hit table. AC is ascending.
+    The assumptions here are from LotFP.
     """
 
-    base_armour_class = 12
-
-    def get_to_hit_table(self):
-        return None
+    @property
+    def base_armour_class(self):
+        """
+        The default armour class of an unarmoured combatant is 10.
+        """
+        return 12
 
     @property
     def attack_bonus(self):
@@ -95,9 +98,6 @@ class AscendingAcMixin(object):
 
     @property
     def ranged_attack_bonus(self):
-        """
-        LotFP uses ascending AC, so we just display the attack bonus.
-        """
         bonus = self.get_bonus(*self.attributes[characterclass.DEX])
         bonus += self.attack_bonus
         if bonus > 0:
@@ -119,6 +119,9 @@ class AscendingAcMixin(object):
             ac += 1
         ac += self.get_bonus(*self.attributes[characterclass.DEX])
         return ac
+
+    def get_to_hit_table(self):
+        return None
 
 
 class HitDiceMixin(object):
