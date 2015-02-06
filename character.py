@@ -314,6 +314,8 @@ class LotFPCharacter(AscendingAcMixin, Character):
     def get_equipment(self):
         return characterclass.LOTFP['equipment'][self.class_name][xdy(3,6)-3]
 
+    def get_languages(self): return []
+
 
 class HolmesCharacter(Character):
     """
