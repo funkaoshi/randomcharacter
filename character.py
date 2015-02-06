@@ -254,7 +254,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
 
     @property
     def system(self):
-        return "Beta LotFP"
+        return "LotFP"
 
     @property
     def save_name_table(self):
@@ -310,6 +310,9 @@ class LotFPCharacter(AscendingAcMixin, Character):
         self.sneak_attack = skills.pop('Sneak Attack')
         skills = [(s, v) for s, v in skills.iteritems()]
         return skills
+
+    def get_equipment(self):
+        return characterclass.LOTFP['equipment'][self.class_name][xdy(3,6)-3]
 
 
 class HolmesCharacter(Character):
