@@ -12,17 +12,20 @@ D&D, Holmes, etc.
 ## Supported Systems
 
 - Abstract D&D Character
-    - Basic D&D (Mentzer / Moldvay)
-    - Holmes D&D
-    - Little Brown Books (1974 Original D&D)
-        - Carcosa
-        - Masters of Carcosa! (my Carcosa game)
-        - Apollyon
-        - Pahvelorn
-        - Delving Deeper
-- Danger Time
-- Adventure Game
-- Fifth Edition D&D (Incomplete)
+    - [Little Brown Books][lbb] (1974 Original D&D)
+        - [Carcosa][]
+        - [Masters of Carcosa!][moc] (my Carcosa game)
+        - [Apollyon][]
+        - [Pahvelorn][]
+        - [Delving Deeper][dd]
+    - [Holmes] D&D
+    - [Basic][] D&D (Mentzer / Moldvay)
+        - [Lamentations of the Flame Princess][lotfp]
+- [Danger Time][dangertime]
+- [Adventure Game][adventuregame]
+- [Fifth Edition][5e] D&D (Incomplete)
+
+You can also generate a list of [NPCs][] and roll [3d6 in order][3d6] or [4d6 drop the lowest][4d6].
 
 ## Getting it Running
 
@@ -46,3 +49,19 @@ takes a runs an incomplete character through a series of processors that add
 more and more information to the character. I'm not sure this scheme works that
 well either.
 
+
+[lbb]: http://character.totalpartykill.ca/lbb/
+[carcosa]: http://character.totalpartykill.ca/carcosa/
+[moc]: http://character.totalpartykill.ca/moc/
+[apollyon]: http://character.totalpartykill.ca/apollyon/
+[pahvelorn]: http://character.totalpartykill.ca/pahvelorn/
+[dd]: http://character.totalpartykill.ca/dd/
+[holmes]: http://character.totalpartykill.ca/holmes/
+[basic]: http://character.totalpartykill.ca/basic/
+[lotfp]: http://character.totalpartykill.ca/lotfp/
+[5e]: http://character.totalpartykill.ca/5e/
+[dangertime]: http://character.totalpartykill.ca/dangertime/
+[adventuregame]: http://character.totalpartykill.ca/adventuregame/
+[npcs]: http://character.totalpartykill.ca/npcs/
+[3d6]: http://character.totalpartykill.ca/3d6/
+[4d6]: http://character.totalpartykill.ca/4d6/
