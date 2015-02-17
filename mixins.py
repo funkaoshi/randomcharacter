@@ -5,10 +5,13 @@ from dice import d, xdy
 
 
 class BasicAttributesMixin(object):
+    """
+    Generates the basic attributes of a D&D character: STR, INT, DEX, CON, WIS,
+    CHA. The scores are rolled using 3d6 in order.
+    """
 
     def __init__(self, *args, **kwargs):
-       self.attributes = [(attribute, xdy(3,6))
-                          for attribute in characterclass.ATTRIBUTES]
+       self.attributes = self.roll_attribute_scores()
 
        # attribute map to ease display in template
        self.attr = dict((attr, self.with_bonus(attr, value))
@@ -31,6 +34,12 @@ class BasicAttributesMixin(object):
 
     @property
     def CHA(self): return self.attributes[characterclass.CHA][1]
+
+    def roll_attribute_scores(self):
+        """
+        Rolls the attribute scores: 3d6 in order, as one would expect.
+        """
+        return [(attribute, xdy(3,6)) for attribute in characterclass.ATTRIBUTES]
 
     def get_bonus(self, attr, val):
         """
@@ -65,6 +74,10 @@ class BasicAttributesMixin(object):
 
 
 class AppearenceMixin(object):
+    """
+    Display the appearance of the character. This is the best part of this
+    generator. It's all ugly murderhobo children.
+    """
     @property
     def appearance(self):
         return ', '.join(random.choice(feature)
@@ -126,9 +139,9 @@ class AscendingAcMixin(object):
 
 class HitDiceMixin(object):
     """
-    In some OD&D games HP is re-rolled per session, so it doesn't make much sense
-    to display the computed HP value. Instead we simply display the HD of the
-    character, either 1 or 1+1 for Fighters.
+    In some OD&D games HP is re-rolled per session, so it doesn't make much
+    sense to display the computed HP value. Instead we simply display the HD of
+    the character, either 1 or 1+1 for Fighters.
     """
     def get_hp(self):
         # we set HP to None, which lets the template know we will display HD

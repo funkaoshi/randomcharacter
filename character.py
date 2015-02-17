@@ -260,6 +260,19 @@ class LotFPCharacter(AscendingAcMixin, Character):
     def save_name_table(self):
         return characterclass.LOTFP['saves']
 
+    def roll_attribute_scores(self):
+        """
+        In LotFP you re-roll your characters scores if they don't produce a
+        positive value for your total bonuses.
+        """
+        while True:
+            attributes = super(LotFPCharacter, self).roll_attribute_scores()
+            bonuses = [self.get_bonus(attr, val) for attr, val in attributes]
+            total_bonuses = sum(bonuses)
+            if total_bonuses >= 0:
+                break
+        return attributes
+
     def get_hp(self):
         """
         LotFP characters have a minimum number of HP.
