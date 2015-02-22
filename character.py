@@ -539,6 +539,10 @@ class PahvelornCharacter(HitDiceMixin, LBBCharacter):
 
 
 class CarcosaBase(object):
+    """
+    The common base for a Carcosa character.
+    """
+
     @property
     def appearance(self):
         colour = random.choice([
@@ -569,6 +573,10 @@ class CarcosaBase(object):
 
 
 class CarcosaCharacter(CarcosaBase, LBBCharacter):
+    """
+    Characters for an OD&D Carcosa game.
+    """
+
     @property
     def system(self):
         return "Carcosa / Original D&D"
@@ -583,9 +591,6 @@ class MastersOfCarcosaCharacter(CarcosaBase,
     Characters for my Carcosa game.
     """
 
-    def __init__(self, *args, **kwargs):
-        super(MastersOfCarcosaCharacter, self).__init__(*args, **kwargs)
-
     @property
     def system(self):
         return "Masters of Carcosa"
@@ -599,10 +604,14 @@ class MastersOfCarcosaCharacter(CarcosaBase,
         """
         Attack bonuses are as OD&D, so 0 at first level if using ascending AC.
         (You need a 10 to hit descending AC 9, or a 10 to hit ascending AC 10.)
+        A house rule grants a +1 to Fighters at first level.
         """
-        return 0
+        return 1 if self.character_class == characterclass.FIGHTER else 0
 
     def get_bonus(self, attr, val):
+        """
+        There are no bonuses for attribute scores.
+        """
         return 0
 
     def get_ac(self):
