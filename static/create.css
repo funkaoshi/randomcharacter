@@ -25,7 +25,8 @@ h2.system, h2.appearence {
 }
 h2.appearence {
     font-size: 0.8em;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
+    line-height: 1.2em;
 }
 h2 {
     font-size: 1em;

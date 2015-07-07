@@ -455,6 +455,45 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
     his blog: http://dungeonofsigns.blogspot.ca/search/label/HMS%20Apollyon
     """
 
+    # Gus's Apollyon Appearences
+    DRESS = [
+        "Feral tribal loincloth or untanned hull beast skins.",
+        "The diaphanous fripperies of a burlesque hall performer.",
+        "Apocalypse rags and bindings.  Stinking and dyed the same colour by grime or intent.",
+        "Threadbare robe with detachable cowl and several hidden pockets.",
+        "Bright loose shirt and tight dungarees in the style of a Vory tough.",
+        "Casual worker's canvas pantaloons and white undershirt, accented by leather braces.",
+        "Horizontal Striped sweater and dungarees with too many buttons.",
+        "Cannery toilers dull jumpsuit and heavy tarred boots.",
+        "Wool or felt uniform jacket encrusted with rotting braid.",
+        "Patched, stained, torn and bedraggled fop's or pirate finery.",
+        "Worn velvet livery of vest, knickers, jacket and absurd lacy cravat.",
+        "Fisher's sea leathers, walrus and shark with bone toggles and Frogling hexagrams.",
+        "Brightly patterned sarong and string and shell vest.",
+        "Thin leather catsuit, accented with too many buckles and black pigeon feather cloak.",
+        "A good quality clerk's tweed suit and bowler, cuffs stained with ink.",
+        "Black suit or dress of fine dog wool, opera cape, mask and tall stylish hat.",
+    ]
+
+    APPEARENCE = [
+        "Impressive facial scarring, either intentional and harmonious or the sign of battle and accident.",
+        "1D8 front teeth replaced with prosthetics of gold or other metal and possibly decorated.",
+        "Necklaces of teeth, ears or similar savage trophies and corresponding swagger.",
+        "Bald head, may be shaved, genetic or the product of chemic exposure.",
+        "Fastidious in dress and grooming.  Clothing and equipment immaculate whenever possible.",
+        "The cold dead eyes of a heartless murdering ruffian, may conceal kindly soul.",
+        "Collection of medals and awards worn on person, may or may not be earned.",
+        "Face and hands permanently marked by industrial grit that has worked itself under the skin.  ",
+        "General aura of decrepitude, clothing often dishevelled, eyes drooping or red, hair unkempt.",
+        "Elaborately dyed and coiffed hair, fierce mustachio or similar affectation of high style.",
+        "Wears gaudy trinkets and costume jewelry in nauseating profusion.",
+        "Always wears gloves:  heavy leather, gutta-percha skin or soft velvet pick one.",
+        "Unexpectedly heavy-set.  Perhaps not obese, but large and bulky for race.",
+        "Several novelty tattoos.  Bright colours and lack of faction symbolism mark them as a mere affect.",
+        "Monocle clamped firmly in eye. Sneer of cold command on lips.",
+        "One eye replaced by a magically enhanced shell or stone.  Normal vision, may glow.",
+    ]
+
     @property
     def system(self):
         return "Apollyon / Original D&D"
@@ -476,6 +515,38 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
     @property
     def attack_bonus(self):
         return 2 if self.character_class == characterclass.FIGHTER else 0
+
+    @property
+    def appearance(self):
+        return ' '.join([random.choice(self.DRESS), random.choice(self.APPEARENCE)])
+
+    def get_ac(self):
+        """
+        Gus' crazy scheme: AC 11 unarmored, AC 12 light, AC 14 medium, AC 16
+        heavy, AC17 plate. +1 AC for a shield. AC 18 is the maximum possible AC
+        without heavy magic; AC 20 is the absolute maximum.
+        """
+        ac = 11
+        if "Leather Armor" in self.equipment:
+            ac += 1
+        elif "Chain Armor" in self.equipment:
+            ac += 3
+        elif "Plate Armor" in self.equipment:
+            ac += 5
+            # rename plate to splint
+            plate_idx = self.equipment.index("Plate Armor")
+            self.equipment[plate_idx] = "Splint Armor"
+        if "Shield" in self.equipment:
+            ac += 1
+        ac += self.get_bonus(*self.attributes[characterclass.DEX])
+        return ac
+
+    @property
+    def demihumans(self):
+        """
+        Player's can't play demihumans the usual demi humans in Apollyon.
+        """
+        return False
 
 
 class PahvelornCharacter(HitDiceMixin, LBBCharacter):

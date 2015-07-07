@@ -433,7 +433,7 @@ LOTFP = {
             ["Leather Armor", "Standard Sword", "Dagger", "Garotte", "Chalk", "Soap", "Backpack", "Sack", "Tinderbox", "100' Rope", "Shortbow", "Lamp With 4 Flasks oil", "Quiver - 20 Arrows", "Steel Mirror", "Scroll Case: Local map and Kingdom map", "Holy Water", "2 day's Rations", "4 Cp"],
             ["Leather Armor", "Standard Sword", "Dagger", "Garotte", "Whip", "Chalk", "Soap", "Backpack", "Sack", "Tinderbox", "100' Rope", "Shortbow", "Lamp With 4 Flasks oil", "Quiver - 20 Arrows", "Steel Mirror", "Scroll Case: Local map and Kingdom map", "Holy Water", "2 day's Rations", "4 Cp"],
             ["Leather Armor", "Standard Sword", "Dagger", "Garotte", "Whip", "Chalk", "Soap", "Backpack", "Sack", "Tinderbox", "100' Rope", "Shortbow", "Lamp With 4 Flasks oil", "Quiver - 20 Arrows", "Steel Mirror", "Scroll Case: Local map and Kingdom map", "Holy Water", "2 day's Rations", "10 sp", "4 Cp"],
-            ["Leather Armor", "Standard Sword", "Dagger", "Garotte", "Whip", "Chalk", "Soap", "Backpack", "Sack", "Tinderbox", "100' Rope", "Shortbow", "Lamp With 4 Flasks oil", "Quiver - 20 Arrows", "Steel Mirror", "Scroll Case: Local map and Kingdom map", "Holy Water", "2 day's Rations", "20 sp", "4 Cp"],          
+            ["Leather Armor", "Standard Sword", "Dagger", "Garotte", "Whip", "Chalk", "Soap", "Backpack", "Sack", "Tinderbox", "100' Rope", "Shortbow", "Lamp With 4 Flasks oil", "Quiver - 20 Arrows", "Steel Mirror", "Scroll Case: Local map and Kingdom map", "Holy Water", "2 day's Rations", "20 sp", "4 Cp"],
         ],
     }
 }
@@ -607,7 +607,6 @@ PRIME_REQUISITE = {
     'WIS': CLERIC,
     'DEX': THIEF
 }
-
 
 CLASSES = [FIGHTER, MAGICUSER, CLERIC, THIEF, DWARF, ELF, HALFLING]
 VALID_CLASS_NAMES = [c['name'].lower().replace('-', '') for c in CLASSES]
