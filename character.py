@@ -312,7 +312,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
             for s in random.choice(characterclass.LOTFP['specialist_builds']):
                 skills[s] = skills[s] + 1
         elif self.character_class == characterclass.DWARF:
-            skills['Architeure'] = 3
+            skills['Architecture'] = 3
         elif self.character_class == characterclass.ELF:
             skills['Search'] = 2
         elif self.character_class == characterclass.HALFLING:
@@ -746,5 +746,3 @@ class DelvingDeeperCharacter(LBBCharacter):
             elif val >= 18:
                 return 4
         return 0
-
-
