@@ -312,7 +312,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
             for s in random.choice(characterclass.LOTFP['specialist_builds']):
                 skills[s] = skills[s] + 1
         elif self.character_class == characterclass.DWARF:
-            skills['Architeure'] = 3
+            skills['Architecture'] = 3
         elif self.character_class == characterclass.ELF:
             skills['Search'] = 2
         elif self.character_class == characterclass.HALFLING:
@@ -552,7 +552,7 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
 class PahvelornCharacter(HitDiceMixin, LBBCharacter):
     """
     Models characters from the OD&D game Pahvelorn. (Essentially 1974 D&D.)
-    More info here: http://untimately.blogspot.ca/p/pahvelorn.html.
+    More info here: http://www.necropraxis.com/tag/pahvelorn/.
     """
 
     @property
@@ -586,7 +586,7 @@ class PahvelornCharacter(HitDiceMixin, LBBCharacter):
         """
         In Pahvelorn characters all begin at different combat ranks,
         as per this post:
-          http://untimately.blogspot.ca/2012/11/adjusted-attack-ranks.html
+          http://www.necropraxis.com/2012/11/11/adjusted-attack-ranks/
         """
         return {
             'Fighter': 7,
@@ -746,5 +746,3 @@ class DelvingDeeperCharacter(LBBCharacter):
             elif val >= 18:
                 return 4
         return 0
-
-
