@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block page_class %}threedeesix{% endblock %}
+
+{% block title %}Random Equipment!{% endblock %}
+
+{% block content %}
+<h2 class="system"><a href="http://funkaoshi.com">A Funkaoshi Production</a> Present's</h2>
+<h1>{% block heading %}Equipment!{% endblock %}</h1>
+<h2 class="appearence">Let's buy some gear!</h2>
+
+<p>
+{% for item in equipment %}
+    {{ item }}{% if not loop.last %},{% endif %}
+{% endfor %}
+</p>
+
+<p>
+	If you want a whole character <a href='/basic/'>we can do that too</a>.
+</p>
+
+<footer>
+    <p>
+        Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Check out more D&D stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}

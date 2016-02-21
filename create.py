@@ -40,6 +40,17 @@ def three_dee_six():
     roll = [dice.xdy(3,6) for _ in range(6)]
     return render_template("3d6.html", roll=roll)
 
+@app.route('/equipment/', defaults={'system': "basic"})
+@app.route('/equipment/<system>/')
+def equipment(system):
+    system = SYSTEMS.get(system, None)
+    if not system:
+        # default to basic for unknown systems
+        return redirect(url_for('equipment', system='basic'))
+
+    equipment = system().equipment
+    return render_template("equipment.html", equipment=equipment)
+
 @app.route('/4d6/')
 def four_dee_six():
     roll = [sum(sorted(dice.d(6) for _ in xrange(4))[1:]) for _ in range(6)]
