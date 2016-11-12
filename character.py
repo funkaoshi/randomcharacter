@@ -286,7 +286,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
         Your magic based saves are effected by your INT, other saves by your
         WIS.
         """
-        saves = copy.copy(self.character_class['saves'])
+        saves = copy.copy(self.character_class['lotfp_saves'])
         wis_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
         int_bonus = self.get_bonus(*self.attributes[characterclass.INT])
         saves['magic'] = saves['magic'] - int_bonus
