@@ -288,7 +288,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
         """
         saves = copy.copy(self.character_class['saves'])
         wis_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
-        int_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
+        int_bonus = self.get_bonus(*self.attributes[characterclass.INT])
         saves['magic'] = saves['magic'] - int_bonus
         for save in ['wands', 'poison', 'stone', 'breath']:
             saves[save] = saves[save] - wis_bonus
