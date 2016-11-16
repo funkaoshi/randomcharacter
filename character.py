@@ -300,7 +300,10 @@ class LotFPCharacter(AscendingAcMixin, Character):
         spells in their spell book.
         """
         if self.character_class.has_key('spells'):
-            return ['Read Magic'] + random.sample(characterclass.LOTFP['spells'], 3)
+            if self.character_class == characterclass.MAGICUSER:
+                return ['Read Magic'] + random.sample(characterclass.LOTFP['spells'], 3)
+            elif self.character_class == characterclass.ELF:
+                return ['Read Magic']
         elif self.character_class == characterclass.CLERIC:
             return ['One clerical spell a day']
         return None
