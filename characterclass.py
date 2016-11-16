@@ -363,7 +363,7 @@ LOTFP = {
         # Read Magic and ...
         'Bookspeak', 'Charm Person', 'Comprehend Languages', 'Detect Magic',
         'Enlarge', 'Faerie Fire', 'Feather Fall', 'Floating Disc',
-        'Hold Portal', 'Identify', 'Light', 'Magic Aura', 'Magic Missle',
+        'Hold Portal', 'Identify', 'Light', 'Magic Aura', 'Magic Missile',
         'Mending', 'Message', 'Shield', 'Sleep', 'Spider Climb',
         'Unseen Servant'
     ],

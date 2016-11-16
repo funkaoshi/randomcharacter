@@ -320,6 +320,8 @@ class LotFPCharacter(AscendingAcMixin, Character):
             skills['Stealth'] = 5
         str_bonus = self.get_bonus(*self.attributes[characterclass.STR])
         skills['Open Doors'] = max(skills['Open Doors'] + str_bonus, 0)
+        int_bonus = self.get_bonus(*self.attributes[characterclass.INT])
+        skills['Languages'] = max(skills['Languages'] + int_bonus, 0)
         self.sneak_attack = skills.pop('Sneak Attack')
         skills = [(s, v) for s, v in skills.iteritems()]
         return skills
