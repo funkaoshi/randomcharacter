@@ -260,6 +260,10 @@ class LotFPCharacter(AscendingAcMixin, Character):
     def save_name_table(self):
         return characterclass.LOTFP['saves']
 
+    @property
+    def hit_die(self):
+        return characterclass.LOTFP['hitdice'][self.character_class['name']]
+
     def roll_attribute_scores(self):
         """
         In LotFP you re-roll your characters scores if they don't produce a
@@ -277,7 +281,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
         """
         LotFP characters have a minimum number of HP.
         """
-        hp = super(LotFPCharacter, self).get_hp()
+        hp = d(self.hit_die) + self.get_bonus(*self.attributes[characterclass.CON])
         hp = max(hp, characterclass.LOTFP['min_hp'][self.character_class['name']])
         return hp
 
@@ -286,7 +290,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
         Your magic based saves are effected by your INT, other saves by your
         WIS.
         """
-        saves = copy.copy(self.character_class['lotfp_saves'])
+        saves = copy.copy(characterclass.LOTFP['lotfp_saves'][self.character_class['name']])
         wis_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
         int_bonus = self.get_bonus(*self.attributes[characterclass.INT])
         saves['magic'] = saves['magic'] - int_bonus

@@ -66,9 +66,6 @@ CLERIC = {
     'saves': {
         'poison': 11, 'wands': 12, 'stone': 14, 'breath': 16, 'magic': 15
     },
-    'lotfp_saves': {
-        'poison': 11, 'wands': 12, 'stone': 14, 'breath': 16, 'magic': 15
-    },
     'turn': [
         ('Skeleton', 7), ('Zombie', 9), ('Ghoul', 11), ('Wight', 'N')
     ],
@@ -96,9 +93,6 @@ FIGHTER = {
     ],
     'hitdice': 8,
     'saves': {
-        'poison': 12, 'wands': 13, 'stone': 14, 'breath': 15, 'magic': 16
-    },
-    'lotfp_saves': {
         'poison': 12, 'wands': 13, 'stone': 14, 'breath': 15, 'magic': 16
     }
 }
@@ -137,9 +131,6 @@ MAGICUSER = {
     'saves': {
         'poison': 13, 'wands': 14, 'stone': 13, 'breath': 16, 'magic': 15
     },
-    'lotfp_saves': {
-        'poison': 13, 'wands': 13, 'stone': 13, 'breath': 16, 'magic': 14
-    },
     'spells': [
         # Original 8 D&D Spells
         'Detect Magic', 'Hold Portal', 'Read Magic', 'Read Languages',
@@ -173,9 +164,6 @@ THIEF = {
     'saves': {
         'poison': 13, 'wands': 14, 'stone': 13, 'breath': 16, 'magic': 15
     },
-    'lotfp_saves': {
-        'poison': 16, 'wands': 14, 'stone': 14, 'breath': 15, 'magic': 14
-    },
     'skills': [
         ('Open Locks', '15%'),
         ('Find Traps', '10%'),
@@ -194,9 +182,6 @@ DWARF = {
     'saves': {
         'poison': 10, 'wands': 11, 'stone': 12, 'breath': 13, 'magic': 14
     },
-    'lotfp_saves': {
-        'poison': 8, 'wands': 9, 'stone': 10, 'breath': 13, 'magic': 12
-    },
     'equipment': FIGHTER['equipment']
 }
 
@@ -204,9 +189,6 @@ ELF = {
     'name': 'Elf',
     'hitdice': 6,
     'saves': {
-        'poison': 12, 'wands': 13, 'stone': 13, 'breath': 15, 'magic': 15
-    },
-    'lotfp_saves': {
         'poison': 12, 'wands': 13, 'stone': 13, 'breath': 15, 'magic': 15
     },
     'equipment': MAGICUSER['equipment'],
@@ -218,9 +200,6 @@ HALFLING = {
     'hitdice': 6,
     'saves': {
         'poison': 10, 'wands': 11, 'stone': 12, 'breath': 13, 'magic': 14
-    },
-    'lotfp_saves': {
-        'poison': 8, 'wands': 9, 'stone': 10, 'breath': 13, 'magic': 12
     },
     'equipment': FIGHTER['equipment']
 }
@@ -367,6 +346,24 @@ LOTFP = {
         'Mending', 'Message', 'Shield', 'Sleep', 'Spider Climb',
         'Unseen Servant'
     ],
+    'hitdice': {
+        'Cleric': 6,
+        'Fighter': 8,
+        'Magic-User': 6,
+        'Thief': 6,
+        'Dwarf': 10,
+        'Elf': 6,
+        'Halfling': 6
+    },
+    'lotfp_saves': {
+        'Cleric': {'poison': 11, 'wands': 12, 'stone': 14, 'breath': 16, 'magic': 15,},
+        'Fighter': {'poison': 12, 'wands': 13, 'stone': 14, 'breath': 15, 'magic': 16},
+        'Magic-User': {'poison': 13, 'wands': 13, 'stone': 13, 'breath': 16, 'magic': 14},
+        'Thief': {'poison': 16, 'wands': 14, 'stone': 14, 'breath': 15, 'magic': 14},
+        'Dwarf': {'poison': 8, 'wands': 9, 'stone': 10, 'breath': 13, 'magic': 12},
+        'Elf': {'poison': 12, 'wands': 13, 'stone': 13, 'breath': 15, 'magic': 15},
+        'Halfling': {'poison': 8, 'wands': 9, 'stone': 10, 'breath': 13, 'magic': 12}
+    },
     'min_hp': {
         'Cleric': 4,
         'Fighter': 8,
