@@ -260,6 +260,10 @@ class LotFPCharacter(AscendingAcMixin, Character):
     def save_name_table(self):
         return characterclass.LOTFP['saves']
 
+    @property
+    def hit_die(self):
+        return characterclass.LOTFP['hitdice'][self.character_class['name']]
+
     def roll_attribute_scores(self):
         """
         In LotFP you re-roll your characters scores if they don't produce a
@@ -277,7 +281,7 @@ class LotFPCharacter(AscendingAcMixin, Character):
         """
         LotFP characters have a minimum number of HP.
         """
-        hp = super(LotFPCharacter, self).get_hp()
+        hp = d(self.hit_die) + self.get_bonus(*self.attributes[characterclass.CON])
         hp = max(hp, characterclass.LOTFP['min_hp'][self.character_class['name']])
         return hp
 
@@ -286,9 +290,9 @@ class LotFPCharacter(AscendingAcMixin, Character):
         Your magic based saves are effected by your INT, other saves by your
         WIS.
         """
-        saves = copy.copy(self.character_class['saves'])
+        saves = copy.copy(characterclass.LOTFP['lotfp_saves'][self.character_class['name']])
         wis_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
-        int_bonus = self.get_bonus(*self.attributes[characterclass.WIS])
+        int_bonus = self.get_bonus(*self.attributes[characterclass.INT])
         saves['magic'] = saves['magic'] - int_bonus
         for save in ['wands', 'poison', 'stone', 'breath']:
             saves[save] = saves[save] - wis_bonus
@@ -300,7 +304,10 @@ class LotFPCharacter(AscendingAcMixin, Character):
         spells in their spell book.
         """
         if self.character_class.has_key('spells'):
-            return ['Read Magic'] + random.sample(characterclass.LOTFP['spells'], 3)
+            if self.character_class == characterclass.MAGICUSER:
+                return ['Read Magic'] + random.sample(characterclass.LOTFP['spells'], 3)
+            elif self.character_class == characterclass.ELF:
+                return ['Read Magic']
         elif self.character_class == characterclass.CLERIC:
             return ['One clerical spell a day']
         return None
@@ -320,6 +327,8 @@ class LotFPCharacter(AscendingAcMixin, Character):
             skills['Stealth'] = 5
         str_bonus = self.get_bonus(*self.attributes[characterclass.STR])
         skills['Open Doors'] = max(skills['Open Doors'] + str_bonus, 0)
+        int_bonus = self.get_bonus(*self.attributes[characterclass.INT])
+        skills['Languages'] = max(skills['Languages'] + int_bonus, 0)
         self.sneak_attack = skills.pop('Sneak Attack')
         skills = [(s, v) for s, v in skills.iteritems()]
         return skills
