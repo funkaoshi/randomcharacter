@@ -18,7 +18,7 @@ class Character(mixins.AppearenceMixin):
         # Pick a Background
         background = random.choice(self.BACKGROUNDS)
 
-        self.background = background['name'][2:]
+        self.background = background['name'][3:]
         self.description = background['description']
         self.special = background['special']
 
@@ -42,12 +42,12 @@ class Character(mixins.AppearenceMixin):
         ]
 
         # Fix some gender issues
-        if 'Female' in self.appearance and self.background == '34 Lonesome King':
-            self.background = '34 Lonesome Queen'
-        elif self.background == '46 Rhino-Man':
-            self.appearance = self.appearance.replace('Female,', '')
-            self.appearance = self.appearance.replace('Male,', '')
-        elif self.background == '42 Parchment Witch':
+        if 'Female' in self.appearance and self.background == 'Lonesome King':
+            self.background = 'Lonesome Queen'
+        elif self.background == 'Rhino-Man':
+            self.appearance = self.appearance.replace('Female, ', '')
+            self.appearance = self.appearance.replace('Male, ', '')
+        elif self.background == 'Parchment Witch':
             self.appearance = self.appearance.replace('Male', 'Female')
 
     BACKGROUNDS = [
