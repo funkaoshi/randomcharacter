@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block page_class %}Maze Rats{% endblock %}
+
+{% block title %}A Random Maze Rat{% endblock %}
+
+{% block content %}
+<h2 class="system">Maze Rats</h2>
+{% for c in characters %}
+<h1>Maze Rat!</h1>
+<h2 class="appearence">{{ c.appearence }}, {{ c.physical_detail }}, {{ c.clothing }} Clothing, {{ c.personality }}, {{ c.mannerism }}</h2>
+
+<table class="attr">
+    <tr>
+        <td><strong>STR</strong>: {{ c.STR }}</td>
+        <td><strong>DEX</strong>: {{ c.DEX }}</td>
+        <td><strong>WILL</strong>: {{ c.WILL }}</td>
+    </tr>
+    <tr>
+        <td><strong>Attack</strong>: {{ c.attack }}</td>
+        <td><strong>Armour</strong>: {{ c.armour }}</td>
+        <td><strong>Health</strong>: {{ c.health }}</td>
+    </tr>    
+</table>
+
+<p>
+  You were once a <strong>{{ c.background}}</strong>. Now you are a Maze Rat, a grubby adventurer!
+  {% if c.spell %}You can cast <strong>{{ c.spell }}</strong>, a wondrous spell{% endif %}
+  {% if c.skill %}You possess the skills of a <strong>{{ c.skill }}</strong>.{% endif %}
+</p>
+
+<p class="equipment" style="margin-bottom: 2.5em">
+    <strong>Equipment:</strong> {{ c.equipment }}
+</p>
+{% endfor %}
+
+<footer>
+    <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. <a href="http://www.drivethrurpg.com/product/197158/Maze-Rats">Maze Rats is for sale on DriveThruRPG.</a> It's pay what you want. I paid $4 and you should too. If you want to play <a href="/basic/">D&amp;D</a> instead we can do that too. Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
+

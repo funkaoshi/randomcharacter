@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block page_class %}Troika{% endblock %}
+
+{% block title %}A Random Troika {{ c.background }}{% endblock %}
+
+{% block content %}
+<h2 class="system">Troika</h2>
+<h1>{{ c.background}}</h1>
+<h2 class="appearence">{{ c.appearance }}</h2>
+
+
+<table class="attr">
+    <tr>
+        <td><strong>Skill</strong>: {{ c.skill}}</td>
+        <td><strong>Stamina</strong>: {{ c.stamina }}</td>
+        <td><strong>Luck</strong>: {{ c.luck }}</td>
+    </tr>
+</table>
+
+<p>{{ c.description }}</p>
+
+{% if c.special %}
+<p>{{ c.special }}</p>
+{% endif %}
+
+<div id="extras">
+  <div class="block">
+      <h3>Equipment</h3>
+      <ul>
+        {% for item in c.equipment %}
+            <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+  <div class="block">
+      <h3>Skills</h3>
+      <ul>
+        {% for skill in c.skills %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+  </div>
+</div>
+
+<footer>
+    <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>.
+    <a href="http://melsonia.bigcartel.com/product/troika">You should buy Troika, it's amazing.</a>
+    If you want to play <a href="/basic/">D&D</a> instead we can do that too.
+    Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>.
+    If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
+

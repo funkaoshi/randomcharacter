@@ -1,3 +1,5 @@
+import json
+
 from flask import request, Response, redirect, render_template, url_for, Flask
 
 import adventuregame
@@ -6,7 +8,8 @@ import characterclass
 import dangertime
 import dice
 import fifth
-import json
+import mazerats
+import troika
 
 DEBUG = True
 
@@ -63,6 +66,18 @@ def make_adventure_game_char():
 @app.route('/dangertime/')
 def make_danger_time_char():
     return render_template("dangertime.html", c=dangertime.Character())
+
+@app.route('/troika/')
+def make_troika_char():
+    return render_template("troika.html", c=troika.Character())
+
+@app.route('/mazerats/', defaults={'number': 1})
+@app.route('/mazerats/<int:number>/')
+def make_mazerats_char(number):
+    if number >= 20:
+        number = 20
+    characters = [mazerats.Character() for _ in range(number)]
+    return render_template("mazerats.html", characters=characters)
 
 @app.route('/npcs/', defaults={'number': 10})
 @app.route('/npcs/<int:number>/')
