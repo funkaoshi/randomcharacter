@@ -1,0 +1,22 @@
+# Welcome to Demon City, {{ c.role}} #
+
+You work as a {{c.occupation}}.
+
+Attributes:
+
+  Agility: {{ c.attributes.agility }}
+  Toughness: {{ c.attributes.toughness }}
+  Perception: {{ c.attributes.perception }}
+  Appeal: {{ c.attributes.appeal }}
+  Cash: {{ c.attributes.cash }}
+  Knowledge: {{ c.attributes.knowledge }}
+
+Skills:
+{% for skill, score, attribute in c.skills %}
+- {{ skill }}: {{ score -}}
+{% endfor %}
+
+Contacts:
+{% for contact in c.contacts_list %}
+- {{ contact -}}
+{% endfor %}

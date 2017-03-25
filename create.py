@@ -72,6 +72,12 @@ def make_danger_time_char():
 def make_troika_char():
     return render_template("troika.html", c=troika.Character())
     
+@app.route('/demoncity/text/')
+def make_demoncity_text_char():
+    mimetype = "text/plain"
+    content = render_template("demoncity.txt", c=demoncity.Character())
+    return Response(content, status=200, mimetype=mimetype)
+
 @app.route('/demoncity/')
 def make_demoncity_char():
     return render_template("demoncity.html", c=demoncity.Character())    
