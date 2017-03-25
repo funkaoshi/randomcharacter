@@ -76,7 +76,8 @@ class Character(mixins.AppearenceMixin):
             attribute = sorted((self.attributes[attribute] + 1, attribute)
                                 for attribute in attributes)[-1]
             
-            self.skills.append((skill, attribute[0], attribute[1]))
+            if skill != "Exotic Weapon":
+                self.skills.append((skill, attribute[0], attribute[1]))
             
             if skill == "Humanities":
                 # Get an additional specific humanity skill at +2 knowledge
@@ -96,6 +97,13 @@ class Character(mixins.AppearenceMixin):
                 # Get an additional sport skill at +2 Toughness or Agility
                 self.skills.append((
                     random.choice(self.ATHLETICS), 
+                    attribute[0] + 1,
+                    attribute[1]
+                ))
+            elif skill == "Exotic Weapon":
+                # Skilled in a specific weird old weapon at +2
+                self.skills.append((
+                    "%s - %s" % (skill, random.choice(self.WEAPONS)),
                     attribute[0] + 1,
                     attribute[1]
                 ))
@@ -134,6 +142,11 @@ class Character(mixins.AppearenceMixin):
             "Firearms",
             "Pilot",
             "Stealth",
+            "Exotic Weapon", # See Sub-List
+            "Motorcycle",
+            "Boat",
+            "Helicopter",
+            "Plane",
         ],
         "Perception": [
             # "Occupational",
@@ -154,6 +167,8 @@ class Character(mixins.AppearenceMixin):
             "Other Languages",
             "Paranormal",
             "Science",
+            "Explosives",
+            "Law",
         ],
         "Perception or Knowledge": [
             "Forgery",
@@ -1248,4 +1263,20 @@ class Character(mixins.AppearenceMixin):
         "Water Polo",
         "Weightlifting",
         "Wrestling",
+    ]
+    
+    WEAPONS = [
+        "Daggers",
+        "Swords",
+        "Greatswords",
+        "Katanas",
+        "Rapiers / Fencing Swords",
+        "Axes ",
+        "Hammers ",
+        "Spears & Pikes ",
+        "Halberds ",
+        "Whips ",
+        "Bows",
+        "Crossbows ",
+        "Staves",
     ]
