@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block page_class %}Demon City{% endblock %}
+
+{% block title %}A Random Demon City Character {{ c.background }}{% endblock %}
+
+{% block content %}
+<h2 class="system">Demoncity</h2>
+<h1>{{ c.role}}</h1>
+<h2 class="appearence">{{c.occupation}}</h2>
+
+
+<table class="attr">
+    <tr>
+      <td>Calm: <strong>{{ c.attributes.calm }}</strong></td>
+      <td>Contacts: <strong>{{ c.contacts }}</strong></td>
+    </tr>    
+    <tr><td>Agility: <strong>{{ c.attributes.agility }}</strong></td></tr>
+    <tr><td>Toughness: <strong>{{ c.attributes.toughness }}</strong></td></tr>
+    <tr><td>Perception: <strong>{{ c.attributes.perception }}</strong></td></tr>
+    <tr><td>Appeal: <strong>{{ c.attributes.appeal }}</strong></td></tr>
+    <tr><td>Cash: <strong>{{ c.attributes.cash }}</strong></td></tr>
+    <tr><td>Knowledge: <strong>{{ c.attributes.knowledge }}</strong></td></tr>
+</table>
+
+<p>{{ c.description }}</p>
+
+<div style="margin-left:0.5em;">
+  <h3>Skills</h3>
+  <ul>
+    {% for skill, score, attribute in c.skills %}
+        <li>{{ skill }}: <strong>{{ score }}</strong> <small>({{ attribute }})</small></li>
+    {% endfor %}
+  </ul>
+  <h3>Contacts</h3>
+  <ul>
+    {% for contact in c.contacts_list %}
+        <li>{{ contact }}</li>
+    {% endfor %}
+  </ul>  
+</div>
+
+<footer>
+    <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>.
+    <a href="https://www.patreon.com/DemonCity/">Demon City is currently under development.</a>
+    The game is being written by Zak Smith of D&amp;D with Pornstars.
+    <a href="http://dndwithpornstars.blogspot.ca/search/label/Demon%20City">You can learn more about it on his blog.
+    If you want to play <a href="/basic/">D&amp;D</a> instead we can do that too.
+    Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>.
+    If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
+

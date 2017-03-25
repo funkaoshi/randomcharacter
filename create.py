@@ -10,6 +10,7 @@ import dice
 import fifth
 import mazerats
 import troika
+import demoncity
 
 DEBUG = True
 
@@ -70,6 +71,10 @@ def make_danger_time_char():
 @app.route('/troika/')
 def make_troika_char():
     return render_template("troika.html", c=troika.Character())
+    
+@app.route('/demoncity/')
+def make_demoncity_char():
+    return render_template("demoncity.html", c=demoncity.Character())    
 
 @app.route('/mazerats/', defaults={'number': 1})
 @app.route('/mazerats/<int:number>/')
