@@ -10,25 +10,25 @@ class Character(mixins.AppearenceMixin):
 
     def __init__(self, *args, **kwargs):
         super(Character, self).__init__(*args, **kwargs)
-        
+
         self.role = random.choice(self.ROLES)
         self.occupation = random.choice(self.OCCUPATIONS)
 
         self.generate_attributes()
         self.generate_skills()
-        
+
         self.contacts = max(self.attributes["appeal"], self.attributes["cash"])
         if self.role == "Investigator":
             self.contacts += 1 + (7 - self.raw_skills)
-            
+
         self.contacts_list = [self.occupation] + random.sample(self.OCCUPATIONS, self.contacts - 1)
-        
+
     def generate_attributes(self):
         attributes = {
-            a.lower(): int(math.ceil(1.0 * dice.d(10) / 2.0)) 
+            a.lower(): int(math.ceil(1.0 * dice.d(10) / 2.0))
             for a in self.ATTRIBUTES
         }
-        
+
         if self.role == "Victim":
             attributes["calm"] = max(attributes["calm"], 4)
         elif self.role == "Problem":
@@ -38,16 +38,16 @@ class Character(mixins.AppearenceMixin):
         elif self.role == "Friend":
             attribute = random.choice(["perception", "calm"])
             attributes[attribute] = attributes[attribute] + 1
-        
+
         self.attributes = attributes
 
     def generate_skills(self):
         self.raw_skills = 5
-        
+
         self.skills = [
             ("Occupational", self.attributes["perception"] + 1, self.occupation)
         ]
-                
+
         if self.role == "Victim":
             self.skills += [
                 ("Persuasion", self.attributes["appeal"] + 1, "appeal")
@@ -63,40 +63,44 @@ class Character(mixins.AppearenceMixin):
                 (skill, score, "knowledge")
                 for skill in knowledge_skills
             ]
-        
-        current_skills = set([skill for skill, _, _ in self.skills])    
-        skill_list = self.SKILLS_LIST - current_skills
 
-        for skill, attribute in random.sample(skill_list, self.raw_skills):
+        current_skills = set([skill for skill, _, _ in self.skills])
+        possible_skills = [
+            skill
+            for skill in self.SKILLS_LIST
+            if skill[0] not in current_skills
+        ]
+
+        for skill, attribute in random.sample(possible_skills, self.raw_skills):
             # split up attribute into lower case list if there are multiple
             # options, e.g. "Toughness or Agility"
             attributes = map(lambda x: x.lower(), attribute.split(' or '))
-            
+
             # sort the list and grab the last one, the highest score
             attribute = sorted((self.attributes[attribute] + 1, attribute)
                                 for attribute in attributes)[-1]
-            
+
             if skill != "Exotic Weapon":
                 self.skills.append((skill, attribute[0], attribute[1]))
-            
+
             if skill == "Humanities":
                 # Get an additional specific humanity skill at +2 knowledge
                 self.skills.append((
-                    random.choice(self.HUMANITIES), 
+                    random.choice(self.HUMANITIES),
                     attribute[0] + 1,
                     attribute[1]
                 ))
             elif skill == "Science":
                 # Get an additional specific science skill at +2 knowledge
                 self.skills.append((
-                    random.choice(self.SCIENCES), 
+                    random.choice(self.SCIENCES),
                     attribute[0] + 1,
                     attribute[1]
                 ))
             elif skill == "Athletics":
                 # Get an additional sport skill at +2 Toughness or Agility
                 self.skills.append((
-                    random.choice(self.ATHLETICS), 
+                    random.choice(self.ATHLETICS),
                     attribute[0] + 1,
                     attribute[1]
                 ))
@@ -107,9 +111,9 @@ class Character(mixins.AppearenceMixin):
                     attribute[0] + 1,
                     attribute[1]
                 ))
-                
+
     ROLES = [
-        "Curious", 
+        "Curious",
         "Friend",
         "Investigator",
         "Problem",
@@ -125,7 +129,7 @@ class Character(mixins.AppearenceMixin):
         "Cash",
         "Knowledge",
     ]
-    
+
     RANKS = {
         0: "Terrible",
         1: "Bad",
@@ -134,7 +138,7 @@ class Character(mixins.AppearenceMixin):
         4: "Very good",
         5: "World class",
     }
-    
+
     SKILLS = {
         "Agility": [
             "Burglary & Theft",
@@ -178,15 +182,15 @@ class Character(mixins.AppearenceMixin):
         "Toughness or Agility": [
             "Hand to Hand Combat",
             "Athletics",
-        ],        
+        ],
     }
-    
+
     # Generate flat list of skills
     SKILLS_LIST = []
     for attribute, skills in SKILLS.iteritems():
         SKILLS_LIST.extend([(s, attribute) for s in skills])
     SKILLS_LIST = set(SKILLS_LIST)
-    
+
     OCCUPATIONS = [
         "Able Seamen",
         "Account Collector",
@@ -1219,7 +1223,7 @@ class Character(mixins.AppearenceMixin):
         "Volcanology",
         "Zoology",
     ]
-    
+
     HUMANITIES = [
         "Anthropology",
         "Classics",
@@ -1233,7 +1237,7 @@ class Character(mixins.AppearenceMixin):
         "Religion",
         "Visual Arts",
     ]
-    
+
     ATHLETICS = [
         "Badminton",
         "Baseball",
@@ -1264,7 +1268,7 @@ class Character(mixins.AppearenceMixin):
         "Weightlifting",
         "Wrestling",
     ]
-    
+
     WEAPONS = [
         "Daggers",
         "Swords",
