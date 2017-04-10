@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block page_class %}BREAK!!{% endblock %}
+
+{% block title %}{{ c.calling_name }}{% endblock %}
+
+{% block content %}
+<h2 class="system">BREAK!!</h2>
+<h1>{{ c.species }} {{ c.calling_name }}</h1>
+<h2 class="appearence">{{ c.homeland_name }}</h2>
+
+<table class="attr">
+    <tr>
+      <td>Might: <strong>{{ c.traits.Might }}</strong></td>
+      <td>Hearts: <strong>{{ c.hearts }}</strong></td>
+    </tr>
+    <tr>
+        <td>Deftness: <strong>{{ c.traits.Deftness }}</strong></td>
+        <td>Attack Bonus: <strong>{{ c.attack_bonus }}</strong></td>
+    </tr>
+    <tr>
+        <td>Grit: <strong>{{ c.traits.Grit }}</strong></td>
+        <td>Defence: <strong>{{ c.defence }}</strong></td>
+    </tr>
+    <tr>
+        <td>Insight: <strong>{{ c.traits.Insight }}</strong></td>
+        <td>Allegiance: <strong>{{ c.allegiance }}</strong></td>
+    </tr>
+    <tr>
+        <td>Aura: <strong>{{ c.traits.Aura }}</strong></td>
+        <td>Speed: <strong>{{ c.speed }}</strong></td>
+    </tr>
+</table>
+
+<p>{{ c.description }}</p>
+
+<div style="margin-left:0.5em;">
+  <h3>Languages</h3>
+  <ul>
+    {% for language in c.languages %}
+        <li>{{ language }}</li>
+    {% endfor %}
+  </ul>
+  <h3>Gear</h3>
+  <ul>
+    {% for gear in c.gear %}
+        <li>{{ gear }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<footer>
+    <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>.
+    This is a big TODO. BREAK!! is coming soon, from Reynaldo and Grey Wiz.
+    </p>
+</footer>
+{% endblock %}
+

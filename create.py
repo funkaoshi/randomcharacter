@@ -11,6 +11,7 @@ import fifth
 import mazerats
 import troika
 import demoncity
+import breakcharacter
 
 DEBUG = True
 
@@ -71,7 +72,7 @@ def make_danger_time_char():
 @app.route('/troika/')
 def make_troika_char():
     return render_template("troika.html", c=troika.Character())
-    
+
 @app.route('/demoncity/text/')
 def make_demoncity_text_char():
     mimetype = "text/plain"
@@ -80,7 +81,11 @@ def make_demoncity_text_char():
 
 @app.route('/demoncity/')
 def make_demoncity_char():
-    return render_template("demoncity.html", c=demoncity.Character())    
+    return render_template("demoncity.html", c=demoncity.Character())
+
+@app.route('/break/')
+def make_break_char():
+    return render_template("break.html", c=breakcharacter.Character())
 
 @app.route('/mazerats/', defaults={'number': 1})
 @app.route('/mazerats/<int:number>/')
