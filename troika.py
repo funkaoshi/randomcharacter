@@ -78,7 +78,7 @@ class Character(mixins.AppearenceMixin):
             "special": "May drink stagnant water without harm",
             "name": "12 Befouler of Ponds",
             "possesions": [
-                "Sackcloth robes, caked in stinking mud and undergrowth. +1 to Sneak rolls in marshy terrain while wearing it, -1 everywhere else \u2018cos it stinks",
+                "Sackcloth robes, caked in stinking mud and undergrowth. +1 to Sneak rolls in marshy terrain while wearing it, -1 everywhere else 'cos it stinks",
                 "A large wooden ladle (damage as mace)"
             ],
             "description": "You're a wise man, a high priest, a pond-pisser, a typical but committed adherent of P!P!Ssshrp. The bloated toad god has no church other than the periphery of ponds where the foulness catches in the reeds and no congregation other than the gnats and dragonflies. You minister to them all the same."
