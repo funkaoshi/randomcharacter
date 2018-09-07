@@ -3,7 +3,7 @@ import operator
 import random
 
 import characterclass
-from mixins import BasicAttributesMixin, AppearenceMixin, NameMixin, AscendingAcMixin, HitDiceMixin, PsionicWildTalentMixin
+from mixins import BasicAttributesMixin, AppearanceMixin, NameMixin, AscendingAcMixin, HitDiceMixin, PsionicWildTalentMixin
 from dice import d, xdy
 
 
@@ -17,7 +17,7 @@ def _is_dwarf(INT, CON, DEX, STR):
     return CON > 11 and STR >= 9, characterclass.DWARF
 
 
-class Character(BasicAttributesMixin, AppearenceMixin, NameMixin):
+class Character(BasicAttributesMixin, AppearanceMixin, NameMixin):
     """
     D&D characters are structurally quite similar. Common aspects of character
     creation are managed here. Subclasses for the different systems handle
@@ -465,7 +465,7 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
     his blog: http://dungeonofsigns.blogspot.ca/search/label/HMS%20Apollyon
     """
 
-    # Gus's Apollyon Appearences
+    # Gus's Apollyon Appearances
     DRESS = [
         "Feral tribal loincloth or untanned hull beast skins.",
         "The diaphanous fripperies of a burlesque hall performer.",

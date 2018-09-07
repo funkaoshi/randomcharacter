@@ -7,7 +7,7 @@
 {% block content %}
 <h2 class="system"><a href="http://funkaoshi.com">A Funkaoshi Production</a> Presents</h2>
 <h1>{{characters|length}} Random NPCs</h1>
-<h2 class="appearence">&nbsp;</h2>
+<h2 class="appearance">&nbsp;</h2>
 
 <table class='attr'>
   <thead>
@@ -20,7 +20,7 @@
       <th class="attr">DEX</th>
       <th class="attr">CON</th>
       <th class="attr">CHA</th>
-      <th class="appearence">Appearance and Personality</th>
+      <th class="appearance">Appearance and Personality</th>
     </tr>
   </thead>
   {% for c in characters %}
@@ -33,7 +33,7 @@
     <td class="attr">{{ c.attributes.3.1 }}</td>
     <td class="attr">{{ c.attributes.4.1 }}</td>
     <td class="attr">{{ c.attributes.5.1 }}</td>
-    <td class="appearence">{{ c.appearance }}, {{ c.personality }}</td>
+    <td class="appearance">{{ c.appearance }}, {{ c.personality }}</td>
   </tr>
   {% endfor %}
 </table>

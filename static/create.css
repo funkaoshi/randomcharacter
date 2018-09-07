@@ -21,12 +21,12 @@ h1 {
   margin: 0;
 }
 h2.system,
-h2.appearence {
+h2.appearance {
   font-size: 0.6em;
   color: #333;
   margin: 0;
 }
-h2.appearence {
+h2.appearance {
   font-size: 0.8em;
   margin-bottom: 1em;
   line-height: 1.2em;
@@ -168,8 +168,8 @@ table {
   text-align: center;
 }
 
-#container.npcs table.attr th.appearence,
-#container.npcs table.attr td.appearence {
+#container.npcs table.attr th.appearance,
+#container.npcs table.attr td.appearance {
   width: 300px;
   padding-left: 20px;
 }

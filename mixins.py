@@ -88,7 +88,7 @@ class NameMixin(object):
         return '%s %s' % (random.choice(characterclass.NAMES[race][gender]), random.choice(characterclass.NAMES[race]["Last"]))
 
 
-class AppearenceMixin(object):
+class AppearanceMixin(object):
     """
     Display the appearance of the character. This is the best part of this
     generator. It's all ugly murderhobo children.

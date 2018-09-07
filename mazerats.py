@@ -103,7 +103,7 @@ class Character(object):
         ])
 
     @property
-    def appearence(self):
+    def appearance(self):
         return random.choice([
             "Aquiline",
             "Athletic",

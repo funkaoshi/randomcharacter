@@ -10,7 +10,7 @@ import mixins
 import dice
 
 
-class Character(mixins.BasicAttributesMixin, mixins.AppearenceMixin):
+class Character(mixins.BasicAttributesMixin, mixins.AppearanceMixin):
 
     def __init__(self, *args, **kwargs):
         super(Character, self).__init__(*args, **kwargs)
