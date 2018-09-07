@@ -461,7 +461,7 @@ LOTFP['equipment']['Dwarf'] = LOTFP['equipment']['Fighter']
 LOTFP['equipment']['Halfling'] = LOTFP['equipment']['Fighter']
 
 
-APPEARENCE = [
+APPEARANCE = [
     ['Male', 'Female'],
     ['Child', 'Youth', 'Adult', 'Mature', 'Old', 'Decrepit'],
     ['Messy Clothing', 'Scant Clothing', 'Immaculate Clothing',

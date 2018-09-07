@@ -94,7 +94,7 @@ class AppearanceMixin(object):
     generator. It's all ugly murderhobo children.
     """
     def get_appearance(self):
-        return ', '.join(random.choice(feature) for feature in characterclass.APPEARENCE)
+        return ', '.join(random.choice(feature) for feature in characterclass.APPEARANCE)
 
 
 class AscendingAcMixin(object):

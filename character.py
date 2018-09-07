@@ -485,7 +485,7 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
         "Black suit or dress of fine dog wool, opera cape, mask and tall stylish hat.",
     ]
 
-    APPEARENCE = [
+    APPEARANCE = [
         "Impressive facial scarring, either intentional and harmonious or the sign of battle and accident.",
         "1D8 front teeth replaced with prosthetics of gold or other metal and possibly decorated.",
         "Necklaces of teeth, ears or similar savage trophies and corresponding swagger.",
@@ -527,7 +527,7 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
         return 2 if self.character_class == characterclass.FIGHTER else 0
 
     def get_appearance(self):
-        return ' '.join([random.choice(self.DRESS), random.choice(self.APPEARENCE)])
+        return ' '.join([random.choice(self.DRESS), random.choice(self.APPEARANCE)])
 
     def get_ac(self):
         """
