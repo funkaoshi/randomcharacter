@@ -11,10 +11,10 @@ class BasicAttributesMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-       self.attributes = self.roll_attribute_scores()
+        self.attributes = self.roll_attribute_scores()
 
-       # attribute map to ease display in template
-       self.attr = dict((attr, self.with_bonus(attr, value))
+        # attribute map to ease display in template
+        self.attr = dict((attr, self.with_bonus(attr, value))
                          for attr, value in self.attributes)
 
     @property
@@ -39,7 +39,7 @@ class BasicAttributesMixin(object):
         """
         Rolls the attribute scores: 3d6 in order, as one would expect.
         """
-        return [(attribute, xdy(3,6)) for attribute in characterclass.ATTRIBUTES]
+        return [(attribute, xdy(3, 6)) for attribute in characterclass.ATTRIBUTES]
 
     def get_bonus(self, attr, val):
         """
@@ -73,15 +73,28 @@ class BasicAttributesMixin(object):
         return "%d" % val
 
 
+class NameMixin(object):
+    """
+    Generate a random name for this character.
+    """
+    @property
+    def name(self):
+        race = self.class_name if self.class_name in ["Dwarf", "Elf", "Halfling"] else "Human"
+        gender = self.appearance.split(", ")[0]
+
+        if gender not in ["Male", "Female"]:
+            gender = random.choice(["Male", "Female"])
+
+        return '%s %s' % (random.choice(characterclass.NAMES[race][gender]), random.choice(characterclass.NAMES[race]["Last"]))
+
+
 class AppearenceMixin(object):
     """
     Display the appearance of the character. This is the best part of this
     generator. It's all ugly murderhobo children.
     """
-    @property
-    def appearance(self):
-        return ', '.join(random.choice(feature)
-                         for feature in characterclass.APPEARENCE)
+    def get_appearance(self):
+        return ', '.join(random.choice(feature) for feature in characterclass.APPEARENCE)
 
 
 class AscendingAcMixin(object):
@@ -143,6 +156,7 @@ class HitDiceMixin(object):
     sense to display the computed HP value. Instead we simply display the HD of
     the character, either 1 or 1+1 for Fighters.
     """
+
     def get_hp(self):
         # we set HP to None, which lets the template know we will display HD
         # instead.
@@ -158,6 +172,7 @@ class PsionicWildTalentMixin(object):
     If you want to allow psionic wild talents as outlined in a blog post I
     wrote on the topic some time ago:
     """
+
     def __init__(self, *args, **kwargs):
         super(PsionicWildTalentMixin, self).__init__(*args, **kwargs)
 
@@ -177,5 +192,3 @@ class PsionicWildTalentMixin(object):
                 return None
         else:
             return characterclass.WILD_TALENTS[talent_roll]
-
-

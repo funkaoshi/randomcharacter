@@ -1,140 +1,146 @@
 body {
-    background: #eee url('/static/lightpaperfibers.png');
-    font-size: 1em;
-    padding: 0; margin:0;
-    line-height: 150%;
-    font-family: 'Josefin Sans', sans serif;
-    zoom: 1; /* maybe fix IE stupidness */
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+  background: #eee url("/static/lightpaperfibers.png");
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  line-height: 150%;
+  font-family: "Josefin Sans", sans serif;
+  zoom: 1; /* maybe fix IE stupidness */
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
 }
 
-h1, h3 {
-    font-family: 'Metamorphous', cursive;
+h1,
+h3 {
+  font-family: "Metamorphous", cursive;
 }
 h1 {
-    font-size: 1.2em;
-    text-align: center;
-    margin: 0
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0;
 }
-h2.system, h2.appearence {
-    font-size: 0.6em;
-    color: #333;
-    margin: 0;
+h2.system,
+h2.appearence {
+  font-size: 0.6em;
+  color: #333;
+  margin: 0;
 }
 h2.appearence {
-    font-size: 0.8em;
-    margin-bottom: 1em;
-    line-height: 1.2em;
+  font-size: 0.8em;
+  margin-bottom: 1em;
+  line-height: 1.2em;
 }
 h2 {
-    font-size: 1em;
-    text-align: center
+  font-size: 1em;
+  text-align: center;
 }
 h3 {
-    font-size: 1em;
-    margin-bottom: 0.20em;
-    margin-top: 0.8em;
-    clear: both;
+  font-size: 1em;
+  margin-bottom: 0.2em;
+  margin-top: 0.8em;
+  clear: both;
 }
 
 /* Content */
 
 #container {
-    width: 25em;
-    margin: 0 auto;
-    padding: 1em 0;
+  width: 25em;
+  margin: 0 auto;
+  padding: 1em 0;
 }
 
 /* Attribute Tables */
 
 table {
-    padding: 0.5em;
-    border-bottom: 1px solid #333;
-    border-spacing: 0;
+  padding: 0.5em;
+  border-bottom: 1px solid #333;
+  border-spacing: 0;
 }
-table td, table th {
-    width: 8em;
-    vertical-align: top;
-    text-align: left;
-    padding: 0;
+table td,
+table th {
+  width: 8em;
+  vertical-align: top;
+  text-align: left;
+  padding: 0;
 }
 table.attr {
-    border-top: 1px solid #333;
+  border-top: 1px solid #333;
 }
 table td.save {
-    width: 12em; /* Saving throw names are a bit long */
+  width: 12em; /* Saving throw names are a bit long */
 }
 table td.save + td {
-    width: 4em;
+  width: 4em;
 }
 table.weapon td {
-    text-align: center;
+  text-align: center;
 }
 
 /* Additional Content Tables and Lists */
 
 p {
-    padding: 0 0.5em;
+  padding: 0 0.5em;
 }
 
 .block {
-    width: 11.5em;
-    padding: 0 0.5em;
-    margin: 0;
-    float: left;
+  width: 11.5em;
+  padding: 0 0.5em;
+  margin: 0;
+  float: left;
 }
 
 table.skills {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 table.thief.skills td + td,
 table.thief.skills th + th {
-    width: 2em;
+  width: 2em;
 }
 
 ul {
-    margin: 0;
-    padding-left: 1em;
-    list-style: circle;
+  margin: 0;
+  padding-left: 1em;
+  list-style: circle;
 }
 
 li p {
-    margin: 0;
+  margin: 0;
 }
 
 /* Small centered footer */
 
 footer {
-    clear: both;
-    padding-top: 2em;
+  clear: both;
+  padding-top: 2em;
 }
 footer p:first-child {
-    border-top: 1px solid gray;
-    padding-top: 1em;
+  border-top: 1px solid gray;
+  padding-top: 1em;
 }
 footer p {
-    font-size: 0.8em;
-    line-height: 130%;
+  font-size: 0.8em;
+  line-height: 130%;
 }
 
 /* 3d6 page */
 
 div.threedeesix h2.system {
-	margin-top: 75px;
+  margin-top: 75px;
 }
 
 /* Adventure Game */
 
-table { width: 100%; }
+table {
+  width: 100%;
+}
 
 /* Random NPCs */
 
 #container.npcs {
-    width: 640px;
+  width: 800px;
 }
 
 #container.npcs table.attr {
@@ -147,35 +153,39 @@ table { width: 100%; }
   padding: 5px 0;
 }
 
+#container.npcs table.attr .name {
+  width: 160px;
+}
+
 #container.npcs table.attr th.class,
 #container.npcs table.attr td.class {
-    width: 80px;
+  width: 80px;
 }
 
 #container.npcs table.attr th.attr,
 #container.npcs table.attr td.attr {
-    width: 40px;
-    text-align: center;
+  width: 40px;
+  text-align: center;
 }
 
 #container.npcs table.attr th.appearence,
 #container.npcs table.attr td.appearence {
-    width: 300px;
-    padding-left:20px;
+  width: 300px;
+  padding-left: 20px;
 }
 
 /* 5e */
 
 #skills {
-    padding: 5px;
+  padding: 5px;
 }
 
 #skills td.score {
-    width: 20%;
-    text-align: center;
+  width: 20%;
+  text-align: center;
 }
 
 ul#personality {
-    list-style-type: none;
-    padding: 5px 10px;
+  list-style-type: none;
+  padding: 5px 10px;
 }

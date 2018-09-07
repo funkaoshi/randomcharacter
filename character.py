@@ -3,7 +3,7 @@ import operator
 import random
 
 import characterclass
-from mixins import BasicAttributesMixin, AppearenceMixin, AscendingAcMixin, HitDiceMixin, PsionicWildTalentMixin
+from mixins import BasicAttributesMixin, AppearenceMixin, NameMixin, AscendingAcMixin, HitDiceMixin, PsionicWildTalentMixin
 from dice import d, xdy
 
 
@@ -17,7 +17,7 @@ def _is_dwarf(INT, CON, DEX, STR):
     return CON > 11 and STR >= 9, characterclass.DWARF
 
 
-class Character(BasicAttributesMixin, AppearenceMixin):
+class Character(BasicAttributesMixin, AppearenceMixin, NameMixin):
     """
     D&D characters are structurally quite similar. Common aspects of character
     creation are managed here. Subclasses for the different systems handle
@@ -32,6 +32,7 @@ class Character(BasicAttributesMixin, AppearenceMixin):
 
         self.character_class = self.get_character_class(classname)
         self.class_name = self.character_class['name']
+        self.appearance = self.get_appearance()
         self.personality = self.get_personality()
         if testing:
             return
@@ -525,8 +526,7 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
     def attack_bonus(self):
         return 2 if self.character_class == characterclass.FIGHTER else 0
 
-    @property
-    def appearance(self):
+    def get_appearance(self):
         return ' '.join([random.choice(self.DRESS), random.choice(self.APPEARENCE)])
 
     def get_ac(self):
@@ -623,8 +623,7 @@ class CarcosaBase(object):
     The common base for a Carcosa character.
     """
 
-    @property
-    def appearance(self):
+    def get_appearance(self):
         colour = random.choice([
             "Black", "Blue", "Bone", "Brown", "Dolm", "Green", "Jale",
             "Orange", "Purple", "Red", "Ulfire", "White", "Yellow"])

@@ -546,6 +546,97 @@ PERSONALITY = [
 ]
 
 
+NAMES = {
+    'Human': {
+        "Male": [
+            'Anlow', 'Arando', 'Bram', 'Cale', 'Dalkon', 'Daylen', 'Dodd',
+            'Dungarth', 'Dyrk', 'Eandro', 'Falken', 'Feck', 'Fenton',
+            'Gryphero', 'Hagar', 'Jeras', 'Krynt', 'Lavant', 'Leyten', 'Madian',
+            'Malfier', 'Markus', 'Meklan', 'Namen', 'Navaren', 'Nerle', 'Nilus',
+            'Ningyan', 'Norris', 'Quentin', 'Semil', 'Sevenson', 'Steveren',
+            'Talfen', 'Tamond', 'Taran', 'Tavon', 'Tegan', 'Vanan', 'Vincent'
+        ],
+        "Female": [
+            'Azura', 'Brey', 'Hallan', 'Kasaki', 'Lorelei', 'Mirabel',
+            'Pharana', 'Remora', 'Rosalyn', 'Sachil', 'Saidi', 'Tanika', 'Tura',
+            'Tylsa', 'Vencia', 'Xandrilla'
+        ],
+        "Last": [
+            'Arkalis', 'Armanci', 'Bilger', 'Blackstrand', 'Brightwater',
+            'Carnavon', 'Caskajaro', 'Coldshore', 'Coyle', 'Cresthill',
+            'Cuttlescar', 'Daargen', 'Dalicarlia', 'Danamark', 'Donoghan',
+            'Drumwind', 'Dunhall', 'Ereghast', 'Falck', 'Fallenbridge',
+            'Faringray', 'Fletcher', 'Fryft', 'Goldrudder', 'Grantham',
+            'Graylock', 'Gullscream', 'Hindergrass', 'Iscalon', 'Kreel',
+            'Kroft', 'Lamoth', 'Leerstrom', 'Lynchfield', 'Moonridge',
+            'Netheridge', 'Oakenheart', 'Pyncion', 'Ratley', 'Redraven',
+            'Revenmar', 'Roxley', 'Sell', 'Seratolva', 'Shanks', 'Shattermast',
+            'Shaulfer', 'Silvergraft', 'Stavenger', 'Stormchapel', 'Strong',
+            'Swiller', 'Talandro', 'Targana', 'Towerfall', 'Umbermoor',
+            'Van Devries', 'Van Gandt', 'Van Hyden', 'Varcona', 'Varzand',
+            'Voortham', 'Vrye', 'Webb', 'Welfer', 'Wilxes', 'Wintermere',
+            'Wygarthe', 'Zatchet', 'Zethergyll'
+        ]
+    },
+    'Dwarf': {
+        "Male": [
+            'Agaro', 'Arnan', 'Auxlan', 'Avamir', 'Baelnar', 'Balfam',
+            'Bariken', 'Borkul', 'Darkul', 'Dolmen', 'Dyrnar', 'Erag', 'Ezegan',
+            'Ferrek', 'Garmul', 'Glint', 'Ghorvas', 'Grimmalk', 'Haeltar',
+            'Halagmar', 'Halzar', 'Hlant', 'Korlag', 'Krag', 'Krim', 'Kurman',
+            'Lurtrum', 'Malagar', 'Mardam', 'Maulnar', 'Melgar', 'Morak',
+            'Orobok', 'Rogath', 'Roken', 'Rozag', 'Sabakzar', 'Sharak',
+            'Smethykk', 'Swargar', 'Thorbalt', 'Thorin', 'Tredigar', 'Vabul',
+            'Vistrum', 'Wolvar'
+        ],
+        "Female": [
+            'Beyla', 'Fenryl', 'Grenenzel', 'Krystolari', 'Lokara', 'Lurka',
+            'Marnia', 'Praxana', 'Rokel', 'Roksana', 'Thurlfara', 'Vauldra',
+            'Veklani', 'Vronwe', 'Zebel'
+        ],
+        "Last": [
+            'Ambershard', 'Barrelhelm', 'Copperhearth', 'Deepmiddens',
+            'Drakantal', 'Evermead', 'Garkalan', 'Grimtor', 'Hackshield',
+            'Irongull', 'Markolak', 'Ramcrown', 'Rockharvest', 'Silvertarn',
+            'Skandalor', 'Zarkanan'
+        ]
+    },
+    'Elf': {
+        "Male": [
+            'Alarcion', 'Alathar', 'Ariandar', 'Arromar', 'Borel', 'Bvachan',
+            'Carydion', 'Elgoth', 'Farlien', 'Ferel', 'Gaerlan', 'Iafalior',
+            'Kaelthorn', 'Laethan', 'Leliar', 'Leodor', 'Lorak', 'Lorifir',
+            'Morian', 'Oleran', 'Rylef', 'Savian', 'Seylas', 'Tevior', 'Veyas'
+        ],
+        "Female": [
+            'Aryllan', 'Atalya', 'Ayrthwil', 'Irva', 'Lyfalia', 'Ronefel',
+            'Thirya', 'Velene', 'Venefiq', 'Zereni'
+        ],
+        "Last": [
+            'Autumnloft', 'Balefrost', 'Briarfell', 'Evenwind', 'Graytrails',
+            'Mooncairn', 'Riverwall', 'Stormwolf', 'Summergale', 'Sunshadow', 'Woodenhawk'
+        ]
+    },
+    'Halfling': {
+        "Male": [
+            'Arthan', 'Carvin', 'Corby', 'Cullen', 'Egen', 'Ernest', 'Gedi',
+            'Heron', 'Jeryl', 'Keffen', 'Kylem', 'Kynt', 'Leskyn', 'Neff',
+            'Orne', 'Quarrel', 'Rabbit', 'Rilkin', 'Snakebait', 'Tarfen',
+            'Titch', 'Tuck', 'Whim'
+        ],
+        "Female": [
+            'Caliope', 'Emily', 'Piper', 'Rixi', 'Sabretha', 'Teg', 'Tilly',
+            'Toira', 'Vexia', 'Vil', 'Vzani', 'Zanthe', 'Ziza'
+        ],
+        "Last": [
+            'Angler', 'Battlestone', 'Blackwater', 'Daggersharp', 'Deepstrider',
+            'Hollowpot', 'Puddle', 'Raftmite', 'Skiprock', 'Silverfin',
+            'Tanglestrand', 'Tricker', 'Willowrush', 'Yellowcrane'
+        ]
+    }
+}
+
+
 class GONZO:
     """
     Information we use when making Carcosa characters.
