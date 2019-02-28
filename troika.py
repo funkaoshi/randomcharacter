@@ -12,8 +12,9 @@ class Character(mixins.AppearanceMixin):
 
         # Attributes
         self.skill = dice.d(3) + 3
-        self.stamina = dice.xdy(2,6) + 12
-        self.luck = dice.d(6)+ 6
+        self.stamina = dice.xdy(2, 6) + 12
+        self.luck = dice.d(6) + 6
+        self.appearance = self.get_appearance()
 
         # Pick a Background
         background = random.choice(self.BACKGROUNDS)
