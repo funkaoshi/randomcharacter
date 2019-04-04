@@ -26,7 +26,7 @@ class Character(mixins.AppearanceMixin):
         # Pick one of the "ORs" for possessions when picking equipment
         self.equipment = [
             random.choice(equipment.split(' OR '))
-            for equipment in background['possesions']
+            for equipment in background['possessions']
         ] + [
             # Add default equipment
             'Knife',
@@ -61,14 +61,14 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "11 Ardent Giant of Corda",
-            "possesions": [
-                "An artefact of Lost Corda, being either an enormous blue star map offering +1 astrology when studied for 12 minutes OR A contraption for telling the weather (5 in 6 accuracy) OR A ruby lorgnette offering +1 Second Sight while worn"
+            "possessions": [
+                "An artefact of Lost Corda, being either an enormous blue star map which can tell where any portal leads with a successful Astrology test or a pocket barometer for telling the weather (5 in 6 accuracy) or a ruby lorgnette offering +2 Second Sight while worn."
             ],
-            "description": "Every giant has a different story about Corda, well told and interrupted with bouts of hysterical crying and laughter, of how they lost it and mean to find it soon enough but oh, what of today? We should drink and cheer, I'll search again in the morning!"
+            "description": "Every giant has a different story about Corda, well told and interrupted with tears and laughter, of how they lost it and mean to find it soon enough but oh, what of today? We should drink and cheer, we'll search again in the morning!"
         },
         {
             "skills": [
-                "3 Spell - Drown",
+                "3 Spell -  Drown",
                 "3 Swim",
                 "2 Spell - Tongue Twister",
                 "2 Spell - Undo",
@@ -76,13 +76,13 @@ class Character(mixins.AppearanceMixin):
                 "1 Sneak",
                 "1 Second Sight"
             ],
-            "special": "May drink stagnant water without harm",
+            "special": "You may drink stagnant water without harm.",
             "name": "12 Befouler of Ponds",
-            "possesions": [
-                "Sackcloth robes, caked in stinking mud and undergrowth. +1 to Sneak rolls in marshy terrain while wearing it, -1 everywhere else \u2018cos it stinks",
-                "A large wooden ladle (damage as mace)"
+            "possessions": [
+                "Sackcloth robes, caked in stinking mud and undergrowth. +1 to Sneak rolls in marshy terrain while wearing them, -1 everywhere else 'cos it stinks!",
+                "A large wooden ladle (Damage as mace)."
             ],
-            "description": "You're a wise man, a high priest, a pond-pisser, a typical but committed adherent of P!P!Ssshrp. The bloated toad god has no church other than the periphery of ponds where the foulness catches in the reeds and no congregation other than the gnats and dragonflies. You minister to them all the same."
+            "description": "You're a wise man, a high priest, a pond-pisser, a typical but committed adherent of P!P!Ssshrp. The bloated toad god has no church other than the periphery of ponds where the foulness catches in the reeds, and no congregation other than the gnats and dragonflies. You minister to them all the same."
         },
         {
             "skills": [
@@ -91,15 +91,15 @@ class Character(mixins.AppearanceMixin):
                 "1 Awareness",
                 "1 Climb",
                 "1 Trapping",
-                "1 Knife fighting",
-                "1 Crossbow fighting"
+                "1 Knife Fighting",
+                "1 Crossbow Fighting"
             ],
-            "special": "You may test your luck to find and get in with the local criminal underbelly, if one exists.",
+            "special": "You may Test your Luck to find and get in with the local criminal underbelly if one exists.",
             "name": "13 Burglar",
-            "possesions": [
-                "Crossbow & 18 bolts",
-                "Roll of lock picks",
-                "Grappling hook"
+            "possessions": [
+                "Crossbow and 18 bolts.",
+                "Roll of lock picks.",
+                "Grappling hook."
             ],
             "description": "As a second-story man you often have cause to wander. Enemies come naturally from both sides of the law and it pays to keep ahead of trouble."
         },
@@ -116,31 +116,31 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "14 Cacogen",
-            "possesions": [
-                "Fusil",
-                "2d6 plasmic cores",
-                "Sword",
-                "Velare"
+            "possessions": [
+                "Fusil.",
+                "2d6 plasmic cores.",
+                "Sword.",
+                "Velare."
             ],
-            "description": "Those filthy born, spawned in the hump-backed sky lit only by great black anti-suns and false light. Your mother was sailing on the golden barges or caught in some more abstract fate when she passed you, far from the protective malaise of the million spheres. You were open to the power and the glory at a generative time and it shows in your teratoid form."
+            "description": "You are Those-Filthy-Born, spawned in the hump-backed sky lit only by great black anti-suns and false light. Your mother was sailing on the golden barges or caught in some more abstract fate when she passed you, far from the protective malaise of the million spheres. You were open to the power and the glory at a generative time and it shows in your teratoid form."
         },
         {
             "skills": [
                 "6 Language - Kurgan",
-                "3 Maul fighting",
+                "3 Maul Fighting",
                 "3 Secret Signs - Chaos Patron",
                 "1 Spell - Random (Table 5)",
-                "1 Second sight"
+                "1 Second Sight"
             ],
-            "special": "Name your patron. You may call upon your patron for aid once per day, to do so roll three 6s on 3d6, the GM will interpret his intervention.",
+            "special": "Name your patron. You may call upon your patron for aid once per day. To do so roll three 6s on 3d6. The GM will interpret their intervention.",
             "name": "15 Chaos Champion",
-            "possesions": [
-                "Ritual scars",
-                "A huge maul",
-                "Assortment of ragged armour (Modest armour)",
-                "Dream journal, almost full"
+            "possessions": [
+                "Ritual scars.",
+                "A huge maul.",
+                "Assortment of ragged armour (counts as Modest Armour).",
+                "Dream journal, almost full."
             ],
-            "description": "You no longer have the spiked brass armour but you still have the ear of your Chaos patron. He's happy for you to experiment with not plunging your sphere into disorder and, ultimately, darkness but the door is always open."
+            "description": "You no longer have the spiked brass armour but you still have the ear of your Chaos patron. They're happy for you to experiment with not plunging your world into disorder and, ultimately, darkness, but the door is always open."
         },
         {
             "skills": [
@@ -154,32 +154,32 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "16 Claviger",
-            "possesions": [
-                "Festooned with keys (counts as modest armour)",
-                "A sledgehammer",
-                "Lock picking tools"
+            "possessions": [
+                "Festooned with keys (counts as Modest Armour).",
+                "A sledgehammer.",
+                "Lock picking tools."
             ],
-            "description": "The key masters wander the universe fathoming the workings of all entry ways they can find. Though they're quite fascinated with simple chests and doors they are most excited by metaphysical and metaphorical barriers. You might find small conclaves of clavigers camped around the feet of demon gates, debating appropriate methods of attack or building obscure machine of entry."
+            "description": "The key masters wander the universe fathoming the workings of all entry ways they can find. Though they're quite fascinated with simple chests and doors they are most excited by metaphysical and metaphorical barriers. You might find small conclaves of clavigers camped around the feet of demon gates, debating appropriate methods of attack or building obscure machines of entry."
         },
         {
             "skills": [
                 "5 Language - Abyssal",
                 "3 Spell - Blood Shroud",
                 "2 Second Sight",
-                "2 Sword fighting",
-                "2 Bow fighting",
+                "2 Sword Fighting",
+                "2 Bow Fighting",
                 "1 Tracking",
                 "1 Sneak"
             ],
             "special": "",
             "name": "21 Demon Stalker",
-            "possesions": [
-                "A silver sword",
-                "Sixteen silver arrows and a bow",
-                "Pouch of salt",
-                "Vial of demon blood"
+            "possessions": [
+                "A silver sword.",
+                "16 silver arrows and a bow.",
+                "Pouch of salt.",
+                "Vial of demon blood."
             ],
-            "description": "You stake your reputation on your ability to hunt and kill demonic creatures and those who break bread with them. Goat men in the wilds, or the angel cults of the slums, all needs to be driven back off the edge of the map and into the shores of chaos."
+            "description": "You stake your reputation upon your ability to hunt and kill demonic creatures and those who break bread with them. Goat men in the wilds or the angel cults of the slums, all need to be driven back off the edge of the map and into the shores of chaos."
         },
         {
             "skills": [
@@ -191,15 +191,15 @@ class Character(mixins.AppearanceMixin):
                 "2 Strength",
                 "2 Fist Fighting",
                 "2 Wrestling",
-                "1 Hammer fighting"
+                "1 Hammer Fighting"
             ],
-            "special": "May eat gems and rare metals as a food replacement. You in fact far prefer the taste of rare minerals to mundane food. Dwarves are genderless. You are immune to all compulsions that play on a creature's desire for the opposite sex. This also means you don't have sexual organs. Instead of urinating you excrete through sweating, thus explaining the odour.",
+            "special": "Dwarfs may eat gems and rare metals as a food replacement. You in fact far prefer the taste of rare minerals to mundane food. Dwarfs are genderless. You are immune to all compulsions that play on a creature's desire for the opposite sex. This also means you don't have sexual organs. Instead of urinating you excrete through sweating, thus explaining your odour.",
             "name": "22 Dwarf",
-            "possesions": [
-                "Masons hammer",
-                "Roll of artists supplies"
+            "possessions": [
+                "Masonry hammer (Damage as mace).",
+                "Roll of artist's supplies."
             ],
-            "description": "You are a short, hairy, belligerent, alcohol dependent creature. The latter two may be linked, but you'll fight anyone who suggests as much. Since there are no dwarf women (or men, technically) there are no dwarf children or dwarf families, so you can fully commit yourself to the important dwarfy endeavours of creating fine art in unusual places. You intend to find the most unusual places ever seen in all the million spheres."
+            "description": "You are a short, hairy, belligerent, alcohol dependent creature. The latter two may be linked but you'll fight anyone who suggests as much. Since there are no dwarf women (or men, technically) there are no dwarf children or dwarf families, so you can fully commit yourself to the important dwarfy endeavours of creating fine art in unusual places. You intend to find the most unusual places ever seen in all the million spheres."
         },
         {
             "skills": [
@@ -210,30 +210,31 @@ class Character(mixins.AppearanceMixin):
                 "1 Fist Fighting",
                 "1 Run"
             ],
-            "special": "May test your luck to get a yes or no answer to a question about mundane matters. The GM should make this test in private, not informing the epopt if they are accurate.",
+            "special": "Epopts may Test their Luck to get a yes or no answer to a question about mundane matters. The GM should make this Test in private, not informing the epopt if they are accurate.",
             "name": "23 Epopt",
-            "possesions": [
-                "Yellow epopt outfit, padded for protection against unhappy clients (counts as modest armour)",
-                "Epopt staff, being a walking staff with",
-                "seeing crystal on one end (counts as",
-                "staff)",
-                "Collapsible tent, big enough for your",
-                "stall"
+            "possessions": [
+                "Yellow epopt outfit, padded for protection against unhappy clients (counts as Modest Armour).",
+                "Epopt staff, being a walking staff with seeing crystal on one end (Damage as staff).",
+                "Collapsible tent, big enough for your stall."
             ],
-            "description": "A roaming seer, selling your visions at courts and fetes. You are instantly recognisable by your yellow coif and habit as being open for business. Road weary and world wise, your unpopular visions cause you to constantly move on."
+            "description": "You are a roaming seer, selling your visions at courts and fetes. You are instantly recognisable by your yellow coif and habit as being open for business. Road weary and worldwise, your unpopular visions cause you to constantly move on."
         },
         {
             "skills": [
                 "6 Language - Weird Exotic Language",
-                "3 in the fighting skill of your weird"
+                "3 in the Fighting Skill of your weird weapon",
+                "2 Language - local language",
+                "2 Spell - Random (Table 5)",
+                "1 Astrology",
+                "1 Etiquette"
             ],
             "special": "",
             "name": "24 Exotic Warrior",
-            "possesions": [
-                "A weird and wonderful weapon",
-                "Strange clothes",
-                "Exciting accent",
-                "A tea set OR 3 pocket gods OR Astrological equipment"
+            "possessions": [
+                "A weird and wonderful weapon.",
+                "Strange clothes.",
+                "Exciting accent.",
+                "A tea set or 3 pocket gods or astrological equipment."
             ],
             "description": "No one has heard of your homeland. Your habits are peculiar, your clothes are outrageous, and in a land jaded to the outlandish and new you still somehow manage to stand out."
         },
@@ -245,110 +246,110 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "25 The Fellowship of Knidos",
-            "possesions": [
-                "Large Astrolabe (as mace)",
-                "Abacus",
-                "Lots of scrolls and writing equipment"
+            "possessions": [
+                "Large astrolabe (Damage as mace).",
+                "Abacus.",
+                "Lots of scrolls and writing equipment."
             ],
-            "description": "Mathmologists honour the clean and unambiguous truths of mathematics, and coordinate it with their observation of the multiverse. All things can be measured and predicted with the application of the correct mathmological ratios, their methods applied to penetrate the ethereal surface to glimpse the fundamental numbers below."
+            "description": "Mathmologists honour the clean and unambiguous truths of mathematics and coordinate them with their observation of the multiverse. All things can be measured and predicted with the application of the correct mathmological ratios, those methods applied to penetrate the ethereal surface to glimpse the fundamental numbers below."
         },
         {
             "skills": [
                 "4 Strength",
-                "2 Fist fighting",
+                "2 Fist Fighting",
                 "2 Run",
-                "1 Hook fighting",
+                "1 Hook Fighting",
                 "1 Sneak",
                 "1 Awareness"
             ],
             "special": "",
-            "name": "26 Fellowship of Porters & Basin Fillers",
-            "possesions": [
-                "A wooden yoke",
-                "Brown over coat and soft doffing cap of the guild",
-                "A bale hook. Counts as a knife for damage and gains you a +1 on rolls to lift heavy objects if used to do so",
-                "Length of rope"
+            "name": "26 Compeer of the Fellowship of Porters & Basin Fillers",
+            "possessions": [
+                "A wooden yoke.",
+                "Brown overcoat and soft doffing cap of the guild.",
+                "A bale hook--counts as a knife for Damage and gains you a +1 on rolls to lift heavy objects.",
+                "Length of rope."
             ],
-            "description": "Porters & Basin Fillers Luggers are a servile group by nature, most often found in the service of others, weighed down by loads that would buckle a donkey. You take pride in that. Maybe so much that the everyday assignments of the guild could not sate your desire to serve, causing you to venture out in search of a real challenge for such a talented varlet."
+            "description": "Luggers are a servile group by nature, most often found in the service of others, weighed down by loads that would buckle a donkey. You take pride in that, maybe so much so that the everyday assignments of the guild could not sate your desire to serve, causing you to venture out in search of a real challenge for such a talented varlet."
         },
         {
             "skills": [
-                "4 Tunnel fighting",
+                "4 Tunnel Fighting",
                 "4 Trapping",
                 "2 Sneak",
                 "2 Awareness",
-                "2 Club fighting",
+                "2 Club Fighting",
                 "2 Tracking",
                 "1 Swim"
             ],
             "special": "",
             "name": "31 Gremlin Catcher",
-            "possesions": [
-                "Small but vicious dog",
-                "Flat cap",
-                "A club",
-                "A sack",
-                "D6 empty gremlin jars",
-                "A jar with a pissed off gremlin inside"
+            "possessions": [
+                "Small but vicious dog.",
+                "Flat cap.",
+                "A club.",
+                "A sack.",
+                "1d6 empty gremlin jars.",
+                "A jar with a pissed off gremlin inside."
             ],
-            "description": "No matter what country, sphere or abstract dimension you may find yourself in, be sure that gremlins will be there digging their warrens and bothering nice people willing to pay you a shiny penny to bash their little heads in."
+            "description": "No matter what country, sphere, or abstract dimension you may find yourself in be assured that gremlins will be there digging their warrens and bothering nice people willing to pay you a shiny penny to bash their little heads in."
         },
         {
             "skills": [
                 "1 Poison",
                 "1 Sneak",
                 "1 Locks",
-                "1 Knife fighting",
+                "1 Knife Fighting",
                 "1 Climb",
                 "1 Awareness",
-                "1 Crossbow fighting",
+                "1 Crossbow Fighting",
                 "1 Swim",
                 "1 Disguise"
             ],
             "special": "",
             "name": "32 Journeyman of the Guild of Sharp Corners",
-            "possesions": [
-                "Black clothes of the apprentice",
-                "Garrotte",
-                "Curved sword",
-                "3 vials of poison",
-                "Crossbow & 6 bolts"
+            "possessions": [
+                "Black clothes of the apprentice.",
+                "Garrotte.",
+                "Curved sword.",
+                "3 vials of poison.",
+                "Crossbow and 6 bolts."
             ],
-            "description": "Sharp Corners You are an assassin in training, graduated from fighting dummies or branding practise clients, now you have a license to do it for real. You haven't fully developed the idiosyncratic methods required of a master but you are on the path."
+            "description": "You are an assassin in training, graduated from fighting dummies and branding practise clients, freshly imbued with a license to ply your trade. You haven't fully developed the idiosyncratic methods required of a master but you are on the path."
         },
         {
             "skills": [
-                "2 Greatsword fighting",
-                "2 Pistolet fighting",
+                "2 Greatsword Fighting",
+                "2 Pistolet Fighting",
                 "1 Run",
                 "1 Fist Fighting",
                 "1 Astrology"
             ],
             "special": "",
-            "name": "33 Lansquenet",
-            "possesions": [
-                "Exquisite pistolet",
-                "Bandolier containing 18 plasmic cores",
-                "Greatsword",
-                "Brightly coloured clothing with lots of tassels and bells (-4 to sneaking). Though frivolous looking it is in fact built with the autarch's divine alchemy and considered modest armour while weighing the same as normal clothing"
+            "name": "33  Lansquenet",
+            "possessions": [
+                "Exquisite pistolet.",
+                "Bandolier containing 18 plasmic cores.",
+                "Greatsword.",
+                "Brightly coloured clothing with lots of tassels and bells (impossible to sneak). Though frivolous looking, it is in fact built with the Autarch's divine alchemy and considered Modest Armour while weighing the same as normal clothing (takes no slots in your inventory)."
             ],
-            "description": "You were a mercenary retained in the exclusive service of the phoenix throne, handsomely paid and sent to distant spheres on golden ships to spread the ineffable glory of your paymaster at the tip of your flaming lance."
+            "description": "You were a mercenary retained in the exclusive service of the Phoenix Throne, handsomely paid and sent to distant spheres on golden ships to spread the ineffable glory of your paymaster at the tip of your flaming lance."
         },
         {
             "skills": [
                 "3 Etiquette",
-                "3 Weapon fighting in the weapon of your choice",
+                "3 Weapon Fighting in the weapon of your choice",
                 "3 Ride",
                 "1 Tracking"
             ],
             "special": "",
-            "name": "34 Lonesome King",
-            "possesions": [
-                "A nice weapon of your choice",
-                "A crown",
-                "A tired horse"
+            "name": "34 Lonesome Monarch",
+            "possessions": [
+                "A nice weapon of your choice.",
+                "A crown.",
+                "A tired horse."
             ],
-            "description": "You were a king. The ruler of all you surveyed, a great conqueror, a law-bringer! But your horse sped off into the pixie forest, or the court magician ensured you disappeared, or you led a sortie into the stars to put your stamp on them as well. Either way you are now a lost and lonely king without a kingdom, no one has heard of you or your people. Most don't believe you and laugh, or worse they do believe you and shrug at the vagaries of fate."
+            "description": "You were the ruler of all you surveyed, a great conqueror, a lawbringer! Unfortunately your horse sped off into the pixie forest, or the court magician ensured you disappeared, or you led a sortie into the stars to put your stamp on them as well. Either way you are now a lost and lonely sovereign without a kingdom--no one has heard of you or your people. Most don't believe you and laugh, or worse, they do believe you and shrug at the vagaries of fate."
         },
         {
             "skills": [
@@ -358,13 +359,13 @@ class Character(mixins.AppearanceMixin):
                 "1 Trapping",
                 "1 Gastrology"
             ],
-            "special": "Immune to mundane ingested poisons. Also can identify any object if eaten, gaining knowledge of its material, its origin (if plausibly familiar), and its magical properties on a successful test of gastrology. Must be thoroughly masticated, not merely swallowed and passed. This does not grant special immunity to any effects it may possess.",
-            "name": "35 Miss Kinsey's Diner's Club",
-            "possesions": [
-                "Sharp metal dentures (damage as sword) OR Forked metal dentures (as knife, but on a critical you may cleanly strip all the flesh from one small appendage) OR Blunt metal dentures (damage as knife but may be used to eat hard objects)",
-                "Embroidered napkin"
+            "special": "Eaters are immune to mundane ingested poisons. They may also identify any object if eaten, gaining knowledge of its material, its origin (if plausibly familiar), and its magical properties on a successful Testtest of Gastrology, though the object must be thoroughly masticated, not merely swallowed and passed. This does not grant special immunity to any effects the object may possess.",
+            "name": "35 Member of Miss Kinsey's Diner's Club",
+            "possessions": [
+                "Sharp metal dentures (Damage as sword) or forked metal dentures (Damage as knife, but on a Critical Hit you may cleanly strip all the flesh from one small appendage) or blunt metal dentures (Damage as knife but may be used to eat hard objects).",
+                "Embroidered napkin."
             ],
-            "description": "The Eaters know that there are only two worlds: the without and the within. They intend to insert as much of the prior into the later as they can while experiencing the finest delights available. All culinary experience is open to them, nothing is forbidden at Miss Kinsey's. Try the other, other, other white meat."
+            "description": "The Eaters know that there are only two worlds: the Without and the Within. They intend to insert as much of the prior into the latter as they can while experiencing the finest delights available. All culinary experience is open to them as nothing is forbidden at Miss Kinsey's. Try the other, other, other white meat."
         },
         {
             "skills": [
@@ -375,51 +376,51 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "36 Monkeymonger",
-            "possesions": [
-                "Monkey Club",
-                "Butcher Knife",
-                "d6 small monkeys that do not listen to you but are too scared and hungry to travel far from you",
-                "A pocket full of monkey treats"
+            "possessions": [
+                "Monkey club.",
+                "Butcher's knife.",
+                "1d6 small monkeys that do not heed commands but are too scared and hungry to travel far from you.",
+                "A pocket full of monkey treats."
             ],
-            "description": "Life on The Wall is hard. One is never more than a few yards from an endless fall but those precarious villages still need to eat. This is where you come in with your edible monkeys (the distinction is purely for appeal, since all monkeys are of course edible). You used to spend days on end dangling your feet off the edge of the world watching over your chittering livestock while they scampered hither and thither. But there was no future in monkey meat, or future on The Wall. You wanted much more and so stepped off. Or you fell. Either way you and some unlucky monkeys are 10 here now and that's all that matters."
+            "description": "Life on The Wall is hard. One is never more than a few yards from an endless fall yet those precarious villages still need to eat. This is where you come in with your Edible Monkeys (the distinction is purely for appeal since all monkeys are of course edible). You used to spend days on end dangling your feet off the edge of the world, watching over your chittering livestock while they scampered hither and thither, but there was no future in monkey meat. You wanted much more, and so stepped off. Or you fell off. Either way, you and some unlucky monkeys are here now and that's all that matters."
         },
         {
             "skills": [
                 "2 Heal",
-                "1 Spell - Posthumous vitality",
+                "1 Spell - Posthumous Vitality",
                 "1 Spell - Skeletal Counsel",
                 "1 Spell - Torpor",
                 "1 Sneak"
             ],
             "special": "",
             "name": "41 Necromancer",
-            "possesions": [
-                "Dusty robes",
-                "The skull of your master OR A zombie servant OR A ghost with whom you have developed a co-dependent relationship with"
+            "possessions": [
+                "Dusty robes.",
+                "The skull of your master or a zombie servant or a ghost with whom you have developed a codependent relationship."
             ],
-            "description": "The least popular magical practitioners. Shunned by the major centres of learning, they're left to their own devices on the edges of society, passing on knowledge in the time honoured master student dynamic. The loneliness encourages students to make their own friends."
+            "description": "The least popular of magical practitioners, necromancers are shunned by the major centres of learning, left to their own devices on the edges of society, passing on knowledge in the time honoured master-student dynamic. This loneliness encourages students to make their own friends."
         },
         {
             "skills": [
                 "2 Spell - Protection From Rain",
-                "2 Callous Strike",
+                "2 Spell - Callous Strike",
                 "2 Spell - Quench",
                 "2 Spell - True Seeing",
                 "2 Disguise",
                 "2 Second Sight",
                 "1 Healing",
-                "1 Undo",
+                "1 Spell - Undo",
                 "1 Spell - Random (Table 5)"
             ],
-            "special": "You are undead so do not need to breathe, circulate blood, and so on. You takes double damage from silver weapons and regain stamina half as effectively from all sources. You must test luck if outside in the rain, made wet, close to open flames, or suffer general grievous wounds. A failure will see your skin ruined. While your skin is damaged you are very obviously a walking corpse. 11",
+            "special": "You are undead, so you do not need to breathe, circulate blood, and so on. You take double Damage from silver weapons and regain Stamina half as effectively from all sources. You must Test your Luck if outside in the rain, are made wet, are close to open flames, or suffer generally grievous wounds. A failure will see your skin ruined. While your skin is damaged, you are very obviously a walking corpse.",
             "name": "42 Parchment Witch",
-            "possesions": [
-                "d6 rolls of parchment",
-                "Vials of pigments and powders",
-                "Collection of brushes",
-                "A wicked knife"
+            "possessions": [
+                "d6 rolls of parchment.",
+                "Vials of pigments and powders.",
+                "A collection of brushes.",
+                "A wicked knife."
             ],
-            "description": "Known for your smooth skin, midnight gatherings and being fearful of rain and open flames. The parchment witches are long dead sorcerers who cannot give up the vanity of living and so cover themselves in perfect paper skin. A patiently painted and folded imitation of life to hide ancient bone and gristle."
+            "description": "You are known for your smooth skin, midnight gatherings and being fearful of rain and open flames. The Parchment Witches are long dead sorcerers who cannot give up the vanity of living and so cover themselves in perfect paper skin, a patiently painted and folded imitation of life meant to hide ancient bone and gristle."
         },
         {
             "skills": [
@@ -429,65 +430,69 @@ class Character(mixins.AppearanceMixin):
                 "2 Wrestling",
                 "2 Axe Fighting"
             ],
-            "special": "as Dwarf, but in addition... Other dwarves will completely ignore you as though you were a piece of furniture or somebody's abandoned hat. Very rarely they might openly examine and comment thoughtfully to themselves on your unforgivable flaws, possibly while marking areas for improvement on your body with a grease pen. To non-dwarfy eyes you probably look like any other dwarf. +4 sneak vs dwarves.",
+            "special": "Dwarfs may eat gems and rare metals as a food replacement. You in fact far prefer the taste of rare minerals to mundane food. Dwarfs are genderless. You are immune to all compulsions that play on a creature's desire for the opposite sex. This also means you don't have sexual organs. Instead of urinating you excrete through sweating, thus explaining your odour. Other dwarfs will completely ignore you as though you were a piece of furniture or somebody's abandoned hat. Very occasionally they may openly examine and comment thoughtfully to themselves on your unforgivable flaws, possibly while marking areas for improvement on your body with a grease pen. To non-dwarfy eyes you probably look like any other dwarf. +4 sneak vs dwarfs.",
             "name": "43 Poorly Made Dwarf",
-            "possesions": [
-                "Woodsmans axe",
-                "An empty firkin"
+            "possessions": [
+                "Woodsman's axe.",
+                "An empty firkin."
             ],
-            "description": "Dwarves are known for being the finest artisans of the million spheres. Give a dwarf a rock and he will make gold, give a dwarf a boulder and he will make a dwarf. You were supposed to be the finest expression of dwarfy craftsmanship, a masterpiece, a brand new dwarf like those made by the old masters. But you were imperfect and abandoned."
+            "description": "Dwarfs are known for being the finest artisans of the million spheres. Give a dwarf a rock and they will make gold, give a dwarf a boulder and they will make a dwarf. You were supposed to be the finest expression of dwarfy craftsmanship, a masterpiece, a brand new dwarf like those made by the old masters, but you were imperfect and abandoned."
         },
         {
             "skills": [
                 "3 Jousting",
                 "2 Sword Fighting",
-                "2 Spear fighting",
-                "1 Shield fighting",
+                "2 Spear Fighting",
+                "1 Shield Fighting",
                 "1 Awareness"
             ],
             "special": "",
             "name": "44 Questing Knight",
-            "possesions": [
-                "Heavy armour",
-                "A horse",
-                "Lance (as spear)",
-                "Sword",
-                "Shield",
-                "A never ending quest"
+            "possessions": [
+                "Heavy Armour.",
+                "A horse.",
+                "Lance (as spear).",
+                "Sword.",
+                "Shield.",
+                "A never ending quest."
             ],
-            "description": "You are on a quest for the grail, or the sword, or the throne, or for god, or a lost love, or some other significant object. Your sort are common enough, wandering the worlds acting out your romantic melodrama, accusing good folk of being demons or faeries. Generally considered to be harmless."
+            "description": "You are on a quest for the grail, or the sword, or the throne, or for god, or a lost love, or some other significant object. Your sort are common enough, wandering the worlds, acting out your romantic melodrama, accusing good folk of being demons or faeries. Questing Knights are generally considered to be harmless."
         },
         {
             "skills": [
                 "2 Spell - Ember",
-                "2 Spell - Fire Bolt"
+                "2 Spell - Fire Bolt",
+                "2 Spell - Flash",
+                "2 Great Axe Fighting",
+                "1 Second Sight",
+                "1 Spell - Exorcism"
             ],
             "special": "",
             "name": "45 Red Priest",
-            "possesions": [
-                "Red robes",
-                "Traditional faceless metal helmet of your order (modest armour)",
-                "Symbolic (but fully sized and fully functional) single headed great axe, to help batter down the door to Sin"
+            "possessions": [
+                "Red robes.",
+                "Traditional faceless metal helmet of your order (Modest Armour).",
+                "Symbolic (but fully sized and fully functional) single headed great axe, to help batter down the door to sin (Damage as greatsword)."
             ],
-            "description": "Evangelist of the red redemption, wandering confessor, cauterizer of the wound of sin. Sin being the accumulation and recreational consumption of mass. How can your spirit fly free while shackled and flabby?"
+            "description": "You are an evangelist of the Red Redemption, wandering confessor, cauterizer of the wound of sin, sin being the accumulation and recreational consumption of mass. How can your spirit fly free while shackled and flabby?"
         },
         {
             "skills": [
-                "3 Glaive fighting",
+                "3 Glaive Fighting",
                 "2 Run",
                 "2 Strength",
                 "1 Gambling"
             ],
             "special": "",
             "name": "46 Rhino-Man",
-            "possesions": [
-                "Horn (counts as dagger)",
-                "Thick Skin (rhino men always count as being modestly armoured)",
-                "Glaive",
-                "Knuckle dice",
-                "Half full firkin of Rhino-beer (20 rations worth)"
+            "possessions": [
+                "Horn (Damage as dagger).",
+                "Thick Skin (Rhino Men always count as being Modestly Armoured).",
+                "Glaive (Damage as polearm).",
+                "Knuckle dice.",
+                "Half full firkin of Rhino-beer (20 rations worth)."
             ],
-            "description": "The original Rhino-Men were created by an insane sorcerer several centuries ago, but rebelled and killed him. They are fairly rare creatures, serving as formidable and loyal guards to those who can afford their services."
+            "description": "The original Rhino-Men were created by an insane sorcerer several centuries ago but rebelled and killed him. They are fairly rare creatures, serving as formidable and loyal guards to those who can afford their services."
         },
         {
             "skills": [
@@ -500,14 +505,14 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "51 Sceptical Lammasu",
-            "possesions": [
-                "Incidental sacred jewellery worth 10d6 monies if traded",
-                "Peaked hat",
-                "Claws (as Swords)",
-                "Hooves (as Clubs)",
-                "Wings, able to fly as fast as a running man over clear ground"
+            "possessions": [
+                "Incidental sacred jewellery worth 10d6 pence if traded.",
+                "Peaked hat.",
+                "Claws (Damage as swords).",
+                "Hooves (Damage as clubs).",
+                "Wings--able to fly as fast as a running man over clear ground."
             ],
-            "description": "Body of a bull, head of a man, forelegs of a cat and the wings of a swan, sweetest children of the gods. You, however, were not content to rest on your cloud and instead descended from the heavens (or crawled up from the abyss) and set upon finding your own path among the stars."
+            "description": "With the body of a bull, the head of a man, the forelegs of a cat and the wings of a swan, you are the sweetest of the children of the gods. You, however, were not content to rest on your cloud and instead descended from the heavens (or crawled up from the abyss) and set upon finding your own path among the stars."
         },
         {
             "skills": [
@@ -522,11 +527,11 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "52 Sorcerer of the Academy of Doors",
-            "possesions": [
-                "A small functional door, worn on your forehead. You channel your magic through it",
-                "Flashy robes"
+            "possessions": [
+                "A small functional door worn on your forehead, through which you channel your magic.",
+                "Flashy robes."
             ],
-            "description": "Academy of Doors Troika's very own wizarding academy, pride of the city, experts in pan-dimensional mobility. You were an apprentice of the school and were able to penetrate the (2d6)th door. No master, certainly, but few outside your peers can claim to know more about the vagaries of skyward travel than you."
+            "description": "As a student at Troika's very own wizarding academy, pride of the city, experts in pan-dimensional mobility, you were able to penetrate the (2d6)th door. You are no master, certainly, but few outside your peers can claim to know more about the vagaries of skyward travel than you."
         },
         {
             "skills": [
@@ -547,16 +552,16 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "53 Sorcerer of the College of Friends",
-            "possesions": [
-                "Pointed wizard hat you received at graduation",
-                "Pocket full of wizard biscuits (2d6, each count as a ration)",
-                "Wand used to help focus new apprentices, now kept for sentimental reasons"
+            "possessions": [
+                "Pointed wizard hat you received at graduation.",
+                "Pocket full of wizard biscuits (2d6, each counts as a provision).",
+                "Wand used to help focus new apprentices, now kept for sentimental reasons."
             ],
-            "description": "College of Friends You were trained in the sub-dimensional academy of the Cordial Wizard God. You spent your childhood learning about the fate of pixies, the colour of magic, ritual grammar and endless other theoretical topics. Now you're out in the world, discovering that your education hardly accounted for any of it."
+            "description": "You were trained in the sub-dimensional academy of the Cordial Wizard God. You spent your childhood learning about the fate of pixies, the colour of magic, ritual grammar and endless other theoretical topics. Now you're out in the world, discovering that your education hardly accounted for any of the things that you've seen."
         },
         {
             "skills": [
-                "2 in a fighting skill of your choice",
+                "2 in a Fighting Skill of your choice",
                 "2 Wrestling",
                 "2 Swim",
                 "2 Climb",
@@ -564,30 +569,30 @@ class Character(mixins.AppearanceMixin):
                 "2 Fist Fighting"
             ],
             "special": "",
-            "name": "54 The Sublime Society of Beef Steaks",
-            "possesions": [
-                "A weapon of choice",
-                "A small gridiron",
-                "2kg of premium meat cuts",
-                "Waistcoat",
-                "Bottle of strong but fancy wine"
+            "name": "54  Fellow of The Sublime Society of Beef Steaks",
+            "possessions": [
+                "A weapon of choice.",
+                "A small gridiron.",
+                "2kg of premium meat cuts.",
+                "Waistcoat.",
+                "Bottle of strong but fancy wine."
             ],
-            "description": "of Beef Steaks Brawlers believe the application of might and a good beef steak is the universal truth. Words do not have power. Words can no more define the universe than they can build a house, lift a cup, or sear a steak. Might can. Really, they have thought a lot about this."
+            "description": "Brawlers believe the application of might and a good beef steak is the universal truth. Words do not have power. Words can no more define the universe than they can build a house, lift a cup, or sear a steak. Might can! Really, they have thought a lot about this."
         },
         {
             "skills": [
                 "3 Awareness",
                 "2 Blacksmithing",
                 "1 Sword Fighting",
-                "1 Greatsword fighting"
+                "1 Greatsword Fighting"
             ],
-            "special": "The blessing of Telak awards you armour equal to half (rounded down) the number of swords you carry. So if you were carrying 6 swords your armour would be 3, while if you carried 9 it would be 4. You must be overtly armed at all times or else Telak will take this blessing away until you forge, and donate to the unarmed, a brand new sword.",
+            "special": "The blessing of Telak awards you Armour equal to half (rounded down) the number of swords you carry. So if you were carrying 6 swords your armour would be 3, while if you carried 9 it would be 4. You must be overtly armed at all times or else Telak will take this blessing away until you forge, and donate to the unarmed, a brand new sword.",
             "name": "55 Temple Knight of Telak the Swordbringer",
-            "possesions": [
-                "The blessing of Telak",
-                "6 swords of your choice"
+            "possessions": [
+                "The blessing of Telak.",
+                "6 swords of your choice."
             ],
-            "description": "Telak the Swordbringer You were once (and possibly still are) a fanatical monk set to maintain constant martial readiness in preparation for the end times when all doorways crumble inwards. You are never unready and always have spares."
+            "description": "You were once (and possibly still are) a fanatical monk set to maintain constant martial readiness in preparation for the end times, when all doorways crumble inwards. You are never unready and always have spares."
         },
         {
             "skills": [
@@ -600,15 +605,15 @@ class Character(mixins.AppearanceMixin):
                 "1 Second Sight",
                 "1 Astrology"
             ],
-            "special": "May test their luck to just so happen to have exactly the (common) mystical nicknack the situation requires",
+            "special": "You may Test your Luck to just so happen to have exactly the (common) mystical nicknack the situation requires.",
             "name": "56 Thaumaturge",
-            "possesions": [
-                "Thamaturgical fez",
-                "Staff, bedecked with charms and bells. May reroll one die on the Oops! Table if using this staff, however may never sneak up on anyone because of the ringing and clattering it makes",
-                "Curled Shoes",
+            "possessions": [
+                "Thaumaturgic fez.",
+                "Staff, bedecked with charms and bells. May reroll one die on the Oops! Table if using this staff, however, may never sneak up on anyone because of the ringing and clattering it makes.",
+                "Curled shoes.",
                 "Voluminous robes"
             ],
-            "description": "Wandering miracle workers, the depths of whose clothes are filled with pouches of unguents, holy icons and herbs. No matter the metaphysical need, they are always prepared."
+            "description": "Wandering miracle workers, the depths of whose clothes are filled with pouches of unguents, holy icons and herbs. No matter the metaphysical need, you are always prepared."
         },
         {
             "skills": [
@@ -620,18 +625,17 @@ class Character(mixins.AppearanceMixin):
                 "1 Strength",
                 "1 Cooking"
             ],
-            "special": "You don't recover Stamina by resting in the usual manner, instead you have to spend an evening with a hot iron melting your skin back together like putty. For each hour of rest with access to the right tools you regain 3 Stamina. May recharge plasmic machines by hooking your fluids to them and spending Stamina. 1 Stamina and 6 minutes per charge. You always count as being lightly armoured.",
+            "special": "You don't recover Stamina by resting in the usual manner--instead you have to spend an evening with a hot iron melting your skin back together like putty. For each hour of rest with access to the right tools you regain 3 Stamina. You may recharge plasmic machines by hooking your fluids to them and spending Stamina at a rate of 1 Stamina and 6 minutes per charge. You always count as being at least Lightly Armoured.",
             "name": "61 Thinking Engine",
-            "possesions": [
-                "Soldering iron",
-                "Detachable autonomous hands OR Centaur body (+4 Run) OR Inbuilt particle detector (+4 Second Sight) OR One random spell at rank 3",
-                "15"
+            "possessions": [
+                "Soldering iron.",
+                "Detachable autonomous hands or centaur body (+4 Run) or inbuilt particle detector (+4 Second Sight) or one random Spell at rank 3."
             ],
             "description": "Your eyes are dull ruby spheres, your skin is hard and smooth like ivory but brown and whorled like wood. You are clearly damaged, you have no memory of your creation or purpose, and some days your white internal juices ooze thickly from cracks in your skin."
         },
         {
             "skills": [
-                "3 Sword Fighting",
+                "3 Longsword Fighting",
                 "1 Awareness",
                 "1 Climb",
                 "1 Bow Fighting",
@@ -640,11 +644,11 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "62 Vengeful Child",
-            "possesions": [
-                "A too-big sword, +1 to Sword Fighting and Damage Rolls while using it. Only you may benefit from this bonus, it's not magic just sentimental",
-                "An old hunting bow & 12 arrows"
+            "possessions": [
+                "A too-big sword that provides +1 to Longsword Fighting and Damage while using it. Only you may benefit from this bonus; it's not magic, just sentimental.",
+                "An old hunting bow and 12 arrows."
             ],
-            "description": "Your village was burnt down by ruffians, or your mother was beheaded by snake cultists, or your father was hung by corrupt officials. Either way, you took up the sword and entered the world with a chip on one shoulder and an oversized sword on the other."
+            "description": "Your village was burnt down by ruffians, or your mother was beheaded by snake cultists, or your father was hung by corrupt officials. Either way you took umbrage and entered the world with a chip on one shoulder and an oversized sword on the other."
         },
         {
             "skills": [
@@ -655,14 +659,14 @@ class Character(mixins.AppearanceMixin):
                 "1 Sword Fighting",
                 "1 Sleight of Hand"
             ],
-            "special": "You may test your Luck to recall facts that you might reasonably be expected to have encountered relating to the natural sciences and humanities. 16",
+            "special": "You may Test your Luck to recall facts that you might reasonably be expected to have encountered relating to the natural sciences and humanities.",
             "name": "63 Venturesome Academic",
-            "possesions": [
-                "Reading glasses in a sturdy case (you cannot read without them)",
-                "Small sword",
-                "Bundle of candles & matches",
-                "Writing materials",
-                "Journal"
+            "possessions": [
+                "Reading glasses in a sturdy case (you cannot read without them).",
+                "Small sword.",
+                "Bundle of candles and matches.",
+                "Writing materials.",
+                "Journal."
             ],
             "description": "You're a classically trained academic, a product of the universities of the Brass City, the Palace of Tigers or some other less prestigious centre of learning."
         },
@@ -678,30 +682,30 @@ class Character(mixins.AppearanceMixin):
             ],
             "special": "",
             "name": "64 Wizard Hunter",
-            "possesions": [
-                "Large sack",
-                "Witch-hair rope",
-                "Crossbow & 12 bolts",
-                "Sword",
-                "d6 pocket gods",
-                "Ruby Lorgnette"
+            "possessions": [
+                "Large sack.",
+                "Witch-hair rope.",
+                "Crossbow and 12 bolts.",
+                "Sword.",
+                "1d6 pocket gods.",
+                "Ruby lorgnette."
             ],
-            "description": "Some people say man is the most dangerous prey. They're wrong. Can men turn into flocks of seagulls when cornered in an alley? Can men ignite the air and freeze your blood? No, they can't. Wizards are the most dangerous prey."
+            "description": "Some people say man is the most dangerous prey. They're wrong. Can men ignite the air and freeze your blood? Can men turn into flocks of seagulls when cornered in an alley? No, they can't. Wizards are the most dangerous prey."
         },
         {
             "skills": [
-                "4 weapon fighting skill of choice",
+                "4 Weapon Fighting Skill of choice",
                 "2 Etiquette",
                 "1 Healing"
             ],
             "special": "",
             "name": "65 Yongardy Lawyer",
-            "possesions": [
-                "Rapier and puffy shirt OR Sjambok (counts as club) and lots of scars OR Two handed sword and heavy armour OR Hammer and huge shield",
-                "Manual on Yondardy Law",
-                "Barrister's Wig"
+            "possessions": [
+                "Rapier (Damage as sword) and puffy shirt or sjambok (Damage as club) and lots of scars or longsword and Heavy Armour or hammer (Damage as mace) and huge shield.",
+                "Manual on Yongardy Law.",
+                "Barrister's wig."
             ],
-            "description": "Down in Yongardy they do things differently. They respect the law. Every day there is a queue outside the courts to get a seat to see the latest up and coming barrister defend his case with three feet of steel. The people follow the careers of their favourite solicitors, watch all their cases, collect their portraits and sneak into the court after hours to dab the patches of blood on white handkerchiefs. In Yongardy they love the law."
+            "description": "Down in Yongardy they do things differently. They respect the law. Every day there is a queue outside the courts to get a seat to see the latest up and coming barrister defend their case with three feet of steel. The people follow the careers of their favourite solicitors, watch all their cases, collect their portraits and sneak into the court after hours to dab the patches of blood on white handkerchiefs. In Yongardy, they love the law."
         },
         {
             "skills": [
@@ -712,12 +716,12 @@ class Character(mixins.AppearanceMixin):
                 "2 Club Fighting",
                 "2 Wrestling"
             ],
-            "special": "You are immune to all mind altering effects. You are able to speak but usually choose not to. When making advancement checks in skills related to abstract thought, such as spells or astrology, you must roll twice and succeed on both or else fail.",
+            "special": "You are immune to all mind altering effects. You are able to speak but usually choose not to. When making advancement checks in skills related to abstract thought, such as Spells or Astrology, you must roll twice and succeed on both or else fail.",
             "name": "66 Zoanthrop",
-            "possesions": [
-                "Wooden club and no starting possessions, throw off the shackles of civilisation. You are probably nude."
+            "possessions": [
+                "No starting possessions; you have thrown off the shackles of civilisation. You are also probably nude."
             ],
-            "description": "At some point in your past you decided you didn't need it any more. You found a zoanthropologist and paid him well to remove your troublesome forebrain and so elevate you to the pure and unburdened beast you are today."
+            "description": "At some point in your past you decided you didn't need it anymore. You found a zoanthropologist and paid them well to remove your troublesome forebrain and so elevate you to the pure and unburdened beast you are today."
         }
     ]
 
