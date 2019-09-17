@@ -6,11 +6,13 @@ import adventuregame
 import character
 import characterclass
 import dangertime
+import demoncity
 import dice
 import fifth
 import mazerats
+import silent_titans
 import troika
-import demoncity
+import trophy
 
 DEBUG = True
 
@@ -68,9 +70,17 @@ def make_adventure_game_char():
 def make_danger_time_char():
     return render_template("dangertime.html", c=dangertime.Character())
 
+@app.route('/silent-titans/')
+def make_silent_titans_char():
+    return render_template("silent_titans.html", c=silent_titans.Character())
+
 @app.route('/troika/')
 def make_troika_char():
     return render_template("troika.html", c=troika.Character())
+
+@app.route('/trophy/')
+def make_trophy_char():
+    return render_template("trophy.html", c=trophy.Character())
 
 @app.route('/demoncity/text/')
 def make_demoncity_text_char():

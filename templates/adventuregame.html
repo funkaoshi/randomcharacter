@@ -17,7 +17,7 @@
         <td><strong>INT</strong>: d{{ c.int }}</td>
     </tr>
 </table>
-<table>
+<table class="adventuregame">
     <tr>
         <td><strong>HP</strong>: {{ c.hp }}</td>
         <td><strong>VITALITY</strong>: {{ c.vitality }}</td>
@@ -26,13 +26,13 @@
     </tr>
 </table>
 
-<table>
+<table class="adventuregame">
     <tr>
         <td><strong>THEME</strong>: {{ c.theme }} ({{ c.subtheme }})</td>
     </tr>
     <tr>
         <td><strong>FIGHTING STYLE</strong>: {{ c.fighting_style }}</td>
-    </tr>    
+    </tr>
 </table>
 
 <p>{{ c.background|safe }}</p>

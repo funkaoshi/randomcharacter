@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block page_class %}Trophy Gold{% endblock %}
+
+{% block title %}A Random Trophy {{ c.occupation.name }}{% endblock %}
+
+{% block content %}
+<h2 class="system">Trophy Gold</h2>
+<h1>{{ c.occupation.name }}</h1>
+<h2 class="appearance">{{ c.appearance }}</h2>
+
+<table class="attr">
+  <tr>
+    <td><strong>Ruin</strong>: {{ c.ruin }}</td>
+    <td><strong>Burden</strong>: {{ c.burden }}</td>
+    <td><strong>Gold</strong>: {{ c.gold }}</td>
+  </tr>
+</table>
+
+<p>
+  You are <strong>{{ c.name }}</strong>,
+  once <strong>{{ c.a_an_background }}</strong>,
+  now <strong>{{ c.a_an_occupation }}</strong>.
+  You have one desire: <strong>{{ c.drive }}</strong>.
+</p>
+
+<div id="extras">
+  <div class="block">
+    <h3>Equipment</h3>
+    <ol>
+      {% for item in c.equipment %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ol>
+    {% if c.weapons %}
+    <h3>Weapons</h3>
+    <ol>
+      {% for item in c.weapons %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ol>
+    {% endif %}
+    {% if c.armour %}
+    <h3>Armour</h3>
+    <ol>
+      {% for item in c.armour %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ol>
+    {% endif %}
+  </div>
+  {% if c.rituals %}
+  <div class="block">
+    <h3>Rituals</h3>
+    <ol>
+      {% for ritual in c.rituals %}
+      <li>{{ ritual }}</li>
+      {% endfor %}
+    </ol>
+  </div>
+  {% endif %}
+
+  <div class="block">
+    <h3>Occupation Skills ({{ c.occupation.name }})</h3>
+    <ol>
+      {% for skill in c.occupation.skills %}
+      <li>{{ skill }}</li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="block">
+    <h3>Background Skill ({{ c.background.name }})</h3>
+    <ol>
+      <li>{{ c.background.skill }}</li>
+    </ol>
+  </div>
+</div>
+
+<footer>
+  <p>
+  Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>.
+  If you want to play <a href="/basic/">D&D</a> instead we can do that too.
+  Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>.
+  If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+  </p>
+</footer>
+{% endblock %}
