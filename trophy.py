@@ -10,7 +10,7 @@ class Character(mixins.AppearanceMixin):
     def __init__(self, *args, **kwargs):
         super(Character, self).__init__(*args, **kwargs)
 
-        self.burden = 0
+        self.burden = 1
         self.ruin = 1
         self.gold = 0
 
