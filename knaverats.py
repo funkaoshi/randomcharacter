@@ -21,10 +21,12 @@ class Character(object):
 
         self.health = 4 + int(self.CON)
         self.shield, self.light_armour = self.armour()
+        self.weapon_class = self.weapon()
         armour_bonus = 1 if self.light_armour else 0
-        self.armour = 6 + armour_bonus
+        shield_bonus = 1 if self.shield else 0
+        self.armour = 6 + armour_bonus + shield_bonus
 
-        self.attack = 0    # The default attack bonus is 0
+        self.attack = 1 if self.weapon_class is "H" else 0
         self.skill = None  # No starting skill
         self.spell = None  # No starting spell.
 
@@ -44,6 +46,11 @@ class Character(object):
             (False, True),
             (False, True),
             (False, False),
+        ])
+
+    def weapon(self):
+        return random.choice([
+            "L", "L", "L", "L", "H", "R",
         ])
 
     def get_equipment(self):
@@ -85,10 +92,17 @@ class Character(object):
             "Waterskin",
         ]
 
-        weapons = [
-            'Axe', 'Dagger', 'Mace', 'Short Sword', 'Flail',
-            'One-Handed Spear', 'Spears', 'Halberd', 'Long Sword', 'Warhammer',
-            'Bow', 'Cross Bow', 'Sling'
+        weapons_light = [
+            'Axe', 'Dagger', 'Mace', 'Short Sword', 
+            'Flail', 'One-Handed Spear',
+        ]
+
+        weapons_heavy = [
+            'Spear', 'Halberd', 'Long Sword', 'Warhammer', 'Zweihander'
+        ]
+
+        weapons_ranged = [
+            'Bow', 'Cross Bow', 'Sling', 'Blowpipe',
         ]
 
         equip = ['Rations (2)']
@@ -96,6 +110,13 @@ class Character(object):
             equip += ['Shield']
         if self.light_armour:
             equip += ['Light Armour']
+
+        if self.weapon_class == 'L':
+            weapons = weapons_light
+        if self.weapon_class == 'H':
+            weapons = weapons_heavy
+        if self.weapon_class == 'R':
+            weapons = weapons_ranged
 
         return equip + random.sample(items, 6) + random.sample(weapons, 2) 
 
