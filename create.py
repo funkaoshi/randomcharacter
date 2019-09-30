@@ -11,7 +11,7 @@ import dice
 import fifth
 import knaverats
 import mazerats
-#import silent_titans
+import silent_titans
 import troika
 import trophy
 
