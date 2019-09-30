@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block page_class %}Maze Rats{% endblock %}
+{% block page_class %}Knave Rats{% endblock %}
 
-{% block title %}A Random Maze Rat{% endblock %}
+{% block title %}A Random Knave Rat{% endblock %}
 
 {% block content %}
-<h2 class="system">Maze Rats</h2>
+<h2 class="system">Knave Rats</h2>
 {% for c in characters %}
-<h1>Maze Rat!</h1>
+<h1>Knave Rat!</h1>
 <h2 class="appearance">{{ c.appearance }}, {{ c.physical_detail }}, {{ c.clothing }} Clothing, {{ c.personality }}, {{ c.mannerism }}</h2>
 
 <table class="attr">
@@ -29,7 +29,7 @@
 </table>
 
 <p>
-  You were once a <strong>{{ c.background}}</strong>. Now you are a Maze Rat, a grubby adventurer!
+  You were once a <strong>{{ c.background}}</strong>. Now you are a Knave Rat, a grubby adventurer!
   {% if c.spell %}You can cast <strong>{{ c.spell }}</strong>, a wondrous spell{% endif %}
   {% if c.skill %}You possess the skills of a <strong>{{ c.skill }}</strong>.{% endif %}
 </p>
