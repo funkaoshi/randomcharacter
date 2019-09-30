@@ -4,6 +4,7 @@ import random
 import mixins
 import dice
 
+# From https://www.reddit.com/r/rpg/comments/9smybh/knave_rats_my_favorite_parts_of_knave_and_maze/
 
 class Character(object):
 
