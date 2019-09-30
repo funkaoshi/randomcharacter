@@ -26,7 +26,7 @@ class Character(object):
         shield_bonus = 1 if self.shield else 0
         self.armour = 6 + armour_bonus + shield_bonus
 
-        self.attack = 1 if self.weapon_class is "H" else 0
+        self.attack = "+1" if self.weapon_class is "H" else "0"
         self.skill = None  # No starting skill
         self.spell = None  # No starting spell.
 
@@ -123,7 +123,7 @@ class Character(object):
     def get_feature(self):
         feature = random.choice(['fighter', 'wizard', 'specialist'])
         if feature == 'fighter':
-            self.attack = "+1"
+            self.attack = '+{}'.format((int(self.attack) + 1))
         elif feature == 'wizard':
             self.spell = self.get_spell()
         elif feature == 'specialist':
