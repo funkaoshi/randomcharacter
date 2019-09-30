@@ -9,6 +9,7 @@ import dangertime
 import demoncity
 import dice
 import fifth
+import knaverats
 import mazerats
 import silent_titans
 import troika
@@ -99,6 +100,14 @@ def make_mazerats_char(number):
         number = 20
     characters = [mazerats.Character() for _ in range(number)]
     return render_template("mazerats.html", characters=characters)
+
+@app.route('/knaverats/', defaults={'number': 1})
+@app.route('/knaverats/<int:number>/')
+def make_knaverats_char(number):
+    if number >= 20:
+        number = 20
+    characters = [knaverats.Character() for _ in range(number)]
+    return render_template("knaverats.html", characters=characters)
 
 @app.route('/npcs/', defaults={'number': 10})
 @app.route('/npcs/<int:number>/')
