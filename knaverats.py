@@ -29,6 +29,7 @@ class Character(object):
         self.spell = None  # No starting spell.
 
         self.equipment = ', '.join(self.get_equipment())
+        self.equipment_slots = 10 + int(self.STR)
 
         self.get_feature()
 
