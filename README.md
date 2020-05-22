@@ -29,7 +29,7 @@ You can also generate a list of [NPCs][] and roll [3d6 in order][3d6] or [4d6 dr
 
 ## Getting it Running
 
-1. Install Flask (`pip install flask`). 
+1. Install Flask (`pip install flask`).
 2. Run `python create.py`
 
 ## How It Works
@@ -60,6 +60,7 @@ well either.
 [basic]: http://character.totalpartykill.ca/basic/
 [lotfp]: http://character.totalpartykill.ca/lotfp/
 [5e]: http://character.totalpartykill.ca/5e/
+[Maze Rats]: http://character.totalpartykill.ca/mazerats/
 [dangertime]: http://character.totalpartykill.ca/dangertime/
 [adventuregame]: http://character.totalpartykill.ca/adventuregame/
 [npcs]: http://character.totalpartykill.ca/npcs/
