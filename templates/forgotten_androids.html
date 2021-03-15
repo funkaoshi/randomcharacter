@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_class %}npcs{% endblock %}
+
+{% block title %}Random Forgotten Androids from Gradient Descent{% endblock %}
+
+{% block content %}
+<h2 class="system"><a href="http://funkaoshi.com">A Funkaoshi Production</a> Presents</h2>
+<h1>{{characters|length}} Random Forgotten Androids</h1>
+<h2 class="appearance">From Gradient Descent by Luke Gearing</h2>
+
+{% for c in characters %}
+<div class="android" style="border-top: 1px solid gray; padding: 1em">
+    <p><strong>Combat</strong>: {{c.combat}} <strong>Instinct</strong>: {{c.instinct}} <strong>Hits</strong>: {{c.hits}} ({{c.hp}})</p>
+    <ul>
+        <li><strong>Manufacturing Defect</strong>: {{c.manufacturing_defect}}</li>
+        <li><strong>Adaption</strong>: {{c.adaption}}</li>
+        <li><strong>What are they doing</strong>: {{c.what_are_they_doing}}</li>
+        <li><strong>Wants to talk about</strong>: {{c.wants_to_talk_about}}</li>        
+    </ul>
+</div>
+{% endfor %}
+
+<footer>
+  <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. Check out more D&D stuff at <a
+      href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. Random Personalities from this <a href="http://angband.oook.cz/steamband/CharacterTraits.pdf">random
+      table</a>.If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+  </p>
+</footer>
+{% endblock %}

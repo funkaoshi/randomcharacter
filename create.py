@@ -10,6 +10,7 @@ import demoncity
 import dice
 import fifth
 import mazerats
+import mothership
 import silent_titans
 import troika
 import trophy
@@ -99,6 +100,15 @@ def make_mazerats_char(number):
         number = 20
     characters = [mazerats.Character() for _ in range(number)]
     return render_template("mazerats.html", characters=characters)
+
+@app.route('/mothership/gd/forgotten-androids/', defaults={'number': 1})
+@app.route('/mothership/gd/forgotten-androids/<int:number>')
+def make_forgotten_android(number):
+    if number >= 10:
+        number = 10
+    characters = [mothership.ForgottenAndroid() for _ in range(number)]
+    print(characters)
+    return render_template("forgotten_androids.html", characters=characters)
 
 @app.route('/npcs/', defaults={'number': 10})
 @app.route('/npcs/<int:number>/')
