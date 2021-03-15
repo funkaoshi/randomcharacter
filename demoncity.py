@@ -74,7 +74,7 @@ class Character(mixins.AppearanceMixin):
         for skill, attribute in random.sample(possible_skills, self.raw_skills):
             # split up attribute into lower case list if there are multiple
             # options, e.g. "Toughness or Agility"
-            attributes = map(lambda x: x.lower(), attribute.split(' or '))
+            attributes = [x.lower() for x in attribute.split(' or ')]
 
             # sort the list and grab the last one, the highest score
             attribute = sorted((self.attributes[attribute] + 1, attribute)
@@ -186,9 +186,11 @@ class Character(mixins.AppearanceMixin):
     }
 
     # Generate flat list of skills
-    SKILLS_LIST = []
-    for attribute, skills in SKILLS.iteritems():
-        SKILLS_LIST.extend([(s, attribute) for s in skills])
+    SKILLS_LIST = [
+        (s, attribute)
+        for attribute, skills in SKILLS.items()
+        for s in skills
+    ]
     SKILLS_LIST = set(SKILLS_LIST)
 
     OCCUPATIONS = [

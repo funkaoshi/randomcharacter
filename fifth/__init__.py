@@ -9,7 +9,7 @@ class Attributes(CharacterProcessor):
 
     def roll_attribute(self):
         """ 4d6 drop the lowest """
-        return sum(sorted(d(6) for _ in xrange(4))[1:])
+        return sum(sorted(d(6) for _ in range(4))[1:])
 
     def process(self):
         # add attribute scores to the character
@@ -27,7 +27,7 @@ class Bonuses(CharacterProcessor):
     def process(self):
         """ Compute bonuses based on ability scores. """
         self.character.bonuses = dict((a, self.get_bonus(s))
-                                      for a, s in self.character.scores.iteritems())
+                                      for a, s in self.character.scores.items())
 
 
 class Skills(CharacterProcessor):

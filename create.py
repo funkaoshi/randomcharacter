@@ -59,7 +59,7 @@ def equipment(system):
 
 @app.route('/4d6/')
 def four_dee_six():
-    roll = [sum(sorted(dice.d(6) for _ in xrange(4))[1:]) for _ in range(6)]
+    roll = [sum(sorted(dice.d(6) for _ in range(4))[1:]) for _ in range(6)]
     return render_template("4d6.html", roll=roll)
 
 @app.route('/adventuregame/')
@@ -105,7 +105,7 @@ def make_mazerats_char(number):
 def generate_npcs(number):
     if number > 1000:
         number = 1000
-    characters = [character.BasicCharacter(testing=True) for _ in xrange(number)]
+    characters = [character.BasicCharacter(testing=True) for _ in range(number)]
     return render_template("npcs.html", characters=characters)
 
 @app.route('/')
