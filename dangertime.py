@@ -1,6 +1,6 @@
 """
 Automate the character creation for Evan's adventure game, Danger time:
-http://gamepieces.blogspot.ca/2013/09/character-generators-for-weird-dark-ages.html
+https://gamepieces.blogspot.ca/2013/09/character-generators-for-weird-dark-ages.html
 """
 
 import itertools
