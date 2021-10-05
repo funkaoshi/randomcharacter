@@ -462,7 +462,7 @@ class LBBCharacter(Character):
 class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
     """
     Models characters from Gus L's OD&D game Apollyon. More information on
-    his blog: http://dungeonofsigns.blogspot.ca/search/label/HMS%20Apollyon
+    his blog: https://dungeonofsigns.blogspot.ca/search/label/HMS%20Apollyon
     """
 
     # Gus's Apollyon Appearances
@@ -561,7 +561,7 @@ class ApollyonCharacter(AscendingAcMixin, HitDiceMixin, LBBCharacter):
 class PahvelornCharacter(HitDiceMixin, LBBCharacter):
     """
     Models characters from the OD&D game Pahvelorn. (Essentially 1974 D&D.)
-    More info here: http://www.necropraxis.com/tag/pahvelorn/.
+    More info here: https://www.necropraxis.com/tag/pahvelorn/.
     """
 
     @property
@@ -595,7 +595,7 @@ class PahvelornCharacter(HitDiceMixin, LBBCharacter):
         """
         In Pahvelorn characters all begin at different combat ranks,
         as per this post:
-          http://www.necropraxis.com/2012/11/11/adjusted-attack-ranks/
+          https://www.necropraxis.com/2012/11/11/adjusted-attack-ranks/
         """
         return {
             'Fighter': 7,

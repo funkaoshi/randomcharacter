@@ -50,18 +50,18 @@ more and more information to the character. I'm not sure this scheme works that
 well either.
 
 
-[lbb]: http://character.totalpartykill.ca/lbb/
-[carcosa]: http://character.totalpartykill.ca/carcosa/
-[moc]: http://character.totalpartykill.ca/moc/
-[apollyon]: http://character.totalpartykill.ca/apollyon/
-[pahvelorn]: http://character.totalpartykill.ca/pahvelorn/
-[dd]: http://character.totalpartykill.ca/dd/
-[holmes]: http://character.totalpartykill.ca/holmes/
-[basic]: http://character.totalpartykill.ca/basic/
-[lotfp]: http://character.totalpartykill.ca/lotfp/
-[5e]: http://character.totalpartykill.ca/5e/
-[dangertime]: http://character.totalpartykill.ca/dangertime/
-[adventuregame]: http://character.totalpartykill.ca/adventuregame/
-[npcs]: http://character.totalpartykill.ca/npcs/
-[3d6]: http://character.totalpartykill.ca/3d6/
-[4d6]: http://character.totalpartykill.ca/4d6/
+[lbb]: https://character.totalpartykill.ca/lbb/
+[carcosa]: https://character.totalpartykill.ca/carcosa/
+[moc]: https://character.totalpartykill.ca/moc/
+[apollyon]: https://character.totalpartykill.ca/apollyon/
+[pahvelorn]: https://character.totalpartykill.ca/pahvelorn/
+[dd]: https://character.totalpartykill.ca/dd/
+[holmes]: https://character.totalpartykill.ca/holmes/
+[basic]: https://character.totalpartykill.ca/basic/
+[lotfp]: https://character.totalpartykill.ca/lotfp/
+[5e]: https://character.totalpartykill.ca/5e/
+[dangertime]: https://character.totalpartykill.ca/dangertime/
+[adventuregame]: https://character.totalpartykill.ca/adventuregame/
+[npcs]: https://character.totalpartykill.ca/npcs/
+[3d6]: https://character.totalpartykill.ca/3d6/
+[4d6]: https://character.totalpartykill.ca/4d6/
