@@ -212,7 +212,8 @@ class Character(BasicAttributesMixin, AppearanceMixin, NameMixin):
         """
         Return any character skills, like thief abilities.
         """
-        return None
+        return self.character_class['skills'] if self.character_class.has_key('skills') else None
+        
 
 
 class BasicCharacter(Character):
@@ -705,6 +706,13 @@ class DelvingDeeperCharacter(LBBCharacter):
     @property
     def system(self):
         return "Delving Deeper"
+        
+    @property
+    def thieves(self):
+        """
+        The thief is an optional class for Delving Deeper
+        """
+        return True
 
     def get_hp(self):
         """
@@ -754,3 +762,10 @@ class DelvingDeeperCharacter(LBBCharacter):
             elif val >= 18:
                 return 4
         return 0
+        
+    def get_skills(self):
+        skills = super(DelvingDeeperCharacter, self).get_skills()
+        if skills:
+            skills = [(skill[0], "3-6") for skill in skills]
+            self.backstab = True
+        return skills

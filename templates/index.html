@@ -111,6 +111,12 @@
           </tr>
           {% endfor %}
       </table>
+      {% if c.backstab %}
+      <h3>Backstab</h3>
+      <table class="thief skills">
+          <tr><td>A thief is best suited to striking from behind with surprise. Should he do so, a +4 attack bonus applies and he causes two dice of damage.</td></tr>
+      </table>
+      {% endif %}
       {% if c.sneak_attack %}
       <h3>Sneak Attack ({{c.sneak_attack}})</h3>
       <table class="thief skills">
