@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block page_class %}Knave Rats{% endblock %}
+
+{% block title %}A Random Knave Rat{% endblock %}
+
+{% block content %}
+<h2 class="system">Knave Rats</h2>
+{% for c in characters %}
+<h1>Knave Rat!</h1>
+<h2 class="appearance">{{ c.appearance }}, {{ c.physical_detail }}, {{ c.clothing }} Clothing, {{ c.personality }}, {{ c.mannerism }}</h2>
+
+<table class="attr">
+    <tr>
+        <td><strong>STR</strong>: {{ c.STR }}</td>
+        <td><strong>DEX</strong>: {{ c.DEX }}</td>
+        <td><strong>CON</strong>: {{ c.CON }}</td>
+    </tr>
+    <tr>
+        <td><strong>INT</strong>: {{ c.INT }}</td>
+        <td><strong>WIS</strong>: {{ c.WIS }}</td>
+        <td><strong>CHA</strong>: {{ c.CHA }}</td>
+    </tr>
+    <tr>
+        <td><strong>Attack</strong>: {{ c.attack }}</td>
+        <td><strong>Armour</strong>: {{ c.armour }}</td>
+        <td><strong>Health</strong>: {{ c.health }}</td>
+    </tr>    
+</table>
+
+<p>
+  You were once a <strong>{{ c.background }}</strong>. Now you are a Knave Rat, a grubby adventurer!
+  {% if c.spell %}You can cast <strong>{{ c.spell }}</strong>, a wondrous spell{% endif %}
+  {% if c.skill %}You possess the skills of a <strong>{{ c.skill }}</strong>.{% endif %}
+</p>
+
+<p class="equipment" style="margin-bottom: 2.5em">
+    <strong>Equipment ({{ c.equipment_slots }} max):</strong> {{ c.equipment }}
+</p>
+{% endfor %}
+
+<footer>
+    <p>
+    Site designed and built by <a href="http://funkaoshi.com">Ramanan Sivaranjan</a>. <a href="https://www.drivethrurpg.com/browse/pub/10312/Questing-Beast-Games">Maze Rats and Knave are for sale on DriveThruRPG</a> It's pay what you want. I paid $4 for each and you should too. <a href="https://www.reddit.com/r/rpg/comments/9smybh/knave_rats_my_favorite_parts_of_knave_and_maze/">KnaveRats is a free mash-up by /u/Kalahan7.</a> If you want to play <a href="/basic/">D&amp;D</a> instead we can do that too. Check out more RPG stuff at <a href="http://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
+
