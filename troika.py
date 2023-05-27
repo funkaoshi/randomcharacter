@@ -50,6 +50,10 @@ class Character(mixins.AppearanceMixin):
         elif self.background == 'Parchment Witch':
             self.appearance = self.appearance.replace('Male', 'Female')
 
+    def to_dict(self):
+        attributes = vars(self)
+        return attributes
+
     BACKGROUNDS = [
         {
             "skills": [

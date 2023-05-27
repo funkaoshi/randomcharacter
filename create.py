@@ -79,11 +79,29 @@ def make_danger_time_char():
 def make_silent_titans_char():
     return render_template("silent_titans.html", c=silent_titans.Character())
 
+@app.route('/troika/', defaults={'fmt': 'html'})
+@app.route('/troika/<fmt>/')
+def make_troika_char(fmt):
+    if fmt == "text":
+        template = "plaintext.txt"
+        mimetype = "text/plain"
+    elif fmt == "html":
+        template = "troika.html"
+        mimetype = "text/html"
+    elif fmt == "yaml":
+        template = "yaml.txt"
+        mimetype ="text/plain"
+    elif fmt == "json":
+        mimetype = "application/json"
 
-@app.route("/troika/")
-def make_troika_char():
-    return render_template("troika.html", c=troika.Character())
+    context = troika.Character()
+    if fmt == "json":
+        content = json.dumps(context.to_dict())
+    else:
+        content = render_template(template, c=context)
+    response = Response(content, status=200, mimetype=mimetype)
 
+    return response
 
 @app.route("/trophy/")
 def make_trophy_char():
