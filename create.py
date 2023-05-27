@@ -82,15 +82,9 @@ def make_silent_titans_char():
 @app.route('/troika/', defaults={'fmt': 'html'})
 @app.route('/troika/<fmt>/')
 def make_troika_char(fmt):
-    if fmt == "text":
-        template = "plaintext.txt"
-        mimetype = "text/plain"
-    elif fmt == "html":
+    if fmt == "html":
         template = "troika.html"
         mimetype = "text/html"
-    elif fmt == "yaml":
-        template = "yaml.txt"
-        mimetype ="text/plain"
     elif fmt == "json":
         mimetype = "application/json"
 
