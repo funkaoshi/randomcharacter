@@ -382,6 +382,8 @@ class Inventory:
         self.roll_weapon()
         self.roll_armor()
         self.roll_helm_shield()
+        self.inventory['slots'].append("3 Days' Rations")
+        self.inventory['slots'].append("Torch")
         self.roll_expeditionary_gear()
         self.roll_tools()
         self.roll_trinkets()
