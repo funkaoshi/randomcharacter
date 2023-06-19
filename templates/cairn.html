@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block page_class %}cairn{% endblock %}
+
+{% block title %}A Random Cairn {{ c.background }}{% endblock %}
+
+{% block content %}
+<h2 class="system">Cairn</h2>
+<h2 class="appearance">You are 
+  {{c.name}}, formerly a 
+  {{c.background}}. You have a 
+  {{c.traits['physique']}} physique, 
+  {{c.traits['skin']}} skin,
+  {{c.traits['hair']}} hair, and a
+  {{c.traits['face']}} face. You speak in a
+  {{c.traits['speech']}} manner and wear
+  {{c.traits['clothing']}} clothing. You are
+  {{c.traits['vice']}} yet
+  {{c.traits['virtue']}}, and are generall regarded as
+  {{c.traits['reputation']}}. You have had the misfortune of being
+  {{c.traits['misfortune']}}. You are
+  {{c.age}} years old.
+</h2>
+
+<table class="attr">
+    <tr>
+        <td><strong>HP</strong>: {{ c.hp }}</td>
+        <td><strong>Armor</strong>: {{c.armor}}</td>
+        <td><strong>STR</strong>: {{ c.attributes['STR'] }}</td>
+        <td><strong>DEX</strong>: {{ c.attributes['DEX'] }}</td>
+        <td><strong>WIL</strong>: {{ c.attributes['WIL'] }}</td>
+    </tr>
+</table>
+
+<ul>
+  {% for item in c.inventory['slots'] %}
+    <li><strong>{{item}}</strong></li>
+  {% endfor %}
+</ul>
+<p>* Bulky items require 2 slots to carry.</p>
+
+<footer>
+    <p>
+        Site designed and built by <a href="https://funkaoshi.com">Ramanan Sivaranjan</a>. <a href="https://cairnrpg.com/">Cairn</a> is an RPG by Yoshai Gal. If you want to play <a href="/basic/">D&D</a> instead we can do that too. Check out more RPG stuff at <a href="https://save.vs.totalpartykill.ca">Save vs. Total Party Kill</a>. If this site looks ugly, please let me know&mdash;unless you're using Internet Explorer.
+    </p>
+</footer>
+{% endblock %}
