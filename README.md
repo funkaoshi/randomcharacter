@@ -24,6 +24,7 @@ D&D, Holmes, etc.
 - [Danger Time][dangertime]
 - [Adventure Game][adventuregame]
 - [Fifth Edition][5e] D&D (Incomplete)
+- [Cairn][cairn] Cairn
 
 You can also generate a list of [NPCs][] and roll [3d6 in order][3d6] or [4d6 drop the lowest][4d6].
 
@@ -60,6 +61,7 @@ well either.
 [basic]: https://character.totalpartykill.ca/basic/
 [lotfp]: https://character.totalpartykill.ca/lotfp/
 [5e]: https://character.totalpartykill.ca/5e/
+[cairn]: https://character.totalpartykill.ca/cairn/
 [dangertime]: https://character.totalpartykill.ca/dangertime/
 [adventuregame]: https://character.totalpartykill.ca/adventuregame/
 [npcs]: https://character.totalpartykill.ca/npcs/

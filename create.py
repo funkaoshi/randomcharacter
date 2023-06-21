@@ -8,9 +8,10 @@ import characterclass
 import dangertime
 import demoncity
 import dice
+import cairn
 import fifth
 import mazerats
-import silent_titans
+# import silent_titans
 import troika
 import trophy
 
@@ -36,6 +37,26 @@ SYSTEMS = {
 def with_sign(number):
     return "+{0}".format(number) if number > 0 else str(number)
 
+@app.route('/cairn/', defaults={'fmt': "html"})
+@app.route('/cairn/<fmt>/')
+def cairn_character(fmt):
+    if fmt == "html":
+        template = "index.html"
+        mimetype = "text/html"
+    elif fmt == "json":
+        mimetype = "application/json"
+    else:
+        # default to HTML for unknown display formats
+        return redirect(url_for('cairn_character', fmt="html"))
+
+    context = cairn.Character()
+
+    if fmt == "json":
+        content = json.dumps(context.to_dict())
+    else:
+        content = render_template("cairn.html", c=context)
+    response = Response(content, status=200, mimetype=mimetype)
+    return response
 
 @app.route('/5e/')
 def fifth_edition():
