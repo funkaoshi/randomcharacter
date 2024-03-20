@@ -10,7 +10,6 @@ import demoncity
 import dice
 import fifth
 import mazerats
-import silent_titans
 import troika
 import trophy
 
@@ -20,15 +19,15 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 SYSTEMS = {
-    'lbb': character.LBBCharacter,
-    'holmes': character.HolmesCharacter,
-    'basic': character.BasicCharacter,
-    'pahvelorn': character.PahvelornCharacter,
-    'apollyon': character.ApollyonCharacter,
-    'carcosa': character.CarcosaCharacter,
-    'moc': character.MastersOfCarcosaCharacter,
-    'dd': character.DelvingDeeperCharacter,
-    'lotfp': character.LotFPCharacter
+    "lbb": character.LBBCharacter,
+    "holmes": character.HolmesCharacter,
+    "basic": character.BasicCharacter,
+    "pahvelorn": character.PahvelornCharacter,
+    "apollyon": character.ApollyonCharacter,
+    "carcosa": character.CarcosaCharacter,
+    "moc": character.MastersOfCarcosaCharacter,
+    "dd": character.DelvingDeeperCharacter,
+    "lotfp": character.LotFPCharacter,
 }
 
 
@@ -37,87 +36,102 @@ def with_sign(number):
     return "+{0}".format(number) if number > 0 else str(number)
 
 
-@app.route('/5e/')
+@app.route("/5e/")
 def fifth_edition():
     return render_template("5e.html", c=fifth.Character())
 
-@app.route('/3d6/')
+
+@app.route("/3d6/")
 def three_dee_six():
-    roll = [dice.xdy(3,6) for _ in range(6)]
+    roll = [dice.xdy(3, 6) for _ in range(6)]
     return render_template("3d6.html", roll=roll)
 
-@app.route('/equipment/', defaults={'system': "basic"})
-@app.route('/equipment/<system>/')
+
+@app.route("/equipment/", defaults={"system": "basic"})
+@app.route("/equipment/<system>/")
 def equipment(system):
     system = SYSTEMS.get(system, None)
     if not system:
         # default to basic for unknown systems
-        return redirect(url_for('equipment', system='basic'))
+        return redirect(url_for("equipment", system="basic"))
 
     equipment = system().equipment
     return render_template("equipment.html", equipment=equipment)
 
-@app.route('/4d6/')
+
+@app.route("/4d6/")
 def four_dee_six():
-    roll = [sum(sorted(dice.d(6) for _ in xrange(4))[1:]) for _ in range(6)]
+    roll = [sum(sorted(dice.d(6) for _ in range(4))[1:]) for _ in range(6)]
     return render_template("4d6.html", roll=roll)
 
-@app.route('/adventuregame/')
+
+@app.route("/adventuregame/")
 def make_adventure_game_char():
     return render_template("adventuregame.html", c=adventuregame.Character())
 
-@app.route('/dangertime/')
+
+@app.route("/dangertime/")
 def make_danger_time_char():
     return render_template("dangertime.html", c=dangertime.Character())
 
-@app.route('/silent-titans/')
+
+@app.route("/silent-titans/")
 def make_silent_titans_char():
     return render_template("silent_titans.html", c=silent_titans.Character())
 
-@app.route('/troika/')
+
+@app.route("/troika/")
 def make_troika_char():
     return render_template("troika.html", c=troika.Character())
 
-@app.route('/trophy/')
+
+@app.route("/trophy/")
 def make_trophy_char():
     return render_template("trophy.html", c=trophy.Character())
 
-@app.route('/demoncity/text/')
+
+@app.route("/demoncity/text/")
 def make_demoncity_text_char():
     mimetype = "text/plain"
     content = render_template("demoncity.txt", c=demoncity.Character())
     return Response(content, status=200, mimetype=mimetype)
 
-@app.route('/demoncity/')
+
+@app.route("/demoncity/")
 def make_demoncity_char():
     return render_template("demoncity.html", c=demoncity.Character())
 
-@app.route('/mazerats/', defaults={'number': 1})
-@app.route('/mazerats/<int:number>/')
+
+@app.route("/mazerats/", defaults={"number": 1})
+@app.route("/mazerats/<int:number>/")
 def make_mazerats_char(number):
     if number >= 20:
         number = 20
     characters = [mazerats.Character() for _ in range(number)]
     return render_template("mazerats.html", characters=characters)
 
-@app.route('/npcs/', defaults={'number': 10})
-@app.route('/npcs/<int:number>/')
+
+@app.route("/npcs/", defaults={"number": 10})
+@app.route("/npcs/<int:number>/")
 def generate_npcs(number):
     if number > 1000:
         number = 1000
-    characters = [character.BasicCharacter(testing=True) for _ in xrange(number)]
+    characters = [character.BasicCharacter(testing=True) for _ in range(number)]
     return render_template("npcs.html", characters=characters)
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return redirect('/basic/')
+    return redirect("/basic/")
 
-@app.route('/text/')
+
+@app.route("/text/")
 def index_text():
-    return redirect('/basic/text/')
+    return redirect("/basic/text/")
 
-@app.route('/<system>/', defaults={'fmt': "html"})
-@app.route('/<system>/<fmt>/')
+
+@app.route("/<system>/", defaults={"fmt": "html"})
+@app.route("/<system>/<fmt>/")
 def generate(system, fmt):
     if fmt == "text":
         template = "plaintext.txt"
@@ -127,19 +141,19 @@ def generate(system, fmt):
         mimetype = "text/html"
     elif fmt == "yaml":
         template = "yaml.txt"
-        mimetype ="text/plain"
+        mimetype = "text/plain"
     elif fmt == "json":
         mimetype = "application/json"
     else:
         # default to HTML for unknown display formats
-        return redirect(url_for('generate', system=system, fmt="html"))
+        return redirect(url_for("generate", system=system, fmt="html"))
 
     system = SYSTEMS.get(system, None)
     if not system:
         # default to basic for unknown systems
-        return redirect(url_for('generate', system='basic', fmt=fmt))
+        return redirect(url_for("generate", system="basic", fmt=fmt))
 
-    c = get_class(request.args.get('class'))
+    c = get_class(request.args.get("class"))
     context = system(classname=c)
     if fmt == "json":
         content = json.dumps(context.to_dict())
@@ -172,5 +186,5 @@ def get_class(classname):
 #
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run("0.0.0.0")

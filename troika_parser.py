@@ -50,5 +50,5 @@ while backgrounds_txt:
         "special": " ".join(specials)
     })
 
-print(json.dumps(backgrounds, indent=4))
+print((json.dumps(backgrounds, indent=4)))
 

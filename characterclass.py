@@ -12,7 +12,7 @@ ATTRIBUTES = ['STR', 'INT', 'WIS', 'DEX', 'CON', 'CHA']
 """
 Indexes into ATTRIBUTES
 """
-STR, INT, WIS, DEX, CON, CHA = range(6)
+STR, INT, WIS, DEX, CON, CHA = list(range(6))
 
 
 """
@@ -719,4 +719,4 @@ PRIME_REQUISITE = {
 
 CLASSES = [FIGHTER, MAGICUSER, CLERIC, THIEF, DWARF, ELF, HALFLING]
 VALID_CLASS_NAMES = [c['name'].lower().replace('-', '') for c in CLASSES]
-CLASS_BY_NAME = dict(zip(VALID_CLASS_NAMES, CLASSES))
+CLASS_BY_NAME = dict(list(zip(VALID_CLASS_NAMES, CLASSES)))

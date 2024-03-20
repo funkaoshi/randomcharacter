@@ -1,12 +1,7 @@
-import itertools
 import random
-
-import mixins
-import dice
 
 
 class Character(object):
-
     def __init__(self, *args, **kwargs):
         super(Character, self).__init__(*args, **kwargs)
 
@@ -16,23 +11,25 @@ class Character(object):
         self.health = 4  # Everyone starts with 4 hitpoints
         self.armour = 8  # Light Armour (7) + Shield (8)
 
-        self.attack = 0    # The default attack bonus is 0
+        self.attack = 0  # The default attack bonus is 0
         self.skill = None  # No starting skill
         self.spell = None  # No starting spell.
 
-        self.equipment = ', '.join(self.get_equipment())
+        self.equipment = ", ".join(self.get_equipment())
 
         self.get_feature()
 
     def attributes(self):
-        return random.choice([
-            ("+2", "+1", "0"),
-            ("+2", "0", "+1"),
-            ("+1", "+2", "0"),
-            ("0", "+2", "+1"),
-            ("+1", "0", "+2"),
-            ("0", "+1", "+2"),
-        ])
+        return random.choice(
+            [
+                ("+2", "+1", "0"),
+                ("+2", "0", "+1"),
+                ("+1", "+2", "0"),
+                ("0", "+2", "+1"),
+                ("+1", "0", "+2"),
+                ("0", "+1", "+2"),
+            ]
+        )
 
     def get_equipment(self):
         items = [
@@ -75,278 +72,303 @@ class Character(object):
         ]
 
         weapons = [
-            'Axe', 'Dagger', 'Mace', 'Short Sword', 'Flail',
-            'One-Handed Spear', 'Spears', 'Halberd', 'Long Sword', 'Warhammer',
-            'Bow', 'Cross Bow', 'Sling'
+            "Axe",
+            "Dagger",
+            "Mace",
+            "Short Sword",
+            "Flail",
+            "One-Handed Spear",
+            "Spears",
+            "Halberd",
+            "Long Sword",
+            "Warhammer",
+            "Bow",
+            "Cross Bow",
+            "Sling",
         ]
 
-        return random.sample(items, 6) + ['Shield', 'Light Armour'] + random.sample(weapons, 2)
+        return (
+            random.sample(items, 6)
+            + ["Shield", "Light Armour"]
+            + random.sample(weapons, 2)
+        )
 
     def get_feature(self):
-        feature = random.choice(['fighter', 'wizard', 'specialist'])
-        if feature == 'fighter':
+        feature = random.choice(["fighter", "wizard", "specialist"])
+        if feature == "fighter":
             self.attack = "+1"
-        elif feature == 'wizard':
+        elif feature == "wizard":
             self.spell = self.get_spell()
-        elif feature == 'specialist':
+        elif feature == "specialist":
             self.skill = self.get_skills()
 
-    def get_spell(self):
-        return 'MAGIC'
-
     def get_skills(self):
-        return random.choice([
-            "Briarborn (tracking, foraging, survival)",
-            "Fingersmith (Tinkering, picking locks or pockets)",
-            "Roofrunner (climbing, leaping, balancing)",
-            "Shadowjack (moving silently, hiding in shadows)",
-        ])
+        return random.choice(
+            [
+                "Briarborn (tracking, foraging, survival)",
+                "Fingersmith (Tinkering, picking locks or pockets)",
+                "Roofrunner (climbing, leaping, balancing)",
+                "Shadowjack (moving silently, hiding in shadows)",
+            ]
+        )
 
     @property
     def appearance(self):
-        return random.choice([
-            "Aquiline",
-            "Athletic",
-            "Barrel-Chested",
-            "Boney",
-            "Brawny",
-            "Brutish",
-            "Bullnecked",
-            "Chiseled",
-            "Coltish",
-            "Corpulent",
-            "Craggy",
-            "Delicate",
-            "Furrowed",
-            "Gaunt",
-            "Gorgeous",
-            "Grizzled",
-            "Haggard",
-            "Handsome",
-            "Hideous",
-            "Lanky",
-            "Pudgy",
-            "Ripped",
-            "Rosy",
-            "Scrawny",
-            "Sinewy",
-            "Slender",
-            "Slumped",
-            "Solid",
-            "Square-Jawed",
-            "Statuesque",
-            "Towering",
-            "Trim",
-            "Weathered",
-            "Willowy",
-            "Wiry",
-            "Wrinkled",
-        ])
+        return random.choice(
+            [
+                "Aquiline",
+                "Athletic",
+                "Barrel-Chested",
+                "Boney",
+                "Brawny",
+                "Brutish",
+                "Bullnecked",
+                "Chiseled",
+                "Coltish",
+                "Corpulent",
+                "Craggy",
+                "Delicate",
+                "Furrowed",
+                "Gaunt",
+                "Gorgeous",
+                "Grizzled",
+                "Haggard",
+                "Handsome",
+                "Hideous",
+                "Lanky",
+                "Pudgy",
+                "Ripped",
+                "Rosy",
+                "Scrawny",
+                "Sinewy",
+                "Slender",
+                "Slumped",
+                "Solid",
+                "Square-Jawed",
+                "Statuesque",
+                "Towering",
+                "Trim",
+                "Weathered",
+                "Willowy",
+                "Wiry",
+                "Wrinkled",
+            ]
+        )
 
     @property
     def physical_detail(self):
-        return random.choice([
-            "Acid scars",
-            "Battle scars",
-            "Birthmark",
-            "Braided hair",
-            "Brand mark",
-            "Broken nose",
-            "Bronze skinned",
-            "Burn scars	",
-            "Bushy eyebrows",
-            "Curly hair",
-            "Dark skinned",
-            "Dreadlocks",
-            "Exotic accent",
-            "Flogging scars",
-            "Freckles",
-            "Gold tooth",
-            "Hoarse voice",
-            "Huge beard",
-            "Long hair",
-            "Matted hair",
-            "Missing ear",
-            "Missing teeth",
-            "Moustache",
-            "Muttonchops",
-            "Nine fingers",
-            "Oiled hair",
-            "One-eyed",
-            "Pale skinned",
-            "Piercings	",
-            "Ritual scars",
-            "Sallow skin",
-            "Shaved head",
-            "Sunburned",
-            "Tangled hair",
-            "Tattoos",
-            "Topknot",
-        ])
+        return random.choice(
+            [
+                "Acid scars",
+                "Battle scars",
+                "Birthmark",
+                "Braided hair",
+                "Brand mark",
+                "Broken nose",
+                "Bronze skinned",
+                "Burn scars	",
+                "Bushy eyebrows",
+                "Curly hair",
+                "Dark skinned",
+                "Dreadlocks",
+                "Exotic accent",
+                "Flogging scars",
+                "Freckles",
+                "Gold tooth",
+                "Hoarse voice",
+                "Huge beard",
+                "Long hair",
+                "Matted hair",
+                "Missing ear",
+                "Missing teeth",
+                "Moustache",
+                "Muttonchops",
+                "Nine fingers",
+                "Oiled hair",
+                "One-eyed",
+                "Pale skinned",
+                "Piercings	",
+                "Ritual scars",
+                "Sallow skin",
+                "Shaved head",
+                "Sunburned",
+                "Tangled hair",
+                "Tattoos",
+                "Topknot",
+            ]
+        )
 
     @property
     def background(self):
-        return random.choice([
-           "Alchemist",
-            "Beggar-prince",
-            "Blackmailer",
-            "Bounty-hunter",
-            "Chimney sweep",
-            "Coin-clipper",
-            "Contortionist",
-            "Counterfeiter",
-            "Cultist",
-            "Cutpurse",
-            "Debt-collector",
-            "Deserter",
-            "Fence",
-            "Fortuneteller",
-            "Galley slave",
-            "Gambler",
-            "Gravedigger",
-            "Headsman",
-            "Hedge knight",
-            "Highwayman",
-            "Housebreaker",
-            "Kidnapper",
-            "Mad prophet",
-            "Mountebank",
-            "Peddler",
-            "Pit-fighter",
-            "Poisoner",
-            "Rat-catcher",
-            "Scrivener",
-            "Sellsword",
-            "Slave",
-            "Smuggler",
-            "Street performer",
-            "Tattooist",
-            "Urchin",
-            "Usurer",
-        ])
+        return random.choice(
+            [
+                "Alchemist",
+                "Beggar-prince",
+                "Blackmailer",
+                "Bounty-hunter",
+                "Chimney sweep",
+                "Coin-clipper",
+                "Contortionist",
+                "Counterfeiter",
+                "Cultist",
+                "Cutpurse",
+                "Debt-collector",
+                "Deserter",
+                "Fence",
+                "Fortuneteller",
+                "Galley slave",
+                "Gambler",
+                "Gravedigger",
+                "Headsman",
+                "Hedge knight",
+                "Highwayman",
+                "Housebreaker",
+                "Kidnapper",
+                "Mad prophet",
+                "Mountebank",
+                "Peddler",
+                "Pit-fighter",
+                "Poisoner",
+                "Rat-catcher",
+                "Scrivener",
+                "Sellsword",
+                "Slave",
+                "Smuggler",
+                "Street performer",
+                "Tattooist",
+                "Urchin",
+                "Usurer",
+            ]
+        )
 
     @property
     def clothing(self):
-        return random.choice([
-            "Antique",
-            "Battle-torn",
-            "Bedraggled",
-            "Blood-stained",
-            "Ceremonial",
-            "Dated",
-            "Decaying",
-            "Eccentric",
-            "Elegant",
-            "Embroidered",
-            "Exotic",
-            "Fashionable",
-            "Flamboyant",
-            "Food-stained",
-            "Formal",
-            "Frayed",
-            "Frumpy",
-            "Garish",
-            "Grimy",
-            "Haute couture",
-            "Lacey",
-            "Livery",
-            "Mud-stained",
-            "Ostentatious",
-            "Oversized",
-            "Patched",
-            "Patterned",
-            "Perfumed",
-            "Practical",
-            "Rumpled",
-            "Sigils",
-            "Singed",
-            "Tasteless",
-            "Undersized",
-            "Wine-stained",
-            "Worn out",
-        ])
+        return random.choice(
+            [
+                "Antique",
+                "Battle-torn",
+                "Bedraggled",
+                "Blood-stained",
+                "Ceremonial",
+                "Dated",
+                "Decaying",
+                "Eccentric",
+                "Elegant",
+                "Embroidered",
+                "Exotic",
+                "Fashionable",
+                "Flamboyant",
+                "Food-stained",
+                "Formal",
+                "Frayed",
+                "Frumpy",
+                "Garish",
+                "Grimy",
+                "Haute couture",
+                "Lacey",
+                "Livery",
+                "Mud-stained",
+                "Ostentatious",
+                "Oversized",
+                "Patched",
+                "Patterned",
+                "Perfumed",
+                "Practical",
+                "Rumpled",
+                "Sigils",
+                "Singed",
+                "Tasteless",
+                "Undersized",
+                "Wine-stained",
+                "Worn out",
+            ]
+        )
 
     @property
     def personality(self):
-        return random.choice([
-            "Bitter",
-            "Brave",
-            "Cautious",
-            "Chipper",
-            "Contrary",
-            "Cowardly",
-            "Cunning",
-            "Driven",
-            "Entitled",
-            "Gregarious",
-            "Grumpy",
-            "Heartless",
-            "Honor-bound",
-            "Hotheaded",
-            "Inquisitive",
-            "Irascible",
-            "Jolly",
-            "Know-it-all",
-            "Lazy",
-            "Loyal",
-            "Menacing",
-            "Mopey",
-            "Nervous",
-            "Protective",
-            "Righteous",
-            "Rude",
-            "Sarcastic",
-            "Savage",
-            "Scheming",
-            "Serene",
-            "Spacey",
-            "Stoic",
-            "Stubborn",
-            "Stuck-up",
-            "Suspicious",
-            "Wisecracking",
-        ])
+        return random.choice(
+            [
+                "Bitter",
+                "Brave",
+                "Cautious",
+                "Chipper",
+                "Contrary",
+                "Cowardly",
+                "Cunning",
+                "Driven",
+                "Entitled",
+                "Gregarious",
+                "Grumpy",
+                "Heartless",
+                "Honor-bound",
+                "Hotheaded",
+                "Inquisitive",
+                "Irascible",
+                "Jolly",
+                "Know-it-all",
+                "Lazy",
+                "Loyal",
+                "Menacing",
+                "Mopey",
+                "Nervous",
+                "Protective",
+                "Righteous",
+                "Rude",
+                "Sarcastic",
+                "Savage",
+                "Scheming",
+                "Serene",
+                "Spacey",
+                "Stoic",
+                "Stubborn",
+                "Stuck-up",
+                "Suspicious",
+                "Wisecracking",
+            ]
+        )
 
     @property
     def mannerism(self):
-        return random.choice([
-            "Anecdotes",
-            "Breathy",
-            "Chuckles",
-            "Clipped",
-            "Cryptic",
-            "Deep voice",
-            "Drawl",
-            "Enunciates",
-            "Flowery speech",
-            "Gravelly voice",
-            "Highly formal",
-            "Hypnotic",
-            "Interrupts",
-            "Laconic",
-            "Laughs",
-            "Long pauses",
-            "Melodious",
-            "Monotone",
-            "Mumbles",
-            "Narrates",
-            "Overly casual",
-            "Quaint sayings",
-            "Rambles",
-            "Random facts",
-            "Rapid-fire",
-            "Rhyming",
-            "Robotic",
-            "Slow speech",
-            "Speechifies",
-            "Squeaky",
-            "Street slang",
-            "Stutters",
-            "Talks to self",
-            "Trails off",
-            "Very loud",
-            "Whispers",
-        ])
+        return random.choice(
+            [
+                "Anecdotes",
+                "Breathy",
+                "Chuckles",
+                "Clipped",
+                "Cryptic",
+                "Deep voice",
+                "Drawl",
+                "Enunciates",
+                "Flowery speech",
+                "Gravelly voice",
+                "Highly formal",
+                "Hypnotic",
+                "Interrupts",
+                "Laconic",
+                "Laughs",
+                "Long pauses",
+                "Melodious",
+                "Monotone",
+                "Mumbles",
+                "Narrates",
+                "Overly casual",
+                "Quaint sayings",
+                "Rambles",
+                "Random facts",
+                "Rapid-fire",
+                "Rhyming",
+                "Robotic",
+                "Slow speech",
+                "Speechifies",
+                "Squeaky",
+                "Street slang",
+                "Stutters",
+                "Talks to self",
+                "Trails off",
+                "Very loud",
+                "Whispers",
+            ]
+        )
 
     def get_spell(self):
         physical_element = [
@@ -464,7 +486,6 @@ class Character(object):
             "Trap",
             "Wall",
             "Web",
-
         ]
 
         ethereal_element = [
@@ -599,6 +620,6 @@ class Character(object):
             (ethereal_effect, ethereal_element),
         ]
 
-        return ' '.join([random.choice(component) for component in random.choice(spell_form)])
-
-
+        return " ".join(
+            [random.choice(component) for component in random.choice(spell_form)]
+        )

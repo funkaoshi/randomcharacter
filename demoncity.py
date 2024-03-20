@@ -1,4 +1,3 @@
-import itertools
 import math
 import random
 
@@ -7,7 +6,6 @@ import dice
 
 
 class Character(mixins.AppearanceMixin):
-
     def __init__(self, *args, **kwargs):
         super(Character, self).__init__(*args, **kwargs)
 
@@ -21,12 +19,13 @@ class Character(mixins.AppearanceMixin):
         if self.role == "Investigator":
             self.contacts += 1 + (7 - self.raw_skills)
 
-        self.contacts_list = [self.occupation] + random.sample(self.OCCUPATIONS, self.contacts - 1)
+        self.contacts_list = [self.occupation] + random.sample(
+            self.OCCUPATIONS, self.contacts - 1
+        )
 
     def generate_attributes(self):
         attributes = {
-            a.lower(): int(math.ceil(1.0 * dice.d(10) / 2.0))
-            for a in self.ATTRIBUTES
+            a.lower(): int(math.ceil(1.0 * dice.d(10) / 2.0)) for a in self.ATTRIBUTES
         }
 
         if self.role == "Victim":
@@ -49,68 +48,58 @@ class Character(mixins.AppearanceMixin):
         ]
 
         if self.role == "Victim":
-            self.skills += [
-                ("Persuasion", self.attributes["appeal"] + 1, "appeal")
-            ]
+            self.skills += [("Persuasion", self.attributes["appeal"] + 1, "appeal")]
         elif self.role == "Investigator":
             # The investigator gets an additional skill, and another extra skill
             # or contact
-            self.raw_skills += random.choice([1,2])
+            self.raw_skills += random.choice([1, 2])
         elif self.role == "Curious":
             knowledge_skills = random.sample(self.SKILLS["Knowledge"], 3)
             score = self.attributes["knowledge"] + 1
-            self.skills += [
-                (skill, score, "knowledge")
-                for skill in knowledge_skills
-            ]
+            self.skills += [(skill, score, "knowledge") for skill in knowledge_skills]
 
         current_skills = set([skill for skill, _, _ in self.skills])
         possible_skills = [
-            skill
-            for skill in self.SKILLS_LIST
-            if skill[0] not in current_skills
+            skill for skill in self.SKILLS_LIST if skill[0] not in current_skills
         ]
 
         for skill, attribute in random.sample(possible_skills, self.raw_skills):
             # split up attribute into lower case list if there are multiple
             # options, e.g. "Toughness or Agility"
-            attributes = map(lambda x: x.lower(), attribute.split(' or '))
+            attributes = [x.lower() for x in attribute.split(" or ")]
 
             # sort the list and grab the last one, the highest score
-            attribute = sorted((self.attributes[attribute] + 1, attribute)
-                                for attribute in attributes)[-1]
+            attribute = sorted(
+                (self.attributes[attribute] + 1, attribute) for attribute in attributes
+            )[-1]
 
             if skill != "Exotic Weapon":
                 self.skills.append((skill, attribute[0], attribute[1]))
 
             if skill == "Humanities":
                 # Get an additional specific humanity skill at +2 knowledge
-                self.skills.append((
-                    random.choice(self.HUMANITIES),
-                    attribute[0] + 1,
-                    attribute[1]
-                ))
+                self.skills.append(
+                    (random.choice(self.HUMANITIES), attribute[0] + 1, attribute[1])
+                )
             elif skill == "Science":
                 # Get an additional specific science skill at +2 knowledge
-                self.skills.append((
-                    random.choice(self.SCIENCES),
-                    attribute[0] + 1,
-                    attribute[1]
-                ))
+                self.skills.append(
+                    (random.choice(self.SCIENCES), attribute[0] + 1, attribute[1])
+                )
             elif skill == "Athletics":
                 # Get an additional sport skill at +2 Toughness or Agility
-                self.skills.append((
-                    random.choice(self.ATHLETICS),
-                    attribute[0] + 1,
-                    attribute[1]
-                ))
+                self.skills.append(
+                    (random.choice(self.ATHLETICS), attribute[0] + 1, attribute[1])
+                )
             elif skill == "Exotic Weapon":
                 # Skilled in a specific weird old weapon at +2
-                self.skills.append((
-                    "%s - %s" % (skill, random.choice(self.WEAPONS)),
-                    attribute[0] + 1,
-                    attribute[1]
-                ))
+                self.skills.append(
+                    (
+                        "%s - %s" % (skill, random.choice(self.WEAPONS)),
+                        attribute[0] + 1,
+                        attribute[1],
+                    )
+                )
 
     ROLES = [
         "Curious",
@@ -146,7 +135,7 @@ class Character(mixins.AppearanceMixin):
             "Firearms",
             "Pilot",
             "Stealth",
-            "Exotic Weapon", # See Sub-List
+            "Exotic Weapon",  # See Sub-List
             "Motorcycle",
             "Boat",
             "Helicopter",
@@ -186,10 +175,9 @@ class Character(mixins.AppearanceMixin):
     }
 
     # Generate flat list of skills
-    SKILLS_LIST = []
-    for attribute, skills in SKILLS.iteritems():
-        SKILLS_LIST.extend([(s, attribute) for s in skills])
-    SKILLS_LIST = set(SKILLS_LIST)
+    SKILLS_LIST = set(
+        (s, attribute) for attribute, skills in SKILLS.items() for s in skills
+    )
 
     OCCUPATIONS = [
         "Able Seamen",
