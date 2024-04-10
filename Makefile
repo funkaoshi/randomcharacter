@@ -10,4 +10,4 @@ push:
 	docker push funkaoshi/randomcharacter:latest
 
 deploy:
-	ssh ubuntu@oci.vqvz.com "cd oracle_free_vm/docker && docker-compose pull && docker-compose restart funkaoshi-randomcharacter"
+	ssh ubuntu@oci.vqvz.com "cd oracle_free_vm/docker && docker-compose stop funkaoshi-randomcharacter && docker-compose pull && docker-compose up --force-recreate -d funkaoshi-randomcharacter"

@@ -8,16 +8,6 @@
         <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="/static/jquery.masonry.min.js"></script>
         <script type="text/javascript">
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-2675737-19']);
-          _gaq.push(['_trackPageview']);
-
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-
           $(function () {
             $('#extras').masonry({
               itemSelector : '.block',
@@ -28,7 +18,19 @@
     </head>
     <body>
         <div id="container" class="{% block page_class %}default{% endblock %}">
-		{% block content %}{% endblock %}
+		      {% block content %}{% endblock %}
         </div>
+        <script>
+          (function () {
+            window.counterscale = {
+              q: [["set", "siteId", "character.totalpartykill.ca"], ["trackPageview"]],
+            };
+          })();
+        </script>
+        <script
+            id="counterscale-script"
+            src="https://counterscale.ramanan-287.workers.dev/tracker.js"
+            defer
+        ></script>
     </body>
 </html>
