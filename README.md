@@ -13,13 +13,13 @@ D&D, Holmes, etc.
 
 - Abstract D&D Character
     - [Little Brown Books][lbb] (1974 Original D&D)
-        - [Carcosa][]
+        - [Carcosa][carcosa]
         - [Masters of Carcosa!][moc] (my Carcosa game)
-        - [Apollyon][]
-        - [Pahvelorn][]
+        - [Apollyon][apollyon]
+        - [Pahvelorn][pahvelorn]
         - [Delving Deeper][dd]
-    - [Holmes] D&D
-    - [Basic][] D&D (Mentzer / Moldvay)
+    - [Holmes][holmes] D&D
+    - [Basic][basic] D&D (Mentzer / Moldvay)
         - [Lamentations of the Flame Princess][lotfp]
 - [Danger Time][dangertime]
 - [Adventure Game][adventuregame]
