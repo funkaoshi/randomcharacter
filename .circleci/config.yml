@@ -1,0 +1,89 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@8.2.1
+  python: circleci/python@2.1.1
+
+jobs:
+  integration_tests:
+    docker:
+      - image: cimg/python:3.11
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get install mysql-client
+      - run: whoami
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+      - run:
+          name: "Install dependencies"
+          command: |
+            pip install -r requirements.txt
+      # TODO add integration tests
+  build-push-dev:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: "Set release version env var"
+          command: |
+            echo 'export RELEASE_VERSION=$CIRCLE_SHA1' >> "$BASH_ENV"
+            source "$BASH_ENV"
+      - setup_remote_docker
+      - aws-ecr/build-and-push-image:
+          repo: osrbeyond-random
+          tag: ${RELEASE_VERSION}-dev
+      - run:
+          name: "Install boto3"
+          command: |
+            sudo apt-get update && sudo apt-get install -y python3-pip
+            pip3 install boto3
+      - run:
+          name: "Deploy new API version"
+          command: |
+            ./deploy.py --cluster dev-osrbeyond-cluster --service dev-osrbeyond-random --version ${RELEASE_VERSION}-dev --aws_profile default
+
+  build-push-prod:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: "Set release version env var"
+          command: |
+            echo 'export RELEASE_VERSION=$CIRCLE_SHA1' >> "$BASH_ENV"
+            source "$BASH_ENV"
+      - setup_remote_docker
+      - aws-ecr/build-and-push-image:
+          repo: osrbeyond-api
+          tag: ${RELEASE_VERSION}
+      - run:
+          name: "Install boto3"
+          command: |
+            sudo apt-get update && sudo apt-get install -y python3-pip
+            pip3 install boto3
+      - run:
+          name: "Deploy new API version"
+          command: |
+            ./deploy.py --cluster prod-osrbeyond-cluster --service prod-osrbeyond-random --version ${RELEASE_VERSION} --aws_profile default
+
+workflows:
+  test:
+    jobs:
+      - integration_tests
+  build_and_push_dev_image:
+    jobs:
+      - build-push-dev:
+          filters:
+            branches:
+              only:
+                - dev
+                - /cicd\/.*/
+  build_and_push_prod_image:
+    jobs:
+      - build-push-prod:
+          filters:
+            branches:
+              only: main
