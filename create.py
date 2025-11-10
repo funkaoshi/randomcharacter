@@ -12,6 +12,7 @@ import fifth
 import mazerats
 import troika
 import trophy
+import grimoire
 
 DEBUG = True
 
@@ -46,6 +47,10 @@ def three_dee_six():
     roll = [dice.xdy(3, 6) for _ in range(6)]
     return render_template("3d6.html", roll=roll)
 
+@app.route("/grimoire/")
+def errant_grimoire():
+    g = grimoire.random_grimoire()
+    return render_template("grimoire.html", grimoire=g)
 
 @app.route("/equipment/", defaults={"system": "basic"})
 @app.route("/equipment/<system>/")
